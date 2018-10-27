@@ -1,0 +1,33 @@
+.options > p {
+    text-align:center;
+    width:100px
+}
+.options > * {
+    display: inline-block;
+}
+#svg-container {
+    float:left;
+    width:50%
+}
+#options-container {
+    float:right;
+    width:50%
+}
+#wrapper{
+    border:20px;
+    padding:20px
+}
+#face{
+    fill:blue
+}
+.eyes,#torso{
+    fill:black
+}
+#mouth{
+    stroke:red;
+    fill:none
+}
+.bodyParts {
+    stroke:black;
+    fill:none
+}
