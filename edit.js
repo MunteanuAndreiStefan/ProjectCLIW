@@ -68,7 +68,7 @@ function changingShape(value){
             face.setAttributeNS(null,"r","50");
             break;
     }
-    face.style="fill:blue";
+    face.style.fill=faceColor;
     face.id="face";
     char.insertBefore(face,char.childNodes[0]);
 }
@@ -85,7 +85,6 @@ function changingMouth(value){
             mouth.setAttribute("d","M385,125 Q400,100 415,125");
             break;
     }
-
 }
 function changingAccessory(value){
 }
@@ -98,6 +97,7 @@ var accessoryList=new List(["default"]);
 var costumeList=new List(["default"]);
 var divToList={"eyes":eyesList,"shape":shapeList,"mouth":mouthList,"accessory":accessoryList,"costume":costumeList};
 var divToFunction={"eyes":changingEyes,"shape":changingShape,"mouth":changingMouth,"accessory":changingAccessory,"costume":changingCostumes};
+var faceColor="blue";
 window.onload=function(){
     var divs=document.getElementsByClassName("options");
     var divsSize=divs.length;
@@ -110,4 +110,17 @@ window.onload=function(){
         buttons.item(0).onclick=()=>{list.previousElementIndex();paragraph.textContent=list.getCurrentItem();eventHandler(paragraph.textContent);}
         buttons.item(1).onclick=()=>{list.nextElementIndex();paragraph.textContent=list.getCurrentItem();eventHandler(paragraph.textContent);}
     }
+    /*
+    var color=document.getElementById("color");
+    color.onchange=()=>{faceColor=color.value;document.getElementById("face").style="fill:"+faceColor;}
+    */
+    var hslItems=document.getElementsByTagName("input");
+    var colorRectangle=document.getElementById("colorTest");
+    for(var i=0;i<hslItems.length;i++){
+        hslItems[i].onchange=()=>{
+            colorRectangle.style.fill=`hsla(${hslItems[0].value},${hslItems[1].value}%,${hslItems[2].value}%,${hslItems[3].value})`;
+        };
+    }
+    colorRectangle.style.fill="black";
+    document.getElementById("apply").onclick=()=>{faceColor=colorRectangle.style.fill;document.getElementById("face").style.fill=faceColor;};
 }

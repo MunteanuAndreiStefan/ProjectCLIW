@@ -17,7 +17,7 @@
     border:20px;
     padding:20px
 }
-#face {
+#face{
     fill:blue
 }
 .eyes,#torso{
@@ -28,6 +28,6 @@
     fill:none
 }
 .bodyParts {
-    stroke:chartreuse;
+    stroke:black;
     fill:none
 }
