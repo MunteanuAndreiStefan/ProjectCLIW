@@ -217,6 +217,10 @@ window.onload=function(){
     color.onchange=()=>{faceColor=color.value;document.getElementById("face").style="fill:"+faceColor;}
     */
     var hslItems=document.getElementsByTagName("input");
+    hslItems[0].value=0;
+    hslItems[1].value=0;
+    hslItems[2].value=0;
+    hslItems[3].value=0;
     var colorRectangle=document.getElementById("color-test");
     for(var i=0;i<hslItems.length;i++){
         hslItems[i].onchange=()=>{

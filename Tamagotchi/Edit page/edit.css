@@ -22,19 +22,22 @@ html,body{
     top:5%;
     left:50%;
     bottom:25%;
+    text-align: center
 }
 #color-container{
     position: absolute;
     right:0%;
     top:5%;
     left:75%;
-    bottom:25%
+    bottom:25%;
+    text-align: center
 }
 #save{
     position: absolute;
     top:75%;
     right:0%;
     bottom:0%;
+    text-align:center;
     left:50%
 }
 #save > * {
