@@ -12,16 +12,19 @@
     <body>
         <div id="wrapper">
             <div id="svg-container">
-                <svg id="character" width="1000" height="1000" viewBox="0 0 1000 1000" >
-                    <circle id="face" cx="400" cy="100" r="50"/>
-                    <circle id="left-eye" class="eyes" cx="385" cy="85" r="5"/>
-                    <circle id="right-eye" class="eyes" cx="415" cy="85" r="5"/>
-                    <path id="mouth" d="M385,125 Q400,150 415,125"/>    
-                    <rect id="torso" class="bodyParts" x="385" y="150" width="30" height="70"/>        
-                    <path id="left-hand" class="bodyParts" d="M345,175 385,150"/>
-                    <path id="right-hand" class="bodyParts" d="M415,150 455,175"/>
-                    <path id="left-leg" class="bodyParts" d="M345,245 385,220"/>
-                    <path id="right-leg" class="bodyParts" d="M415,220 455,245"/>
+                <svg width="100%" height="100%" >
+                    <g id="character">
+                        <circle id="face"/>
+                        <circle id="left-eye"/>
+                        <circle id="right-eye"/>
+                        <path id="mouth"/>    
+                        <rect id="torso" class="bodyParts"/>        
+                        <path id="left-hand" class="bodyParts"/>
+                        <path id="right-hand" class="bodyParts"/>
+                        <path id="left-leg" class="bodyParts"/>
+                        <path id="right-leg" class="bodyParts"/>
+                        
+                    </g>
                 </svg>
             </div>
             <div id="options-container">
@@ -56,38 +59,38 @@
                     <button>&#8702;</button>
                 </div>
             </div>
-        </div>
-        <!--
-        <div>
-            <label for="color">Color</label>
-            <input id="color" type="color"/>
-        </div>
-        -->
-        <div>
-            <label>Color</label>
-            <div id="color">
-                <label for="hue">Hue</label>
-                <br/>
-                <input id="hue" type="range" value="0" min="0" max="360"/>
-                <br/>
-                <label for="saturation">Saturation</label>
-                <br/>
-                <input id="saturation" type="range" value="0"/>
-                <br/>
-                <label for="lightness">Lightness</label>
-                <br/>
-                <input id="lightness" type="range" value="0"/>
-                <br/>
-                <label for="alpha">Alpha</label>
-                <br/>
-                <input id="alpha" type="range" min="0" max="1" step="0.1" value="0"/>
-                <br/>
-                <svg height="20">
-                    <rect id="colorTest" width="140" height="10"></rect>
-                </svg>
-                <br/>
-                <button id="apply">apply changes</button>
+            <!--
+            <div id="color-container">
+                <label for="color">Color</label>
+                <input id="color" type="color"/>
             </div>
-        </div>
+            -->
+            <div id="color-container">
+                <label>Color</label>
+                <div id="color">
+                    <label for="hue">Hue</label>
+                    <br/>
+                    <input id="hue" type="range" value="0" min="0" max="360"/>
+                    <br/>
+                    <label for="saturation">Saturation</label>
+                    <br/>
+                    <input id="saturation" type="range" value="0"/>
+                    <br/>
+                    <label for="lightness">Lightness</label>
+                    <br/>
+                    <input id="lightness" type="range" value="0"/>
+                    <br/>
+                    <label for="alpha">Alpha</label>
+                    <br/>
+                    <input id="alpha" type="range" min="0" max="1" step="0.1" value="0"/>
+                    <br/>
+                    <svg height="20">
+                        <rect id="colorTest" width="140" height="10"></rect>
+                    </svg>
+                    <br/>
+                    <button id="apply">apply changes</button>
+                </div>
+            </div>
+        </div> 
     </body>
 </html>

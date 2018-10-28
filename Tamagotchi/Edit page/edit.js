@@ -90,6 +90,38 @@ function changingAccessory(value){
 }
 function changingCostumes(value){
 }
+function draw(){
+    var svg=document.getElementsByTagName("svg")[0].getBoundingClientRect();
+    var h=svg.height;
+    var w=svg.width;
+    var face=document.getElementById("face");
+    var leftEye=document.getElementById("left-eye");
+    var rightEye=document.getElementById("right-eye");
+    var mouth=document.getElementById("mouth");
+    var torso=document.getElementById("torso");
+    var leftHand=document.getElementById("left-hand");
+    var rightHand=document.getElementById("right-hand");
+    var leftLeg=document.getElementById("left-leg");
+    var rightLeg=document.getElementById("right-leg");
+    face.setAttribute("cx","400");
+    face.setAttribute("cy","100");
+    face.setAttribute("r","50");
+    leftEye.setAttribute("cx","385");
+    leftEye.setAttribute("cy","85");
+    leftEye.setAttribute("r","5");
+    rightEye.setAttribute("cx","415");
+    rightEye.setAttribute("cy","85");
+    rightEye.setAttribute("r","5");
+    mouth.setAttribute("d","M385,125 Q400,150 415,125");
+    torso.setAttribute("x","385");
+    torso.setAttribute("y","150");
+    torso.setAttribute("width","30");
+    torso.setAttribute("height","70");
+    leftHand.setAttribute("d","M345,175 385,150");
+    rightHand.setAttribute("d","M415,150 455,175");
+    leftLeg.setAttribute("d","M345,245 385,220");
+    rightLeg.setAttribute("d","M415,220 455,245");
+}
 var eyesList=new List(["round","rectangular"]);
 var mouthList=new List(["happy","regular","sad"]);
 var shapeList=new List(["round","rectangular"]);
@@ -123,4 +155,5 @@ window.onload=function(){
     }
     colorRectangle.style.fill="black";
     document.getElementById("apply").onclick=()=>{faceColor=colorRectangle.style.fill;document.getElementById("face").style.fill=faceColor;};
+    draw();
 }

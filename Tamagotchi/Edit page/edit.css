@@ -5,17 +5,27 @@
 .options > * {
     display: inline-block;
 }
-#svg-container {
-    float:left;
-    width:50%
-}
-#options-container {
-    float:right;
-    width:50%
-}
 #wrapper{
+    position:relative;
     border:20px;
     padding:20px
+}
+#svg-container{
+    position: absolute;
+    height:100%;
+    width:70%;
+    border-width: 2px;
+    border-style: solid
+}
+#options-container{
+    position: relative;
+    left:75%;
+    width:25%
+}
+#color-container{
+    position: relative;
+    left:75%;
+    width:25%
 }
 #face{
     fill:blue
