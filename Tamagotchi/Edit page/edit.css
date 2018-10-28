@@ -1,35 +1,52 @@
+#wrapper{
+    position:relative;
+    margin:2px;
+    height:100%;
+    width:100%;
+}
+html,body{
+    height:95%;
+    width:98%
+}
+#svg-container{
+    position: absolute;
+    bottom:0%;
+    left:0%;
+    right:50%;
+    top:5%;
+    border-style:solid
+}
+#options-container{
+    position: absolute;
+    right:25%;
+    top:5%;
+    left:50%;
+    bottom:25%;
+}
+#color-container{
+    position: absolute;
+    right:0%;
+    top:5%;
+    left:75%;
+    bottom:25%
+}
+#save{
+    position: absolute;
+    top:75%;
+    right:0%;
+    bottom:0%;
+    left:50%
+}
+#save > * {
+    width:100px;
+    height:100px;
+}
 .options > p {
     text-align:center;
     width:75px
 }
 .options > * {
-    display: inline-block;
-}
-#wrapper{
-    position:relative;
-    margin:20px;
-    height:90vh;
-    width:90vw;
-}
-#svg-container{
-    position: absolute;
-    height:100%;
-    width:70%;
-    margin-right:20px;
-    border-style:solid;
-}
-#options-container{
-    position: absolute;
-    left:calc(70% + 20px);
-    height:50%;
-    width:30%;
-}
-#color-container{
-    position: absolute;
-    left:calc(70% + 20px);
-    height:50%;
-    top:50%;
-    width:30%;
+    display: inline-block
 }
 #face{
     fill:blue
@@ -47,6 +64,53 @@
 }
 #color-test{
     position:absolute;
-    width:100%;
+    left:calc(50% - 40px);
+    width:80px;
     height:10px
+}
+@media (max-width:700px){
+    .options > p {
+        font-size:75%;
+        width:40px
+    }
+}
+@media (max-width:575px){
+    #svg-container{
+        right:70%
+    }
+    #options-container{
+        left:30%;
+        right:45%
+    }
+    #color-container{
+        left:55%
+    }
+    #save{
+        left:30%
+    }
+    g {
+        transform:scale(0.75,0.75) translate(+25%,+25%);
+    }
+}
+@media (max-width:450px){
+    #options-container{
+        left:30%;
+        right:0%;
+        bottom:50%
+    }
+    #color-container{
+        left:30%;
+        top:50%;
+        bottom:10%
+    }
+    #save{
+        top:90%
+    }
+    #save > * {
+        width:50px;
+        height:50px;
+    }
+    g {
+        transform:scale(0.5,0.5) translate(+50%,+50%);
+    }
 }
