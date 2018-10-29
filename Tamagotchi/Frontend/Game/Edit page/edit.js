@@ -231,5 +231,4 @@ window.onload=function(){
     document.getElementById("apply").onclick=()=>{faceColor=colorRectangle.style.background;document.getElementById("face").style.fill=faceColor;};
     window.onresize=draw;
     draw();
-    window.onmousedown=()=>alert(window.innerWidth+" "+window.innerHeight);
 }

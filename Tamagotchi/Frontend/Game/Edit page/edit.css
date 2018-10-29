@@ -6,7 +6,8 @@
 }
 html,body{
     height:95%;
-    width:98%
+    width:98%;
+    min-height:250px;
 }
 #wrapper > * {
     overflow-y: auto;
@@ -21,7 +22,7 @@ nav {
     left:0%;
     right:50%;
     top:5%;
-    border-style:solid
+    border-style:solid;
 }
 #options-container{
     position: absolute;
@@ -145,11 +146,21 @@ nav {
 }
 @media (max-height:475px) and (min-width:575px){
     g {
-        transform: scale(0.75,0.75) translate(+25%,+25%);
+        transform: scale(0.75,0.75) translate(+25%,+25%)
     }
 }
 @media (max-height:435px) and (min-width:575px) {
     g {
-        transform: scale(0.5,0.5) translate(+50%,+50%);
+        transform: scale(0.5,0.5) translate(+50%,+50%)
+    }
+}
+@media (max-height:280px) {
+    g{
+        transform:scale(0.4,0.4)  translate(+75%,+75%)
+    }
+}
+@media (max-height:250px) {
+    g {
+        transform:scale(0.32,0.32) translate(+100%,+100%)
     }
 }
