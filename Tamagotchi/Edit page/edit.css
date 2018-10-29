@@ -8,6 +8,13 @@ html,body{
     height:95%;
     width:98%
 }
+#wrapper > * {
+    overflow-y: auto;
+}
+nav {
+    position:absolute;
+    bottom:97%
+}
 #svg-container{
     position: absolute;
     bottom:0%;
@@ -22,7 +29,8 @@ html,body{
     top:5%;
     left:50%;
     bottom:25%;
-    text-align: center
+    text-align: center;
+    border-style:solid;
 }
 #color-container{
     position: absolute;
@@ -30,9 +38,11 @@ html,body{
     top:5%;
     left:75%;
     bottom:25%;
-    text-align: center
+    border-style:solid;
+    text-align: center;
 }
 #save{
+    border-style:solid;
     position: absolute;
     top:75%;
     right:0%;
@@ -41,8 +51,10 @@ html,body{
     left:50%
 }
 #save > * {
-    width:100px;
-    height:100px;
+    width:10%;
+    height:40%;
+    min-width: 50px;
+    min-height:20px;
 }
 .options > p {
     text-align:center;
@@ -74,7 +86,7 @@ html,body{
 @media (max-width:700px){
     .options > p {
         font-size:75%;
-        width:40px
+        width:50px
     }
 }
 @media (max-width:575px){
@@ -95,25 +107,49 @@ html,body{
         transform:scale(0.75,0.75) translate(+25%,+25%);
     }
 }
-@media (max-width:450px){
+@media (max-width:550px){
+    #svg-container{
+        right:50%
+    }
     #options-container{
-        left:30%;
+        left:50%;
         right:0%;
         bottom:50%
     }
     #color-container{
-        left:30%;
+        left:50%;
         top:50%;
         bottom:10%
     }
     #save{
+        left:50%;
         top:90%
-    }
-    #save > * {
-        width:50px;
-        height:50px;
     }
     g {
         transform:scale(0.5,0.5) translate(+50%,+50%);
+    }
+}
+@media (max-width:380px){
+    #svg-container{
+        right:70%
+    }
+    #options-container{
+        left:30%;
+    }
+    #color-container{
+        left:30%       
+    }
+    #save{
+        left:30%
+    }
+}
+@media (max-height:475px) and (min-width:575px){
+    g {
+        transform: scale(0.75,0.75) translate(+25%,+25%);
+    }
+}
+@media (max-height:435px) and (min-width:575px) {
+    g {
+        transform: scale(0.5,0.5) translate(+50%,+50%);
     }
 }
