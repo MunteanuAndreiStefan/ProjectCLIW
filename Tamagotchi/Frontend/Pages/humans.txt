@@ -1,0 +1,22 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+	
+
+# THANKS
+
+    To Jonathan Verrecchia for his work on http://verekia.com/
+    To  clear https://weibo.com/518501269
+	
+	Munteanu Andrei-Stefan
+	Costandache Mihai-Andrei
+	Virgiliu Dorin Chiriac
+	
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3,
+    jQuery, Modernizr,
+    Accordion, responsiveImg
+    
