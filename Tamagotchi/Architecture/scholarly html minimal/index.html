@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Scholarly HTML</title>
+    <link rel="stylesheet" href="css/scholarly.css">
+    <script src="js/scholarly.js"></script>
+  </head>
+  <body prefix="schema: http://schema.org">
+    <header>
+      <div class="banner">
+        <img src="scholarly-html.svg" width="227" height="50" alt="Scholarly HTML logo">
+        <div class="status">Community Draft</div>
+      </div>
+      <h1>Scholarly HTML</h1>
+    </header>
+    <div role="contentinfo">
+      <dl>
+        <dt>Authors</dt>
+        <dd>
+          <a href="http://students.info.uaic.ro/~stefan.munteanu/">Munteanu Andrei-Stefan</a>
+          <p>Costandache Mihai-Andrei</p>
+          <p>Virgiliu Dorin Chiriac</p>
+
+        </dd>
+        <dt>Bugs &amp; Feedback</dt>
+        <dd>
+          <a href="https://github.com/MunteanuAndreiStefan/ProjectCLIW/issues">Issues and PRs welcome!</a>
+        </dd>
+        <dt>License</dt>
+        <dd>
+          <a href="https://github.com/MunteanuAndreiStefan/ProjectCLIW/blob/master/LICENSE">MIT</a>
+        </dd>
+      </dl>
+    </div>
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+      <h2>The problem we start from</h2>
+	  <p> This problem was proposed to us during cliw lab, you can find more about it <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/projects/">here</a>.
+	  </p>
+      <p>
+Create a MV * mini-framework for the development of vector-driven vector-based web applications at the client level.
+As an actual case study, it will be used to implement a Tamagotchi game simulator.
+At the very least, each authenticated user will manage one or more characters he will take care of
+(nourish, educate, amuse). The Web application will provide an interactive way to create and configure these characters,
+plus sharing them to users. Bonus: Implementing a level message routing system
+client to build SPA-Single Page Applications.
+      </p>
+    </section>
+    <section id="introduction" role="doc-introduction">
+      <!-- review? -->
+      <h2>Sketches</h2>
+      <p>
+        The project for this part of the evaluation started with some sketches and long discussion about what and where should look.
+      </p>
+      <p>
+        Our high-level goals are to:
+      </p>
+      <ul>
+        <li>Create a layout sketch for our application.</li>
+        <li>Have a style template for the project.</li>
+        <li>Have layout parts for the game.</li>
+        <li>Create a mvp.</li>
+        <li>Create a base for us to start developing the arhitecture.</li>
+      </ul>
+<div class="gallery">
+  <a target="_blank" href="img/concept/1.jpg">
+    <img src="img/concept/1.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="img/concept/2.jpg">
+    <img src="img/concept/2.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="img/concept/3.jpg">
+    <img src="img/concept/3.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="img/concept/4.jpg">
+    <img src="img/concept/4.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="img/concept/5.jpg">
+    <img src="img/concept/5.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="img/concept/6.jpg">
+    <img src="img/concept/6.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="img/concept/7.jpg">
+    <img src="img/concept/7.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="img/concept/8.jpg">
+    <img src="img/concept/8.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="img/concept/9.jpg">
+    <img src="img/concept/9.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="img/concept/10.jpg">
+    <img src="img/concept/10.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="img/concept/11.jpg">
+    <img src="img/concept/11.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Add a description of the image here</div>
+</div>
+	  <div class="gallery">
+  <a target="_blank" href="img/concept/12.jpg">
+    <img src="img/concept/12.jpg" alt="First step" width="600" height="400">
+  </a>
+  <div class="desc">Template that Stefan created for web.</div>
+  
+</div>
+	  
+    </section>
+    <section id="structure">
+      <!-- review? -->
+	  
+      <h2>Structure</h2>
+      <p>
+        Our project Tama should have a html document that is a valid <a role="doc-biblioref">HTML</a> document that follows
+        some additional rules to specialize its meaning and make it predictable to processors
+        wishing to produce or consume scholarly articles. These rules are outlined in the following
+        sections.
+      </p>
+      <section id="Root">
+        <!-- review? -->
+        <h3>Part 1</h3>
+        <p>
+          The document must be encoded in UTF-8 and transmitted with a media type of
+          <code>text/html</code>.
+        </p>
+      </section>
+	  <section id="Root">
+        <!-- review? -->
+        <h3>Part 2</h3>
+        <p>
+          BlaBla
+        </p>
+      </section>
+	  	  <section id="Root">
+        <!-- review? -->
+        <h3>Part 3</h3>
+        <p>
+          BlaBla
+        </p>
+      </section>
+        <!-- review? -->
+        <h3>Validation</h3>
+        <p>
+          The only validation requirement for Scholarly HTML at this point is that the HTML is valid.
+          We are considering building a a validation tool in RelaxNG or JavaScript to check compliance
+          with this set of rules.
+        </p>
+        <p>
+          Articles should be in the following basic structure:
+        </p>
+        <ul>
+          <li>heading with article title</li>
+          <li>0+ hunks</li>
+          <li>
+            0+ sections
+            <ul>
+              <li>0+ headings</li>
+              <li>0+ hunks</li>
+              <li>0+ sections</li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          It must feature a <code>DOCTYPE</code> as its preamble.
+        </p>
+      </section>
+    </section>
+	<section id="acks">
+      <!-- review? -->
+      <h2>Acknowledgements</h2>
+      <p>
+        Scholarly HTML would like to thank <a href="http://scholarlyhtml.org/">Scholarly HTML</a>
+        (you read that right) for blazing the trail perhaps a few years too soon. Particularly,
+        the following people were particularly kind and helpful:
+        <a href="https://twitter.com/ptsefton">Peter Sefton</a>,
+        <a href="https://twitter.com/blahah404">Richard Smith-Unna</a>, and
+        <a href="https://twitter.com/petermurrayrust">Peter Murray-Rust</a>.
+      </p>
+      <p>
+        PLOS has a
+        <a href="http://blogs.plos.org/mfenner/2011/03/19/a-very-brief-history-of-scholarly-html/">short
+        history of Scholarly HTML</a> that is worth reading (and would be worth updating).
+      </p>
+      <p>
+        Dan Brickley was kind enough to drop by the office to chat about our usage of
+        <a href="http://schema.org">schema.org</a> even though he was tired and hungry. As
+        always, examples involving fish tanks are the most helpful. Dave Cramer shared ideas
+        that we happily stole.
+      </p>
+      <p>
+        Patrick Johnston’s input has been crucial, notably in modeling authoring. We can only
+        hope that getting those details exactly right have not caused him to lose too much
+        sleep.
+      </p>
+      <p>
+        We also received very useful feedback and pointers from: Kjetil Kjernsmo (DAHUT!),
+        Silvio Peroni, Justin Johansson, Alf Eaton, Raniere Silvia, Kaveh Bazargan and Mike
+        Smith. We are very much indebted to the help provided us by Ivan Herman.
+      </p>
+      <p>
+        If we somehow forgot you in this list and you are too gracious to complain, we love you
+        all the same.
+      </p>
+    </section>
+  </body>
+</html>
