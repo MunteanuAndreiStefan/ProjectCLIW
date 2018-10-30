@@ -9,53 +9,43 @@ html,body{
     width:98%;
     min-height:250px;
 }
-#wrapper > * {
+#wrapper > *{
     overflow-y: auto;
 }
-nav {
+#save-and-links{
     position:absolute;
-    bottom:97%
+    top:2%;
+    bottom:85%;
+}
+#save-and-links > button {
+    width:25%;
+    height:25%;
+    min-width:50px;
+    min-height:20px
 }
 #svg-container{
     position: absolute;
     bottom:0%;
     left:0%;
     right:50%;
-    top:5%;
-    border-style:solid;
+    top:calc(15% + 2px);
+    border-style:solid
 }
 #options-container{
     position: absolute;
     right:25%;
-    top:5%;
+    top:calc(15% + 2px);
     left:50%;
-    bottom:25%;
+    bottom:0%;
     text-align: center;
-    border-style:solid;
 }
 #color-container{
     position: absolute;
     right:0%;
-    top:5%;
+    top:calc(15% + 2px);
     left:75%;
-    bottom:25%;
-    border-style:solid;
-    text-align: center;
-}
-#save{
-    border-style:solid;
-    position: absolute;
-    top:75%;
-    right:0%;
     bottom:0%;
-    text-align:center;
-    left:50%
-}
-#save > * {
-    width:10%;
-    height:40%;
-    min-width: 50px;
-    min-height:20px;
+    text-align: center
 }
 .options > p {
     text-align:center;
@@ -84,6 +74,9 @@ nav {
     width:80px;
     height:10px
 }
+
+/*Media queries in order to provide a responsive webpage*/
+
 @media (max-width:700px){
     .options > p {
         font-size:75%;
@@ -101,9 +94,6 @@ nav {
     #color-container{
         left:55%
     }
-    #save{
-        left:30%
-    }
 }
 @media (max-width:550px){
     #svg-container{
@@ -117,11 +107,7 @@ nav {
     #color-container{
         left:50%;
         top:50%;
-        bottom:10%
-    }
-    #save{
-        left:50%;
-        top:90%
+        bottom:0%
     }
 }
 @media (max-width:380px){
@@ -134,7 +120,15 @@ nav {
     #color-container{
         left:30%       
     }
-    #save{
-        left:30%
+    #character{
+        transform:scale(0.75,0.75) translate(+20%,+20%)
+    }
+}
+@media (max-height:500px) {
+    #save-and-links>br{
+        display:none;
+    }
+    #save-and-links>*{
+        display: inline-block;
     }
 }

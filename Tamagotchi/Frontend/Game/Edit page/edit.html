@@ -11,9 +11,15 @@
     </head>
     <body>
         <div id="wrapper">
-            <nav>
-                <a href="">main</a>
-            </nav>
+            <!-- This div contains a save button and links-->
+            <div id="save-and-links">
+                <nav>
+                    <a href="">Home</a>
+                </nav>
+                <br>
+                <button>Save</button>
+            </div>
+            <!-- This div contains the tamagotchi drawn in SVG-->
             <div id="svg-container">
                 <svg width="100%" height="98%" >
                     <g id="character">
@@ -29,6 +35,7 @@
                     </g>
                 </svg>
             </div>
+            <!--This div includes the options for editing the tamagotchi, except the color face option -->
             <div id="options-container">
                 <label>Shape</label>
                 <div id="shape-options" class="options">
@@ -61,12 +68,7 @@
                     <button>&#8702;</button>
                 </div>
             </div>
-            <!--
-            <div id="color-container">
-                <label for="color">Color</label>
-                <input id="color" type="color"/>
-            </div>
-            -->
+            <!--This div includes ranges in order for the user to pick the face color of the tamagotchi based on hsla values-->
             <div id="color-container">
                 <label>Color</label>
                 <div id="color">
@@ -90,9 +92,6 @@
                     <br/>
                     <button id="apply">apply changes</button>
                 </div>
-            </div>
-            <div id="save">
-                <button>save</button>
             </div>
         </div> 
     </body>

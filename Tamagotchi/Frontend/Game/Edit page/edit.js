@@ -1,3 +1,4 @@
+/* Instances of class List will be used for iterating through the possible values of the options*/
 class List {
     constructor(items) {
         this.items = items;
@@ -14,6 +15,8 @@ class List {
         return this.items[this.index];
     }
 }
+
+/*Instances of class Point will be used at drawing the tamagotchi*/
 class Point{
     constructor(x,y){
         this.x=x;
@@ -26,6 +29,8 @@ class Point{
         return this.y;
     }
 }
+
+/*Function for changing the eyes of the tamagotchi*/
 function changingEyes(){
     var svg=document.getElementsByTagName("svg")[0].getBoundingClientRect();
     var w=svg.width;
@@ -39,35 +44,35 @@ function changingEyes(){
     rightEye.parentNode.removeChild(rightEye);
     leftEye.parentNode.removeChild(leftEye);
     var value=eyesList.getCurrentItem();
-    switch(value){
-        case "rectangular":
-            var rightEye=document.createElementNS("http://www.w3.org/2000/svg","rect");
-            rightEye.setAttribute("x",rightEyePoint.getX()-h/70);
-            rightEye.setAttribute("y",rightEyePoint.getY()-h/70);
-            rightEye.setAttribute("width",h/35);
-            rightEye.setAttribute("height",h/35);
-            var leftEye=document.createElementNS("http://www.w3.org/2000/svg","rect");
-            leftEye.setAttribute("x",leftEyePoint.getX()-h/70);
-            leftEye.setAttribute("y",leftEyePoint.getY()-h/70);
-            leftEye.setAttribute("width",h/35);
-            leftEye.setAttribute("height",h/35);
-            break;
-        case "round":
-            var rightEye=document.createElementNS("http://www.w3.org/2000/svg","circle");  
-            rightEye.setAttribute("cx",rightEyePoint.getX());
-            rightEye.setAttribute("cy",rightEyePoint.getY());
-            rightEye.setAttribute("r",h/70);
-            var leftEye=document.createElementNS("http://www.w3.org/2000/svg","circle");
-            leftEye.setAttribute("cx",leftEyePoint.getX());
-            leftEye.setAttribute("cy",leftEyePoint.getY());
-            leftEye.setAttribute("r",h/70);
-            break;
+    if(value=="rectangular"){
+        var rightEye=document.createElementNS("http://www.w3.org/2000/svg","rect");
+        rightEye.setAttribute("x",rightEyePoint.getX()-h/70);
+        rightEye.setAttribute("y",rightEyePoint.getY()-h/70);
+        rightEye.setAttribute("width",h/35);
+        rightEye.setAttribute("height",h/35);
+        var leftEye=document.createElementNS("http://www.w3.org/2000/svg","rect");
+        leftEye.setAttribute("x",leftEyePoint.getX()-h/70);
+        leftEye.setAttribute("y",leftEyePoint.getY()-h/70);
+        leftEye.setAttribute("width",h/35);
+        leftEye.setAttribute("height",h/35);
+    }
+    else {
+        var rightEye=document.createElementNS("http://www.w3.org/2000/svg","circle");  
+        rightEye.setAttribute("cx",rightEyePoint.getX());
+        rightEye.setAttribute("cy",rightEyePoint.getY());
+        rightEye.setAttribute("r",h/70);
+        var leftEye=document.createElementNS("http://www.w3.org/2000/svg","circle");
+        leftEye.setAttribute("cx",leftEyePoint.getX());
+        leftEye.setAttribute("cy",leftEyePoint.getY());
+        leftEye.setAttribute("r",h/70);
     }
     rightEye.id="right-eye";
     leftEye.id="left-eye";
     char.appendChild(rightEye);
     char.appendChild(leftEye);
 }
+
+/*Function for changing the face shape of the tamagotchi*/
 function changingShape(){
     var svg=document.getElementsByTagName("svg")[0].getBoundingClientRect();
     var h=svg.height;
@@ -78,25 +83,25 @@ function changingShape(){
     var face=document.getElementById("face");
     face.parentNode.removeChild(face);
     var value=shapeList.getCurrentItem();
-    switch(value){
-        case "rectangular":
-            var face=document.createElementNS("http://www.w3.org/2000/svg","rect");
-            face.setAttribute("x",facePoint.getX()-faceDimension);
-            face.setAttribute("y",facePoint.getY()-faceDimension);
-            face.setAttribute("width",faceDimension*2);
-            face.setAttribute("height",faceDimension*2);
-            break;
-        case "round":
-            var face=document.createElementNS("http://www.w3.org/2000/svg","circle");
-            face.setAttribute("cx",facePoint.getX());
-            face.setAttribute("cy",facePoint.getY());
-            face.setAttribute("r",faceDimension);
-            break;
+    if(value=="rectangular"){
+        var face=document.createElementNS("http://www.w3.org/2000/svg","rect");
+        face.setAttribute("x",facePoint.getX()-faceDimension);
+        face.setAttribute("y",facePoint.getY()-faceDimension);
+        face.setAttribute("width",faceDimension*2);
+        face.setAttribute("height",faceDimension*2);
+    }
+    else{
+        var face=document.createElementNS("http://www.w3.org/2000/svg","circle");
+        face.setAttribute("cx",facePoint.getX());
+        face.setAttribute("cy",facePoint.getY());
+        face.setAttribute("r",faceDimension);
     }
     face.style.fill=faceColor;
     face.id="face";
     char.insertBefore(face,char.childNodes[0]);
 }
+
+/*Function for changing the mouth of the tamagotchi*/
 function changingMouth(){
     var svg=document.getElementsByTagName("svg")[0].getBoundingClientRect();
     var mouth=document.getElementById("mouth");
@@ -118,10 +123,16 @@ function changingMouth(){
             break;
     }
 }
+
+/*Function for changing the accesory of the tamagotchi*/
 function changingAccessory(){
 }
+
+/*Function for changing the costume of the tamagotchi*/
 function changingCostumes(){
 }
+
+/*This function is used at drawing the tamagotchi, based on the values selected by the user*/
 function draw(){
     var svg=document.getElementsByTagName("svg")[0].getBoundingClientRect();
     var face=document.getElementById("face");
@@ -182,17 +193,6 @@ function draw(){
             mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/12-(h/8-h/12)} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
             break;
     }
-    /*
-    var torsoPoint=new Point(facePoint.getX()-h/40,facePoint.getY()+faceDimension);
-    torso.setAttribute("x",torsoPoint.getX());
-    torso.setAttribute("y",torsoPoint.getY());
-    torso.setAttribute("width",h/20);
-    torso.setAttribute("height",h/5);
-    leftHand.setAttribute("d",`M${torsoPoint.getX()-h/20},${torsoPoint.getY()+h/20} ${torsoPoint.getX()},${torsoPoint.getY()}`);
-    rightHand.setAttribute("d",`M${torsoPoint.getX()+h/20},${torsoPoint.getY()} ${torsoPoint.getX()+h/20+h/20},${torsoPoint.getY()+h/20}`);
-    leftLeg.setAttribute("d",`M${torsoPoint.getX()-h/20},${torsoPoint.getY()+h/20+h/5} ${torsoPoint.getX()},${torsoPoint.getY()+h/5}`);
-    rightLeg.setAttribute("d",`M${torsoPoint.getX()+h/20},${torsoPoint.getY()+h/5} ${torsoPoint.getX()+h/20+h/20},${torsoPoint.getY()+h/20+h/5}`);
-    */
    var torsoPoint=new Point(facePoint.getX()-h/28,facePoint.getY()+faceDimension);
    torso.setAttribute("x",torsoPoint.getX());
    torso.setAttribute("y",torsoPoint.getY());
@@ -224,10 +224,8 @@ window.onload=function(){
         buttons.item(0).onclick=()=>{list.previousElementIndex();paragraph.textContent=list.getCurrentItem();eventHandler();}
         buttons.item(1).onclick=()=>{list.nextElementIndex();paragraph.textContent=list.getCurrentItem();eventHandler();}
     }
-    /*
-    var color=document.getElementById("color");
-    color.onchange=()=>{faceColor=color.value;document.getElementById("face").style="fill:"+faceColor;}
-    */
+
+    /*Computing the color using the hsla parameters*/
     var hslItems=document.getElementsByTagName("input");
     hslItems[0].value=0;
     hslItems[1].value=0;
@@ -239,6 +237,7 @@ window.onload=function(){
             colorRectangle.style.background=`hsla(${hslItems[0].value},${hslItems[1].value}%,${hslItems[2].value}%,${hslItems[3].value})`;
         };
     }
+
     colorRectangle.style.background="black";
     document.getElementById("apply").onclick=()=>{faceColor=colorRectangle.style.background;document.getElementById("face").style.fill=faceColor;};
     window.onresize=draw;
