@@ -31,8 +31,8 @@ function changingEyes(){
     var w=svg.width;
     var h=svg.height;
     var facePoint=new Point(w/2,h/3);
-    var leftEyePoint=new Point(facePoint.getX()-20,facePoint.getY()-20);
-    var rightEyePoint=new Point(facePoint.getX()+20,facePoint.getY()-20);
+    var leftEyePoint=new Point(facePoint.getX()-h/30,facePoint.getY()-h/30);
+    var rightEyePoint=new Point(facePoint.getX()+h/30,facePoint.getY()-h/30);
     var char=document.getElementById("character");
     var rightEye=document.getElementById("right-eye");
     var leftEye=document.getElementById("left-eye");
@@ -42,25 +42,25 @@ function changingEyes(){
     switch(value){
         case "rectangular":
             var rightEye=document.createElementNS("http://www.w3.org/2000/svg","rect");
-            rightEye.setAttribute("x",rightEyePoint.getX()-10);
-            rightEye.setAttribute("y",rightEyePoint.getY()-10);
-            rightEye.setAttribute("width",20);
-            rightEye.setAttribute("height",20);
+            rightEye.setAttribute("x",rightEyePoint.getX()-h/70);
+            rightEye.setAttribute("y",rightEyePoint.getY()-h/70);
+            rightEye.setAttribute("width",h/35);
+            rightEye.setAttribute("height",h/35);
             var leftEye=document.createElementNS("http://www.w3.org/2000/svg","rect");
-            leftEye.setAttribute("x",leftEyePoint.getX()-10);
-            leftEye.setAttribute("y",leftEyePoint.getY()-10);
-            leftEye.setAttribute("width",20);
-            leftEye.setAttribute("height",20);
+            leftEye.setAttribute("x",leftEyePoint.getX()-h/70);
+            leftEye.setAttribute("y",leftEyePoint.getY()-h/70);
+            leftEye.setAttribute("width",h/35);
+            leftEye.setAttribute("height",h/35);
             break;
         case "round":
             var rightEye=document.createElementNS("http://www.w3.org/2000/svg","circle");  
             rightEye.setAttribute("cx",rightEyePoint.getX());
             rightEye.setAttribute("cy",rightEyePoint.getY());
-            rightEye.setAttribute("r","10");
+            rightEye.setAttribute("r",h/70);
             var leftEye=document.createElementNS("http://www.w3.org/2000/svg","circle");
             leftEye.setAttribute("cx",leftEyePoint.getX());
             leftEye.setAttribute("cy",leftEyePoint.getY());
-            leftEye.setAttribute("r","10");
+            leftEye.setAttribute("r",h/70);
             break;
     }
     rightEye.id="right-eye";
@@ -73,7 +73,7 @@ function changingShape(){
     var h=svg.height;
     var w=svg.width;
     var facePoint=new Point(w/2,h/3);
-    var faceDimension=70;
+    var faceDimension=h/10;
     var char=document.getElementById("character");
     var face=document.getElementById("face");
     face.parentNode.removeChild(face);
@@ -103,18 +103,18 @@ function changingMouth(){
     var w=svg.width;
     var h=svg.height;
     var facePoint=new Point(w/2,h/3);
-    var leftEyePoint=new Point(facePoint.getX()-20,facePoint.getY()-20);
-    var rightEyePoint=new Point(facePoint.getX()+20,facePoint.getY()-20);
+    var leftEyePoint=new Point(facePoint.getX()-h/30,facePoint.getY()-h/30);
+    var rightEyePoint=new Point(facePoint.getX()+h/30,facePoint.getY()-h/30);
     var value=mouthList.getCurrentItem();
     switch(value){
         case "happy":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+50} Q${facePoint.getX()},${rightEyePoint.getY()+70} ${rightEyePoint.getX()},${rightEyePoint.getY()+50}`);
+            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/8} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
             break;
         case "regular":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+50} Q${facePoint.getX()},${rightEyePoint.getY()+50} ${rightEyePoint.getX()},${rightEyePoint.getY()+50}`);
+            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/12} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
             break;
         case "sad":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+50} Q${facePoint.getX()},${rightEyePoint.getY()+30} ${rightEyePoint.getX()},${rightEyePoint.getY()+50}`);
+            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/12-(h/8-h/12)} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
             break;
     }
 }
@@ -136,7 +136,7 @@ function draw(){
     var h=svg.height;
     var w=svg.width;
     var facePoint=new Point(w/2,h/3);
-    var faceDimension=70;
+    var faceDimension=h/10;
     var faceValue=shapeList.getCurrentItem();
     if(faceValue=="rectangular"){
         face.setAttribute("x",facePoint.getX()-faceDimension);
@@ -149,48 +149,60 @@ function draw(){
         face.setAttribute("cy",facePoint.getY());
         face.setAttribute("r",faceDimension);
     }
-    var leftEyePoint=new Point(facePoint.getX()-20,facePoint.getY()-20);
-    var rightEyePoint=new Point(facePoint.getX()+20,facePoint.getY()-20);
+    var leftEyePoint=new Point(facePoint.getX()-h/30,facePoint.getY()-h/30);
+    var rightEyePoint=new Point(facePoint.getX()+h/30,facePoint.getY()-h/30);
     var eyesValue=eyesList.getCurrentItem();
     if(eyesValue=="rectangular"){
-        rightEye.setAttribute("x",rightEyePoint.getX()-10);
-        rightEye.setAttribute("y",rightEyePoint.getY()-10);
-        rightEye.setAttribute("width",20);
-        rightEye.setAttribute("height",20);
-        leftEye.setAttribute("x",leftEyePoint.getX()-10);
-        leftEye.setAttribute("y",leftEyePoint.getY()-10);
-        leftEye.setAttribute("width",20);
-        leftEye.setAttribute("height",20);
+        rightEye.setAttribute("x",rightEyePoint.getX()-h/70);
+        rightEye.setAttribute("y",rightEyePoint.getY()-h/70);
+        rightEye.setAttribute("width",h/35);
+        rightEye.setAttribute("height",h/35);
+        leftEye.setAttribute("x",leftEyePoint.getX()-h/70);
+        leftEye.setAttribute("y",leftEyePoint.getY()-h/70);
+        leftEye.setAttribute("width",h/35);
+        leftEye.setAttribute("height",h/35);
     }
     else{
         leftEye.setAttribute("cx",leftEyePoint.getX());
         leftEye.setAttribute("cy",leftEyePoint.getY());
-        leftEye.setAttribute("r","10");
+        leftEye.setAttribute("r",h/70);
         rightEye.setAttribute("cx",rightEyePoint.getX());
         rightEye.setAttribute("cy",rightEyePoint.getY());
-        rightEye.setAttribute("r","10");
+        rightEye.setAttribute("r",h/70);
     }
     var mouthValue=mouthList.getCurrentItem();
     switch(mouthValue){
         case "happy":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+50} Q${facePoint.getX()},${rightEyePoint.getY()+70} ${rightEyePoint.getX()},${rightEyePoint.getY()+50}`);
+            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/8} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
             break;
         case "regular":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+50} Q${facePoint.getX()},${rightEyePoint.getY()+50} ${rightEyePoint.getX()},${rightEyePoint.getY()+50}`);
+            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/12} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
             break;
         case "sad":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+50} Q${facePoint.getX()},${rightEyePoint.getY()+30} ${rightEyePoint.getX()},${rightEyePoint.getY()+50}`);
+            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/12-(h/8-h/12)} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
             break;
     }
-    var torsoPoint=new Point(facePoint.getX()-20,facePoint.getY()+faceDimension);
+    /*
+    var torsoPoint=new Point(facePoint.getX()-h/40,facePoint.getY()+faceDimension);
     torso.setAttribute("x",torsoPoint.getX());
     torso.setAttribute("y",torsoPoint.getY());
-    torso.setAttribute("width","40");
-    torso.setAttribute("height","140");
-    leftHand.setAttribute("d",`M${torsoPoint.getX()-50},${torsoPoint.getY()+50} ${torsoPoint.getX()},${torsoPoint.getY()}`);
-    rightHand.setAttribute("d",`M${torsoPoint.getX()+40},${torsoPoint.getY()} ${torsoPoint.getX()+40+50},${torsoPoint.getY()+50}`);
-    leftLeg.setAttribute("d",`M${torsoPoint.getX()-50},${torsoPoint.getY()+50+140} ${torsoPoint.getX()},${torsoPoint.getY()+140}`);
-    rightLeg.setAttribute("d",`M${torsoPoint.getX()+40},${torsoPoint.getY()+140} ${torsoPoint.getX()+40+50},${torsoPoint.getY()+50+140}`);
+    torso.setAttribute("width",h/20);
+    torso.setAttribute("height",h/5);
+    leftHand.setAttribute("d",`M${torsoPoint.getX()-h/20},${torsoPoint.getY()+h/20} ${torsoPoint.getX()},${torsoPoint.getY()}`);
+    rightHand.setAttribute("d",`M${torsoPoint.getX()+h/20},${torsoPoint.getY()} ${torsoPoint.getX()+h/20+h/20},${torsoPoint.getY()+h/20}`);
+    leftLeg.setAttribute("d",`M${torsoPoint.getX()-h/20},${torsoPoint.getY()+h/20+h/5} ${torsoPoint.getX()},${torsoPoint.getY()+h/5}`);
+    rightLeg.setAttribute("d",`M${torsoPoint.getX()+h/20},${torsoPoint.getY()+h/5} ${torsoPoint.getX()+h/20+h/20},${torsoPoint.getY()+h/20+h/5}`);
+    */
+   var torsoPoint=new Point(facePoint.getX()-h/28,facePoint.getY()+faceDimension);
+   torso.setAttribute("x",torsoPoint.getX());
+   torso.setAttribute("y",torsoPoint.getY());
+   torso.setAttribute("width",h/14);
+   torso.setAttribute("height",h/5);
+   leftHand.setAttribute("d",`M${torsoPoint.getX()-h/20},${torsoPoint.getY()+h/20} ${torsoPoint.getX()},${torsoPoint.getY()}`);
+   rightHand.setAttribute("d",`M${torsoPoint.getX()+h/14},${torsoPoint.getY()} ${torsoPoint.getX()+h/14+h/20},${torsoPoint.getY()+h/20}`);
+   leftLeg.setAttribute("d",`M${torsoPoint.getX()-h/20},${torsoPoint.getY()+h/20+h/5} ${torsoPoint.getX()},${torsoPoint.getY()+h/5}`);
+   rightLeg.setAttribute("d",`M${torsoPoint.getX()+h/14},${torsoPoint.getY()+h/5} ${torsoPoint.getX()+h/14+h/20},${torsoPoint.getY()+h/20+h/5}`);
+
 }
 var eyesList=new List(["round","rectangular"]);
 var mouthList=new List(["happy","regular","sad"]);
