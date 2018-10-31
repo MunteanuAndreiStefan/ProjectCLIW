@@ -8,6 +8,7 @@ html,body{
     height:95%;
     width:98%;
     min-height:250px;
+    background-color:bisque
 }
 #wrapper > *{
     overflow-y: auto;
@@ -23,13 +24,17 @@ html,body{
     min-width:50px;
     min-height:20px
 }
+* {
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+  }
 #svg-container{
     position: absolute;
     bottom:0%;
     left:0%;
     right:50%;
     top:calc(15% + 2px);
-    border-style:solid
+    border-style:solid;
+    background-color: white;
 }
 #options-container{
     position: absolute;
@@ -49,7 +54,7 @@ html,body{
 }
 .options > p {
     text-align:center;
-    width:75px
+    width:85px
 }
 .options > * {
     display: inline-block
@@ -79,7 +84,7 @@ html,body{
 
 @media (max-width:700px){
     .options > p {
-        font-size:75%;
+        font-size:58%;
         width:50px
     }
 }
