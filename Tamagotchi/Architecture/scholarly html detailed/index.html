@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Scholarly HTML</title>
+    <link rel="stylesheet" href="css/scholarly.css">
+    <script src="js/scholarly.js"></script>
+</head>
+
+<body prefix="schema: http://schema.org">
+    <header>
+        <div class="banner">
+            <img src="scholarly-html.svg" width="227" height="50" alt="Scholarly HTML logo">
+            <div class="status">Community Draft</div>
+        </div>
+        <h1>Scholarly HTML</h1>
+    </header>
+    <div typeof="schema:ScholarlyArticle">
+        <div role="contentinfo">
+            <dl>
+                <dt>Authors</dt>
+                <dd>
+                    <a href="http://students.info.uaic.ro/~stefan.munteanu/">Munteanu Andrei-Stefan</a>
+                    <p>Costandache Mihai-Andrei</p>
+                    <p>Virgiliu Dorin Chiriac</p>
+                </dd>
+                <dt>Bugs &amp; Feedback</dt>
+                <dd>
+                    <a href="https://github.com/MunteanuAndreiStefan/ProjectCLIW/issues">Issues and PRs welcome!</a>
+                </dd>
+                <dt>License</dt>
+                <dd>
+                    <a href="https://github.com/MunteanuAndreiStefan/ProjectCLIW/blob/master/LICENSE">MIT</a>
+                </dd>
+            </dl>
+        </div>
+        <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+            <h2>The problem we start from</h2>
+            <p> This problem was proposed to us during cliw lab, you can find more about it <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/projects/">here</a>.
+            </p>
+            <p>
+                Create a MV * mini-framework for the development of vector-driven vector-based web applications at the client level. As an actual case study, it will be used to implement a Tamagotchi game simulator. At the very least, each authenticated user will manage
+                one or more characters he will take care of (nourish, educate, amuse). The Web application will provide an interactive way to create and configure these characters, plus sharing them to users. Bonus: Implementing a level message routing
+                system client to build SPA-Single Page Applications.
+            </p>
+        </section>
+        <section id="introduction" role="doc-introduction">
+            <!-- review? -->
+            <h2>Goals</h2>
+            <p>
+                For this part of the evaluation, we established the architecture of our application and made some diagrams for a better understanding of it.
+            </p>
+            <p>
+                Our high-level goals are to:
+            </p>
+            <ul>
+                <li>Identify the main modules of our application.</li>
+                <li>Establish the ways in which the modules interact with each other.</li>
+                <li>Identify the requirements of a SPA - Single Page Application and how will we fulfill them in our application.</li>
+                <li>Illustrate the use-cases.</li>
+                <li>Decide on the data storage methods and how will the application use the data.</li>
+            </ul>
+            <!--
+         <div class="gallery">
+            <a target="_blank" href="img/concept/1.jpg">
+            <img src="img/concept/1.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 1</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/2.jpg">
+            <img src="img/concept/2.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 2</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/3.jpg">
+            <img src="img/concept/3.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 3</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/4.jpg">
+            <img src="img/concept/4.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 4</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/5.jpg">
+            <img src="img/concept/5.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 5</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/6.jpg">
+            <img src="img/concept/6.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 6</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/7.jpg">
+            <img src="img/concept/7.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 7</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/8.jpg">
+            <img src="img/concept/8.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 8</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/9.jpg">
+            <img src="img/concept/9.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 9</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/10.jpg">
+            <img src="img/concept/10.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 10</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/11.jpg">
+            <img src="img/concept/11.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Page 11</div>
+         </div>
+         <div class="gallery">
+            <a target="_blank" href="img/concept/12.jpg">
+            <img src="img/concept/12.jpg" alt="First step" width="600" height="400">
+            </a>
+            <div class="desc">Interface</div>
+         </div>
+         -->
+        </section>
+        <section id="structure">
+            <!-- review? -->
+            <h2>Structure</h2>
+            <p>
+                Our project Tama should have a html document that is a valid <a role="doc-biblioref">HTML</a> document that follows some additional rules which can be found <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/web-projects.html"> here</a>.
+                We structured our project into 3 essential parts for this iteration of the evaluation:
+            </p>
+            <section id="Root">
+                <!-- review? -->
+                <h3>Static pages</h3>
+                <p>
+                    The static pages will be the ones that give the first impresion to our user. So it's very important to give a good first impresion, we decided to use HTML5, CSS3, jQuery, Modernizr, Accordion and responsiveImg for creating those. There will be 8 pages
+                    and 2 txt files in total that will be available as static content for this page, this page will be transformed into a SPA at integration phase:
+                </p>
+                <ul>
+                    <li>Home - The page in which the user can create his account or login and see updates/promo materials from us.</li>
+                    <li>News - This page will be an articles format page on which we will post in order the updates for end user.</li>
+                    <li>Development Blog - This page will be an articles format page, it will contain multiple decision we made and sketches.</li>
+                    <li>Help - This page will contain a manual for the end user into how to use our application.</li>
+                    <li>Contact - This page will contain form. That will have as scope sending a message to us and a iframe with our location.</li>
+                    <li>Terms and conditions - This page will contain all our privacy policy and content privacy.</li>
+                    <li>Testimonials - This page will contain user feedback about us.</li>
+                    <li>404 error - This page will treat the 404 error.</li>
+                    <li>Humans - This text file will contain the team description.</li>
+                    <li>Robots - This text file will contain the paths definition for SEO crawlers.</li>
+                </ul>
+            </section>
+            <section id="Root">
+                <!-- review? -->
+                <h3>Edit page</h3>
+                <p>
+                    This page allows the user to edit the tamagotchi characters. There are many available options so that the user can customize the tamagotchi character in the way he/she likes, just like in any other computer/mobile game, where you can set up your profile.
+                    By making use of the numerous possible combinations of shapes, colors, or items, there can be created fun and original tamagotchis. The options refer to the following aspects of the tamagotchi: face shape, eyes shape, mouth, accesory,
+                    costume, face color.
+                </p>
+                <ul>
+                    <li>face shape - possible values are based on geometric figures</li>
+                    <li>eyes shape - the setting of this parameter is done just like in the case of the face shape</li>
+                    <li>mouth - for a plus of expressivity, the mouth can be adjusted in order to reflect the character's feelings</li>
+                    <li>costume - the user can choose the character's clothes, from a set of predefined items</li>
+                    <li>accesory - cool accesories like hats or helmets are provided in addition to the costume</li>
+                    <li>face color - the user can pick any color by selecting the corresponding HSLA (Hue,Saturation,Lightness,Alpha) values</li>
+                </ul>
+                <p>
+                    The interface is user-friendly - it adjusts to the dimensions of the user's screen, by properly scaling the tamagotchi and positioning the other page content. The options are scrollable, to assure that the user doesn't lose any information when he/she
+                    uses the site on a small screen. The page controls, like the buttons used to iterate through a list of possible values corresponding to a certain option, are intuitive and don't require the user to read a complicate guide in order
+                    to use the application. After the user is done editing, he/she can save the changes by clicking Save.
+                </p>
+            </section>
+            <section id="Root">
+                <!-- review? -->
+                <h3>Profile & View Pages</h3>
+                <p>
+                    Profile - This page is dedicated to the management of tamagotchi. Hire will be displayed all characters owned by an user. In terms of his capabilities, he will be able to create a new persona by clicking on add button, which will redirect him on the edit
+                    page, or edit an existing tamagotchi, which will redirect him on the same page, but this time, it will be set up for the selected character. Also, he will be able to share his characters with other users and further more, he will be
+                    able to interact with his individual by clicking on it and follow the view page offerings.
+                </p>
+                <p>
+                    View - This page alows the user to interact with his selected tamagotchi in a fairly amuzing way, bringing a certain level of joy in addition to his own from before the play. There will be 3 buttons made available for him: feed, educate, amuze and each
+                    one of them will throw e representativ object to the tamagochi with a splash.
+                </p>
+            </section>
+            <!-- review? -->
+            <h3>Validation</h3>
+            <p>
+                For the validation part we used w3c validators online for css and html. For internal purposes we are going to use selenium or any other frontend testing tool available for the next phases.
+            </p>
+            <p>
+                At this moment statistics are:
+            </p>
+            <ul>
+                <li>0 errors</li>
+                <li>1 warning</li>
+                <li>1 known bug</li>
+            </ul>
+        </section>
+        </section>
+        <section id="acks">
+            <!-- review? -->
+            <h2>Acknowledgements</h2>
+            <p>
+                Our team would like to thank to this list of great people or companies that provided free open source software for us to be used, but also to our teacher for letting us use only the software that is marked as plain css html EcmaScript:
+            </p>
+            <p>
+                <a href="https://modernizr.com/">modernizr</a>
+            </p>
+            <p>
+                <a href="https://validator.w3.org/">HTML and CSS validator from W3C</a>
+            </p>
+            <p>
+                <a href="https://codepen.io/sureshrkm/pen/ZbzBpr">Pure Accordion</a>
+            </p>
+            <p>
+                <a href="https://github.com/drewbrolik/Responsive-Img">responsiveImg</a>
+            </p>
+            <p>
+                <a href="https://www.cssscript.com/minimal-notification-popup-pure-javascript/">Notifications</a>
+            </p>
+            </p>
+            <p>
+                <a href="https://github.com/scottjehl/Respond">RespondJS</a>
+            </p>
+        </section>
+    </div>
+</body>
+
+</html>
