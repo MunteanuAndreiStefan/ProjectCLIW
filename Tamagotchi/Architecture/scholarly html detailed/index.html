@@ -197,9 +197,41 @@
                 </p>
             </section>
             -->
-            <section id="user-interaction" style="clear:both">
+            <section id="modules">
+                <h3>Modules</h3>
+                <p>The modules will be built according to the functionalities offered by our application. The following list contains the main modules, together with the corresponding submodules.</p>
+                <ul>
+                    <li>Users management
+                        <ul>
+                            <li>Login</li>
+                            <li>Register</li>
+                            <li>Password reset</li>
+                        </ul>
+                    </li>
+                    <li>Tamagotchi management
+                        <ul>
+                            <li>Create tamagotchi</li>
+                            <li>Edit tamagotchi</li>
+                            <li>View tamagotchi</li>
+                            <li>Remove tamagotchi</li>
+                            <li>Share tamagotchi</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Login submodule has the role of authenticating the existing users, in order to give them access to all the facilities offered by our application. It has to be provided the user credentials.</p>
+                <p>Register submodule has the role of creating new accounts, based on the forms submitted by the persons who wish to sign up.</p>
+                <p>Password reset submodule handles the requests from users who need a new password in order to login.</p>
+                <p>Create tamagotchi submodule has the role of inserting new tamagotchies into the database, by using the data provided by the authenticated users. The data consists of features selected by the users for the new tamagotchies, such as color
+                    or costume.</p>
+                <p>Edit tamagotchi submodule is similar to the previous one, but the users need to select an existing tamagotchi and modify some of its features. The characteristics of the tamagotchi will be updated in the database.</p>
+                <p>View tamagotchi submodule lets the users visualise a selected tamagotchi and perform several actions such as feeding or entertaining.</p>
+                <p>Remove tamagotchi submodule lets the users delete a tamagotchi from their account in the database.</p>
+                <p>Share tamagotchi submodule makes possible the sharing among users of their tamagotchies, by using a link.</p>
+                <p>The functions of each module, the way they interact with each other/the user and the way the user can access each function in the interface are detailed in the following sections, using diagrams and written explanations when necessary.</p>
+            </section>
+            <section id="user-interaction-and-flow">
                 <!-- review? -->
-                <h3>User interaction</h3>
+                <h3>User Interaction and Application Flow</h3>
                 <p>Description of what is in the diagrams</p>
                 <div class="gallery">
                     <a target="_blank" href="img/diagrams/Home.jpg">
@@ -244,9 +276,9 @@
                     <div class="desc">Application Flow 2</div>
                 </div>
             </section>
-            <section id="use-cases" style="clear:both">
+            <section id="use-cases">
                 <!-- review? -->
-                <h3>Use cases</h3>
+                <h3>Use Cases</h3>
                 <p>Description of use-cases, referring also to the diagrams</p>
                 <div class="gallery">
                     <a target="_blank" href="img/diagrams/Use-cases.jpg">
@@ -267,7 +299,7 @@
                     <div class="desc">Use-cases 3</div>
                 </div>
             </section>
-            <section id="Data" style="clear:both">
+            <section id="data">
                 <!-- review? -->
                 <h3>Database Representation and Data Flow</h3>
                 <p>Description of what is in the diagrams</p>
@@ -290,7 +322,11 @@
                     <div class="desc">Tama management</div>
                 </div>
             </section>
-            <section id="validate" style="clear:both">
+            <section id="external">
+                <h3>External resources/tools</h3>
+                <p>For the creation of the svg drawings and data storage, we used the following resources/tools.</p>
+            </section>
+            <section id="validate">
                 <!-- review? -->
                 <h3>Validation</h3>
                 <p>
@@ -335,4 +371,4 @@
     </div>
 </body>
 
-</html
+</html>
