@@ -303,6 +303,24 @@
                 <!-- review? -->
                 <h3>Database Representation and Data Flow</h3>
                 <p>Description of what is in the diagrams</p>
+                <p>
+                    Regarding the data exchange in our application, the submodules that are in charge of the users management interact mainly with the database because it keeps track of the existing users and their accounts, but also with mail servers, due to the fact that
+                    every account requires an email address at creation time.
+                </p>
+                <p> Who wishes to register first needs to complete a form with some personal information, including an email address. The data is verified (especially the validity of the email address). If something is wrong the user is notified, otherwise
+                    he/she gets a confirmation email. After the user confirms, an account is created and inserted into the database, and now the user can enjoy the facilities of our application.
+                </p>
+                <p>
+                    An existing user may login into our application by entering his/her credentials. The login process queries the database and if the requested account is found and the password is correct, the user is granted access into the application, otherwise an error
+                    is returned.
+                </p>
+                <p>
+                    The password can be reset at the user's request, if he/she has the correct email address corresponding to the account. The email address and the associated account are verified in the database. If the user didn't enter the correct email address, the process
+                    fails, otherwise an email is sent to the address. If the password reset request is confirmed, a new password is generated and given to the user.
+                </p>
+                <p>
+                    All the data flows described in the above paragraphs can be visualised in the Authentication diagram.
+                </p>
                 <div class="gallery">
                     <a target="_blank" href="img/diagrams/Database Representation.jpg">
                         <img src="img/diagrams/Database Representation.jpg" alt="Database Representation" width="600" height="400">
