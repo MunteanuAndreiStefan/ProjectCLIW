@@ -48,17 +48,23 @@
         </section>
         <section id="introduction" role="doc-introduction">
             <!-- review? -->
-            <h2>Goals</h2>
+            <h2>The progress of the project</h2>
+            <p>As it is written <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/web-projects.html">here</a>, the project evaluation has three parts:</p>
+            <ul>
+                <li>Prototype of the Web interface</li>
+                <li>The architecture of the application</li>
+                <li>The fully functional solution</li>
+            </ul>
+            <p>For the first part, we developed the prototype of the Web interface according to the requirements. It can be found on our repository, together with the corresponding html scholarly report.</p>
             <p>
-                For this part of the evaluation, we established the architecture of our application and made some diagrams for a better understanding of it.
+                For this part of the evaluation, we established the architecture of our application and made some diagrams for a better understanding of it, by taking into account the ideas we had when we worked for the first part of the evaluation.
             </p>
             <p>
-                Our high-level goals are to:
+                Our high-level goals were to:
             </p>
             <ul>
-                <li>Identify the main modules of our application.</li>
-                <li>Establish the ways in which the modules interact with each other.</li>
-                <li>Identify the requirements of a SPA - Single Page Application and how will we fulfill them in our application.</li>
+                <li>Identify the main modules and how they will be integrated into our application.</li>
+                <li>Identify the requirements of a SPA - Single Page Application and how we will fulfill them in our application.</li>
                 <li>Illustrate the use-cases.</li>
                 <li>Decide on the data storage methods and how will the application use the data.</li>
             </ul>
@@ -135,68 +141,20 @@
                 </a>
                 <div class="desc">Interface</div>
             </div>
+            <p>Regarding what is next, we will start from the current architecture and establish a equal share of tasks for each team member, in order to have the fully functional solution by the end of the semester. </p>
         </section>
         <section id="structure">
             <!-- review? -->
             <h2>Structure</h2>
             <p>
                 We explained the architecture of our application by taking into account several aspects, in order to fulfill the requirements which can be found <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/web-projects.html"> here</a>.
-                For this iteration of the evaluation, we structured our project into the following essential parts:
+                For this part of the evaluation, we structured our project into the following essential sections:
             </p>
-            <!--
-            <section id="Root">
-                <h3>Static pages</h3>
-                <p>
-                    The static pages will be the ones that give the first impresion to our user. So it's very important to give a good first impresion, we decided to use HTML5, CSS3, jQuery, Modernizr, Accordion and responsiveImg for creating those. There will be 8 pages
-                    and 2 txt files in total that will be available as static content for this page, this page will be transformed into a SPA at integration phase:
-                </p>
-                <ul>
-                    <li>Home - The page in which the user can create his account or login and see updates/promo materials from us.</li>
-                    <li>News - This page will be an articles format page on which we will post in order the updates for end user.</li>
-                    <li>Development Blog - This page will be an articles format page, it will contain multiple decision we made and sketches.</li>
-                    <li>Help - This page will contain a manual for the end user into how to use our application.</li>
-                    <li>Contact - This page will contain form. That will have as scope sending a message to us and a iframe with our location.</li>
-                    <li>Terms and conditions - This page will contain all our privacy policy and content privacy.</li>
-                    <li>Testimonials - This page will contain user feedback about us.</li>
-                    <li>404 error - This page will treat the 404 error.</li>
-                    <li>Humans - This text file will contain the team description.</li>
-                    <li>Robots - This text file will contain the paths definition for SEO crawlers.</li>
-                </ul>
+            <section id="spa">
+                <h3>SPA</h3>
+                <p>A single page application interacts with the user by dynamically rewriting the current page rather than loading new pages. This type of application is popular among the developers because of several advantages, such as avoiding interruption
+                    of user experience, although it might be more difficult to create. There are various techniques which can be used when creating such applications: use of some JavaScript frameworks, AJAX, Websockets, Browser plugins.</p>
             </section>
-            <section id="Root">
-                <h3>Edit page</h3>
-                <p>
-                    This page allows the user to edit the tamagotchi characters. There are many available options so that the user can customize the tamagotchi character in the way he/she likes, just like in any other computer/mobile game, where you can set up your profile.
-                    By making use of the numerous possible combinations of shapes, colors, or items, there can be created fun and original tamagotchis. The options refer to the following aspects of the tamagotchi: face shape, eyes shape, mouth, accesory,
-                    costume, face color.
-                </p>
-                <ul>
-                    <li>face shape - possible values are based on geometric figures</li>
-                    <li>eyes shape - the setting of this parameter is done just like in the case of the face shape</li>
-                    <li>mouth - for a plus of expressivity, the mouth can be adjusted in order to reflect the character's feelings</li>
-                    <li>costume - the user can choose the character's clothes, from a set of predefined items</li>
-                    <li>accesory - cool accesories like hats or helmets are provided in addition to the costume</li>
-                    <li>face color - the user can pick any color by selecting the corresponding HSLA (Hue,Saturation,Lightness,Alpha) values</li>
-                </ul>
-                <p>
-                    The interface is user-friendly - it adjusts to the dimensions of the user's screen, by properly scaling the tamagotchi and positioning the other page content. The options are scrollable, to assure that the user doesn't lose any information when he/she
-                    uses the site on a small screen. The page controls, like the buttons used to iterate through a list of possible values corresponding to a certain option, are intuitive and don't require the user to read a complicate guide in order
-                    to use the application. After the user is done editing, he/she can save the changes by clicking Save.
-                </p>
-            </section>
-            <section id="Root">
-                <h3>Profile & View Pages</h3>
-                <p>
-                    Profile - This page is dedicated to the management of tamagotchi. Hire will be displayed all characters owned by an user. In terms of his capabilities, he will be able to create a new persona by clicking on add button, which will redirect him on the edit
-                    page, or edit an existing tamagotchi, which will redirect him on the same page, but this time, it will be set up for the selected character. Also, he will be able to share his characters with other users and further more, he will be
-                    able to interact with his individual by clicking on it and follow the view page offerings.
-                </p>
-                <p>
-                    View - This page alows the user to interact with his selected tamagotchi in a fairly amuzing way, bringing a certain level of joy in addition to his own from before the play. There will be 3 buttons made available for him: feed, educate, amuze and each
-                    one of them will throw e representativ object to the tamagochi with a splash.
-                </p>
-            </section>
-            -->
             <section id="modules">
                 <h3>Modules</h3>
                 <p>The modules will be built according to the functionalities offered by our application. The following list contains the main modules, together with the corresponding submodules.</p>
@@ -227,12 +185,14 @@
                 <p>View tamagotchi submodule lets the users visualise a selected tamagotchi and perform several actions such as feeding or entertaining.</p>
                 <p>Remove tamagotchi submodule lets the users delete a tamagotchi from their account in the database.</p>
                 <p>Share tamagotchi submodule makes possible the sharing among users of their tamagotchies, by using a link.</p>
+                <p>The modules/submodules interact with each other in different ways, depending on the use-cases. However, there is a permanent dependence between the two main modules - the users management module decides, by whether authenticating a user
+                    or not, which actions can be performed by the tamagotchi management module for a certain user.</p>
                 <p>The functions of each module, the way they interact with each other/the user and the way the user can access each function in the interface are detailed in the following sections, using diagrams and written explanations when necessary.</p>
             </section>
             <section id="user-interaction-and-flow">
                 <!-- review? -->
                 <h3>User Interaction and Application Flow</h3>
-                <p>Description of what is in the diagrams</p>
+                <p>The following diagrams display how the user can access the facilities of our application in the Web interface and the relations between different actions.</p>
                 <div class="gallery">
                     <a target="_blank" href="img/diagrams/Home.jpg">
                         <img src="img/diagrams/Home.jpg" alt="Home" width="600" height="400">
@@ -279,7 +239,7 @@
             <section id="use-cases">
                 <!-- review? -->
                 <h3>Use Cases</h3>
-                <p>Description of use-cases, referring also to the diagrams</p>
+                <p>The following diagrams present the use-cases in our application. Essentially, the actions performed by some users depend on either they are authenticated or not.</p>
                 <div class="gallery">
                     <a target="_blank" href="img/diagrams/Use-cases.jpg">
                         <img src="img/diagrams/Use-cases.jpg" alt="Use-cases" width="600" height="400">

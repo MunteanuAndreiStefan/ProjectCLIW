@@ -154,3 +154,7 @@ div.desc {
 section {
     clear: both;
 }
+
+p {
+    clear: both;
+}
