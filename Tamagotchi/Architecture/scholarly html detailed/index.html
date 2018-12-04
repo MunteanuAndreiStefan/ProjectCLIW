@@ -325,6 +325,24 @@
                     An authenticated user can enjoy the facilities of our application. The tamagotchi management modules intermediate the transfer of data between the user and the database, considering that the database is storing the properties of the tamagotchies created
                     by the users and also some animations which make the tamagotchi more fun.
                 </p>
+                <p>
+                    When a user wants to create a new tamagotchi, he/she needs to set its properties. Some of them are mentioned below:
+                </p>
+                <ul>
+                    <li>name</li>
+                    <li>face shape - possible values are based on geometric figures</li>
+                    <li>eyes shape - the setting of this parameter is done just like in the case of the face shape</li>
+                    <li>mouth - for a plus of expressivity, the mouth can be adjusted in order to reflect the character's feelings</li>
+                    <li>costume - the user can choose the character's clothes, from a set of predefined items</li>
+                    <li>accesory - cool accesories like hats or helmets are provided in addition to the costume</li>
+                    <li>face color</li>
+                </ul>
+                <p>When the user presses the save button, the data is collected in order to be used at tamagotchi creation. After the new tamagotchi is created and inserted into the database it becomes available to the user.</p>
+                <p>Editing is similar, except the user modifies an existing tamagotchi. Therefore, the corresponding tamagotchi in the database will be updated with the new data collected from the user. </p>
+                <p>When a user needs to view a tamagotchi, the application queries the database and after the tamagotchi is found, it will be loaded in the view page.</p>
+                <p>Tamagotchies can also be removed from the database, at the user's request.</p>
+                <p>Another facility is the sharing of tamagotchies among users via a link.</p>
+                <p>The data flow described in the above paragraphs can be seen in the Tama Management diagram.</p>
                 <div class="gallery">
                     <a target="_blank" href="img/diagrams/Database Representation.jpg">
                         <img src="img/diagrams/Database Representation.jpg" alt="Database Representation" width="600" height="400">
@@ -341,12 +359,20 @@
                     <a target="_blank" href="img/diagrams/Tamagotchi Management.jpeg">
                         <img src="img/diagrams/Tamagotchi Management.jpeg" alt="Authentication" width="600" height="400">
                     </a>
-                    <div class="desc">Tama management</div>
+                    <div class="desc">Tama Management</div>
                 </div>
             </section>
             <section id="external">
                 <h3>External resources/tools</h3>
                 <p>For the creation of the svg drawings and data storage, we used the following resources/tools.</p>
+                <h4>Adobe Illustrator</h4>
+                <p>Adobe Illustrator is a vector graphics editor created and distributed by Adobe Systems. It was originally developed for Apple Macintosh computers (now it works on more operating systems) and among the years it had several versions. Some
+                    of its basic tools are selection, paintbrush, pen, pencil tools. More information about the soft and the pricing details for clients in Romania can be found <a href="https://www.adobe.com/ro/products/illustrator.html">here</a>.</p>
+                <p>We will use the tool for creating the svg figures that are necessary when the applications displays a tamagotchi (for the animations we will make more frames). The SVG figures will be injected into the code.</p>
+                <h4>Firebase Realtime Database</h4>
+                <p>Firebase Realtime Database is a NoSql cloud database developed by Google. It has several features, like data syncronization in realtime, the ability to work even offline (when the connection is reestablished the client gets the changes
+                    from the server) or scaling. More details can be found <a href="https://firebase.google.com/docs/database">here</a>. </p>
+                <p>We will use the database to keep the track of the existing users, their tamagotchies, and also some animations associated with the tamagotchies. </p>
             </section>
             <section id="validate">
                 <!-- review? -->
@@ -388,6 +414,12 @@
             </p>
             <p>
                 <a href="https://github.com/scottjehl/Respond">RespondJS</a>
+            </p>
+            <p>
+                <a href="https://www.adobe.com/ro/products/illustrator.html">Adobe Illustrator</a>
+            </p>
+            <p>
+                <a href="https://firebase.google.com/docs/database">Firebase Realtime Database</a>
             </p>
         </section>
     </div>
