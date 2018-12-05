@@ -154,6 +154,18 @@
                 <h3>SPA</h3>
                 <p>A single page application interacts with the user by dynamically rewriting the current page rather than loading new pages. This type of application is popular among the developers because of several advantages, such as avoiding interruption
                     of user experience, although it might be more difficult to create. There are various techniques which can be used when creating such applications: use of some JavaScript frameworks, AJAX, Websockets, Browser plugins.</p>
+                <p>In our application, we will use AJAX to get the necessary data in order to continously update the DOM of an initial HTML document loaded at the first request. The content injected into the HTML depends on the user's actions. For example,
+                    when an user wants to view a tamagotchi, its characteristics are fetched from the database, together with several animations frames and the HTML file is updated accordingly. The response isn't necessary information about a tamagotchi,
+                    it can also be a confirmation/error message (in general this happens when using the authentication services). We will also make a routing system to handle the user navigation. It will allow the user to understand the structure of our
+                    application and to directly reach or even bookmark a certain part of it.
+                </p>
+                <p>The diagram below represents the initial HTML page load and the subsequent updates with the data fetched by using AJAX.</p>
+                <div class="gallery">
+                    <a target="_blank" href="img/diagrams/SPA.jpeg">
+                        <img src="img/diagrams/SPA.jpeg" alt="SPA" width="600" height="400">
+                    </a>
+                    <div class="desc">SPA</div>
+                </div>
             </section>
             <section id="modules">
                 <h3>Modules</h3>
