@@ -1,400 +1,425 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Scholarly HTML</title>
-    <link rel="stylesheet" href="css/scholarly.css">
-    <script src="js/scholarly.js"></script>
-</head>
-
-<body prefix="schema: http://schema.org">
-    <header>
-        <div class="banner">
-            <img src="scholarly-html.svg" width="227" height="50" alt="Scholarly HTML logo">
-            <div class="status">Community Draft</div>
-        </div>
-        <h1>Scholarly HTML</h1>
-    </header>
-    <div typeof="schema:ScholarlyArticle">
-        <div role="contentinfo">
-            <dl>
-                <dt>Authors</dt>
-                <dd>
-                    <a href="http://students.info.uaic.ro/~stefan.munteanu/">Munteanu Andrei-Stefan</a>
-                    <p>Costandache Mihai-Andrei</p>
-                    <p>Virgiliu Dorin Chiriac</p>
-                </dd>
-                <dt>Bugs &amp; Feedback</dt>
-                <dd>
-                    <a href="https://github.com/MunteanuAndreiStefan/ProjectCLIW/issues">Issues and PRs welcome!</a>
-                </dd>
-                <dt>License</dt>
-                <dd>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>Scholarly HTML</title>
+        <link rel="stylesheet" href="css/scholarly.css">
+        <script src="js/scholarly.js"></script>
+    </head>
+    <body prefix="schema: http://schema.org">
+        <header>
+            <div class="banner">
+                <img src="scholarly-html.svg" width="227" height="50" alt="Scholarly HTML logo">
+                <div class="status">Community Draft</div>
+            </div>
+            <h1>Scholarly HTML</h1>
+        </header>
+        <div role="contentinfo" typeof="schema:ScholarlyArticle">
+            <h1>Authors</h1>
+            <div typeof="sa:AuthorsList">
+                <ol>
+                    <li typeof="sa:ContributorRole" property="schema:author">
+                        <a href="https://github.com/andreicostandache" typeof="schema:Person">
+                        <span property="schema:givenName">
+                        Mihai-Andrei
+                        </span>
+                        <span property="schema:familyName">
+                        Costandache
+                        </span>
+                        </a>
+                    </li>
+                    <li typeof="sa:ContributorRole" property="schema:author">
+                        <a href="http://students.info.uaic.ro/~stefan.munteanu/" typeof="schema:Person">
+                        <span property="schema:givenName">
+                        Andrei-Ștefan
+                        </span>
+                        <span property="schema:familyName">
+                        Munteanu
+                        </span>
+                        </a>
+                    </li>
+                    <li typeof="sa:ContributorRole" property="schema:author">
+                        <a href="https://github.com/VirgiliuChiriac" typeof="schema:Person">
+                        <span property="schema:givenName">
+                        Virgiliu Dorin 
+                        </span>
+                        <span property="schema:familyName">
+                        Chiriac
+                        </span>
+                        </a>
+                    </li>
+                </ol>
+                <h1>License</h1>
+                <p>
                     <a href="https://github.com/MunteanuAndreiStefan/ProjectCLIW/blob/master/LICENSE">MIT</a>
-                </dd>
-            </dl>
-        </div>
-        <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
-            <h2>The problem we start from</h2>
-            <p> This problem was proposed to us during cliw lab, you can find more about it <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/projects/">here</a>.
-            </p>
-            <p>
-                Create a MV * mini-framework for the development of vector-driven vector-based web applications at the client level. As an actual case study, it will be used to implement a Tamagotchi game simulator. At the very least, each authenticated user will manage
-                one or more characters he will take care of (nourish, educate, amuse). The Web application will provide an interactive way to create and configure these characters, plus sharing them to users. Bonus: Implementing a level message routing
-                system client to build SPA-Single Page Applications.
-            </p>
-        </section>
-        <section id="introduction" role="doc-introduction">
-            <!-- review? -->
-            <h2>The progress of the project</h2>
-            <p>As it is written <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/web-projects.html">here</a>, the project evaluation has three parts:</p>
-            <ul>
-                <li>Prototype of the Web interface</li>
-                <li>The architecture of the application</li>
-                <li>The fully functional solution</li>
-            </ul>
-            <p>For the first part, we developed the prototype of the Web interface according to the requirements. It can be found on our repository, together with the corresponding html scholarly report.</p>
-            <p>
-                For this part of the evaluation, we established the architecture of our application and made some diagrams for a better understanding of it, by taking into account the ideas we had when we worked for the first part of the evaluation.
-            </p>
-            <p>
-                Our high-level goals were to:
-            </p>
-            <ul>
-                <li>Identify the main modules and how they will be integrated into our application.</li>
-                <li>Identify the requirements of a SPA - Single Page Application and how we will fulfill them in our application.</li>
-                <li>Illustrate the use-cases.</li>
-                <li>Decide on the data storage methods and how will the application use the data.</li>
-            </ul>
-            <p>The following sketches were a good starting point for the current iteration.</p>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/1.jpg">
+                </p>
+            </div>
+            <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+                <h2>The problem we start from</h2>
+                <p> This problem was proposed to us during cliw lab, you can find more about it <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/projects/">here</a>.
+                </p>
+                <p>
+                    Create a MV * mini-framework for the development of vector-driven vector-based web applications at the client level. As an actual case study, it will be used to implement a Tamagotchi game simulator. At the very least, each authenticated user will manage
+                    one or more characters he will take care of (nourish, educate, amuse). The Web application will provide an interactive way to create and configure these characters, plus sharing them to users. Bonus: Implementing a level message routing
+                    system client to build SPA-Single Page Applications.
+                </p>
+            </section>
+            <section typeof="sa:Introduction" id="introduction" role="doc-introduction">
+                <!-- review? -->
+                <h2>The progress of the project</h2>
+                <p>As it is written <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/web-projects.html">here</a>, the project evaluation has three parts:</p>
+                <ul>
+                    <li>Prototype of the Web interface</li>
+                    <li>The architecture of the application</li>
+                    <li>The fully functional solution</li>
+                </ul>
+                <p>For the first part, we developed the prototype of the Web interface according to the requirements. It can be found on our repository, together with the corresponding html scholarly report.</p>
+                <p>
+                    For this part of the evaluation, we established the architecture of our application and made some diagrams for a better understanding of it, by taking into account the ideas we had when we worked for the first part of the evaluation.
+                </p>
+                <p>
+                    Our high-level goals were to:
+                </p>
+                <ul>
+                    <li>Identify the main modules and how they will be integrated into our application.</li>
+                    <li>Identify the requirements of a SPA - Single Page Application and how we will fulfill them in our application.</li>
+                    <li>Illustrate the use-cases.</li>
+                    <li>Decide on the data storage methods and how will the application use the data.</li>
+                </ul>
+                <p>The following sketches were a good starting point for the current iteration.</p>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/1.jpg">
                     <img src="img/concept/1.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 1</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/2.jpg">
+                    </a>
+                    <div class="desc">Page 1</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/2.jpg">
                     <img src="img/concept/2.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 2</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/3.jpg">
+                    </a>
+                    <div class="desc">Page 2</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/3.jpg">
                     <img src="img/concept/3.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 3</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/4.jpg">
+                    </a>
+                    <div class="desc">Page 3</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/4.jpg">
                     <img src="img/concept/4.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 4</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/5.jpg">
+                    </a>
+                    <div class="desc">Page 4</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/5.jpg">
                     <img src="img/concept/5.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 5</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/6.jpg">
+                    </a>
+                    <div class="desc">Page 5</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/6.jpg">
                     <img src="img/concept/6.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 6</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/7.jpg">
+                    </a>
+                    <div class="desc">Page 6</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/7.jpg">
                     <img src="img/concept/7.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 7</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/8.jpg">
+                    </a>
+                    <div class="desc">Page 7</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/8.jpg">
                     <img src="img/concept/8.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 8</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/9.jpg">
+                    </a>
+                    <div class="desc">Page 8</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/9.jpg">
                     <img src="img/concept/9.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 9</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/10.jpg">
+                    </a>
+                    <div class="desc">Page 9</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/10.jpg">
                     <img src="img/concept/10.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 10</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/11.jpg">
+                    </a>
+                    <div class="desc">Page 10</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/11.jpg">
                     <img src="img/concept/11.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Page 11</div>
-            </div>
-            <div class="gallery">
-                <a target="_blank" href="img/concept/12.jpg">
+                    </a>
+                    <div class="desc">Page 11</div>
+                </div>
+                <div class="gallery">
+                    <a target="_blank" href="img/concept/12.jpg">
                     <img src="img/concept/12.jpg" alt="First step" width="600" height="400">
-                </a>
-                <div class="desc">Interface</div>
-            </div>
-            <p>Regarding what is next, we will start from the current architecture and establish a equal share of tasks for each team member, in order to have the fully functional solution by the end of the semester. </p>
-        </section>
-        <section id="structure">
-            <!-- review? -->
-            <h2>Structure</h2>
-            <p>
-                We explained the architecture of our application by taking into account several aspects, in order to fulfill the requirements which can be found <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/web-projects.html"> here</a>.
-                For this part of the evaluation, we structured our project into the following essential sections:
-            </p>
-            <section id="spa">
-                <h3>SPA</h3>
-                <p>A single page application interacts with the user by dynamically rewriting the current page rather than loading new pages. This type of application is popular among the developers because of several advantages, such as avoiding interruption
-                    of user experience, although it might be more difficult to create. There are various techniques which can be used when creating such applications: use of some JavaScript frameworks, AJAX, Websockets, Browser plugins.</p>
-                <p>In our application, we will use AJAX to get the necessary data in order to continously update the DOM of an initial HTML document loaded at the first request. The content injected into the HTML depends on the user's actions. For example,
-                    when an user wants to view a tamagotchi, its characteristics are fetched from the database, together with several animations frames and the HTML file is updated accordingly. The response isn't necessary information about a tamagotchi,
-                    it can also be a confirmation/error message (in general this happens when using the authentication services). We will also make a routing system to handle the user navigation. It will allow the user to understand the structure of our
-                    application and to directly reach or even bookmark a certain part of it.
+                    </a>
+                    <div class="desc">Interface</div>
+                </div>
+                <p>Regarding what is next, we will start from the current architecture and establish a equal share of tasks for each team member, in order to have the fully functional solution by the end of the semester. </p>
+            </section>
+            <section typeof="schema:ArticleBody" id="structure">
+                <!-- review? -->
+                <h2>Structure</h2>
+                <p>
+                    We explained the architecture of our application by taking into account several aspects, in order to fulfill the requirements which can be found <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/web-projects.html"> here</a>.
+                    For this part of the evaluation, we structured our project into the following essential sections:
                 </p>
-                <p>The diagram below represents the initial HTML page load and the subsequent updates with the data fetched by using AJAX.</p>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/SPA.jpeg">
+                <section typeof="sa:ArchitecturalPattern" id="spa">
+                    <h3>SPA</h3>
+                    <p>A single page application interacts with the user by dynamically rewriting the current page rather than loading new pages. This type of application is popular among the developers because of several advantages, such as avoiding interruption
+                        of user experience, although it might be more difficult to create. There are various techniques which can be used when creating such applications: use of some JavaScript frameworks, AJAX, Websockets, Browser plugins.
+                    </p>
+                    <p>In our application, we will use AJAX to get the necessary data in order to continously update the DOM of an initial HTML document loaded at the first request. The content injected into the HTML depends on the user's actions. For example,
+                        when an user wants to view a tamagotchi, its characteristics are fetched from the database, together with several animations frames and the HTML file is updated accordingly. The response isn't necessary information about a tamagotchi,
+                        it can also be a confirmation/error message (in general this happens when using the authentication services). We will also make a routing system to handle the user navigation. It will allow the user to understand the structure of our
+                        application and to directly reach or even bookmark a certain part of it.
+                    </p>
+                    <p>The diagram below represents the initial HTML page load and the subsequent updates with the data fetched by using AJAX.</p>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/SPA.jpeg">
                         <img src="img/diagrams/SPA.jpeg" alt="SPA" width="600" height="400">
-                    </a>
-                    <div class="desc">SPA</div>
-                </div>
-            </section>
-            <section id="modules">
-                <h3>Modules</h3>
-                <p>The modules will be built according to the functionalities offered by our application. The following list contains the main modules, together with the corresponding submodules.</p>
-                <ul>
-                    <li>Users management
-                        <ul>
-                            <li>Login</li>
-                            <li>Register</li>
-                            <li>Password reset</li>
-                        </ul>
-                    </li>
-                    <li>Tamagotchi management
-                        <ul>
-                            <li>Create tamagotchi</li>
-                            <li>Edit tamagotchi</li>
-                            <li>View tamagotchi</li>
-                            <li>Remove tamagotchi</li>
-                            <li>Share tamagotchi</li>
-                        </ul>
-                    </li>
-                </ul>
-                <p>Login submodule has the role of authenticating the existing users, in order to give them access to all the facilities offered by our application. It has to be provided the user credentials.</p>
-                <p>Register submodule has the role of creating new accounts, based on the forms submitted by the persons who wish to sign up.</p>
-                <p>Password reset submodule handles the requests from users who need a new password in order to login.</p>
-                <p>Create tamagotchi submodule has the role of inserting new tamagotchies into the database, by using the data provided by the authenticated users. The data consists of features selected by the users for the new tamagotchies, such as color
-                    or costume.</p>
-                <p>Edit tamagotchi submodule is similar to the previous one, but the users need to select an existing tamagotchi and modify some of its features. The characteristics of the tamagotchi will be updated in the database.</p>
-                <p>View tamagotchi submodule lets the users visualise a selected tamagotchi and perform several actions such as feeding or entertaining.</p>
-                <p>Remove tamagotchi submodule lets the users delete a tamagotchi from their account in the database.</p>
-                <p>Share tamagotchi submodule makes possible the sharing among users of their tamagotchies, by using a link.</p>
-                <p>The modules/submodules interact with each other in different ways, depending on the use-cases. However, there is a permanent dependence between the two main modules - the users management module decides, by whether authenticating a user
-                    or not, which actions can be performed by the tamagotchi management module for a certain user.</p>
-                <p>The functions of each module, the way they interact with each other/the user and the way the user can access each function in the interface are detailed in the following sections, using diagrams and written explanations when necessary.</p>
-            </section>
-            <section id="user-interaction-and-flow">
-                <!-- review? -->
-                <h3>User Interaction and Application Flow</h3>
-                <p>The following diagrams display how the user can access the facilities of our application in the Web interface and the relations between different actions.</p>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Home.jpg">
+                        </a>
+                        <div class="desc">SPA</div>
+                    </div>
+                </section>
+                <section typeof="sa:Modules" id="modules">
+                    <h3>Modules</h3>
+                    <p>The modules will be built according to the functionalities offered by our application. The following list contains the main modules, together with the corresponding submodules.</p>
+                    <ul>
+                        <li>
+                            Users management
+                            <ul>
+                                <li>Login</li>
+                                <li>Register</li>
+                                <li>Password reset</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Tamagotchi management
+                            <ul>
+                                <li>Create tamagotchi</li>
+                                <li>Edit tamagotchi</li>
+                                <li>View tamagotchi</li>
+                                <li>Remove tamagotchi</li>
+                                <li>Share tamagotchi</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>Login submodule has the role of authenticating the existing users, in order to give them access to all the facilities offered by our application. It has to be provided the user credentials.</p>
+                    <p>Register submodule has the role of creating new accounts, based on the forms submitted by the persons who wish to sign up.</p>
+                    <p>Password reset submodule handles the requests from users who need a new password in order to login.</p>
+                    <p>Create tamagotchi submodule has the role of inserting new tamagotchies into the database, by using the data provided by the authenticated users. The data consists of features selected by the users for the new tamagotchies, such as color
+                        or costume.
+                    </p>
+                    <p>Edit tamagotchi submodule is similar to the previous one, but the users need to select an existing tamagotchi and modify some of its features. The characteristics of the tamagotchi will be updated in the database.</p>
+                    <p>View tamagotchi submodule lets the users visualise a selected tamagotchi and perform several actions such as feeding or entertaining.</p>
+                    <p>Remove tamagotchi submodule lets the users delete a tamagotchi from their account in the database.</p>
+                    <p>Share tamagotchi submodule makes possible the sharing among users of their tamagotchies, by using a link.</p>
+                    <p>The modules/submodules interact with each other in different ways, depending on the use-cases. However, there is a permanent dependence between the two main modules - the users management module decides, by whether authenticating a user
+                        or not, which actions can be performed by the tamagotchi management module for a certain user.
+                    </p>
+                    <p>The functions of each module, the way they interact with each other/the user and the way the user can access each function in the interface are detailed in the following sections, using diagrams and written explanations when necessary.</p>
+                </section>
+                <section typeof="sa:UserFlow" id="user-interaction-and-flow">
+                    <!-- review? -->
+                    <h3>User Interaction and Application Flow</h3>
+                    <p>The following diagrams display how the user can access the facilities of our application in the Web interface and the relations between different actions.</p>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Home.jpg">
                         <img src="img/diagrams/Home.jpg" alt="Home" width="600" height="400">
-                    </a>
-                    <div class="desc">Home</div>
-                </div>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Menu.jpg">
+                        </a>
+                        <div class="desc">Home</div>
+                    </div>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Menu.jpg">
                         <img src="img/diagrams/Menu.jpg" alt="Menu" width="600" height="400">
-                    </a>
-                    <div class="desc">Menu</div>
-                </div>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Profile.jpg">
+                        </a>
+                        <div class="desc">Menu</div>
+                    </div>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Profile.jpg">
                         <img src="img/diagrams/Profile.jpg" alt="Profile" width="600" height="400">
-                    </a>
-                    <div class="desc">Profile</div>
-                </div>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Edit.jpg">
+                        </a>
+                        <div class="desc">Profile</div>
+                    </div>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Edit.jpg">
                         <img src="img/diagrams/Edit.jpg" alt="Edit" width="600" height="400">
-                    </a>
-                    <div class="desc">Edit</div>
-                </div>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/View.jpg">
+                        </a>
+                        <div class="desc">Edit</div>
+                    </div>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/View.jpg">
                         <img src="img/diagrams/View.jpg" alt="View" width="600" height="400">
-                    </a>
-                    <div class="desc">View</div>
-                </div>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Application Flow.jpg">
-                        <img src="img/diagrams/Application Flow.jpg" alt="Application Flow" width="600" height="400">
-                    </a>
-                    <div class="desc">Application Flow</div>
-                </div>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Application Flow 2.jpg">
-                        <img src="img/diagrams/Application Flow 2.jpg" alt="Application Flow 2" width="600" height="400">
-                    </a>
-                    <div class="desc">Application Flow 2</div>
-                </div>
-            </section>
-            <section id="use-cases">
-                <!-- review? -->
-                <h3>Use Cases</h3>
-                <p>The following diagrams present the use-cases in our application. Essentially, the actions performed by some users depend on either they are authenticated or not.</p>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Use-cases.jpg">
+                        </a>
+                        <div class="desc">View</div>
+                    </div>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Application_Flow.jpg">
+                        <img src="img/diagrams/Application_Flow.jpg" alt="Application Flow" width="600" height="400">
+                        </a>
+                        <div class="desc">Application Flow</div>
+                    </div>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Application_Flow_2.jpg">
+                        <img src="img/diagrams/Application_Flow_2.jpg" alt="Application Flow 2" width="600" height="400">
+                        </a>
+                        <div class="desc">Application Flow 2</div>
+                    </div>
+                </section>
+                <section typeof="sa:UseCaseDiagram" id="use-cases">
+                    <!-- review? -->
+                    <h3>Use Cases</h3>
+                    <p>The following diagrams present the use-cases in our application. Essentially, the actions performed by some users depend on either they are authenticated or not.</p>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Use-cases.jpg">
                         <img src="img/diagrams/Use-cases.jpg" alt="Use-cases" width="600" height="400">
-                    </a>
-                    <div class="desc">Use-cases</div>
-                </div>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Use-cases 2.jpg">
-                        <img src="img/diagrams/Use-cases 2.jpg" alt="Use-cases" width="600" height="400">
-                    </a>
-                    <div class="desc">Use-cases 2</div>
-                </div>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Use-cases 3.jpg">
-                        <img src="img/diagrams/Use-cases 3.jpg" alt="Use-cases" width="600" height="400">
-                    </a>
-                    <div class="desc">Use-cases 3</div>
-                </div>
-            </section>
-            <section id="data">
-                <!-- review? -->
-                <h3>Database Representation and Data Flow</h3>
-                <p>Description of what is in the diagrams</p>
-                <p>
-                    Regarding the data exchange in our application, the submodules that are in charge of the users management interact mainly with the database because it keeps track of the existing users and their accounts, but also with mail servers, due to the fact that
-                    every account requires an email address at creation time.
-                </p>
-                <p> Who wishes to register first needs to complete a form with some personal information, including an email address. The data is verified (especially the validity of the email address). If something is wrong the user is notified, otherwise
-                    he/she gets a confirmation email. After the user confirms, an account is created and inserted into the database, and now the user can enjoy the facilities of our application.
-                </p>
-                <p>
-                    An existing user may login into our application by entering his/her credentials. The login process queries the database and if the requested account is found and the password is correct, the user is granted access into the application, otherwise an error
-                    is returned.
-                </p>
-                <p>
-                    The password can be reset at the user's request, if he/she has the correct email address corresponding to the account. The email address and the associated account are verified in the database. If the user didn't enter the correct email address, the process
-                    fails, otherwise an email is sent to the address. If the password reset request is confirmed, a new password is generated and given to the user.
-                </p>
-                <p>
-                    All the data flows described in the above paragraphs can be visualised in the Authentication diagram.
-                </p>
-                <p>
-                    An authenticated user can enjoy the facilities of our application. The tamagotchi management modules intermediate the transfer of data between the user and the database, considering that the database is storing the properties of the tamagotchies created
-                    by the users and also some animations which make the tamagotchi more fun.
-                </p>
-                <p>
-                    When a user wants to create a new tamagotchi, he/she needs to set its properties. Some of them are mentioned below:
-                </p>
-                <ul>
-                    <li>name</li>
-                    <li>face shape - possible values are based on geometric figures</li>
-                    <li>eyes shape - the setting of this parameter is done just like in the case of the face shape</li>
-                    <li>mouth - for a plus of expressivity, the mouth can be adjusted in order to reflect the character's feelings</li>
-                    <li>costume - the user can choose the character's clothes, from a set of predefined items</li>
-                    <li>accesory - cool accesories like hats or helmets are provided in addition to the costume</li>
-                    <li>face color</li>
-                </ul>
-                <p>When the user presses the save button, the data is collected in order to be used at tamagotchi creation. After the new tamagotchi is created and inserted into the database it becomes available to the user.</p>
-                <p>Editing is similar, except the user modifies an existing tamagotchi. Therefore, the corresponding tamagotchi in the database will be updated with the new data collected from the user. </p>
-                <p>When a user needs to view a tamagotchi, the application queries the database and after the tamagotchi is found, it will be loaded in the view page.</p>
-                <p>Tamagotchies can also be removed from the database, at the user's request.</p>
-                <p>Another facility is the sharing of tamagotchies among users via a link.</p>
-                <p>The data flow described in the above paragraphs can be seen in the Tama Management diagram.</p>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Database Representation.jpg">
-                        <img src="img/diagrams/Database Representation.jpg" alt="Database Representation" width="600" height="400">
-                    </a>
-                    <div class="desc">Database</div>
-                </div>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Authentication.jpeg">
+                        </a>
+                        <div class="desc">Use-cases</div>
+                    </div>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Use-cases_2.jpg">
+                        <img src="img/diagrams/Use-cases_2.jpg" alt="Use-cases" width="600" height="400">
+                        </a>
+                        <div class="desc">Use-cases 2</div>
+                    </div>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Use-cases_3.jpg">
+                        <img src="img/diagrams/Use-cases_3.jpg" alt="Use-cases" width="600" height="400">
+                        </a>
+                        <div class="desc">Use-cases 3</div>
+                    </div>
+                </section>
+                <section typeof="sa:DataFlowDiagram" id="data">
+                    <!-- review? -->
+                    <h3>Database Representation and Data Flow</h3>
+                    <p>Description of what is in the diagrams</p>
+                    <p>
+                        Regarding the data exchange in our application, the submodules that are in charge of the users management interact mainly with the database because it keeps track of the existing users and their accounts, but also with mail servers, due to the fact that
+                        every account requires an email address at creation time.
+                    </p>
+                    <p> Who wishes to register first needs to complete a form with some personal information, including an email address. The data is verified (especially the validity of the email address). If something is wrong the user is notified, otherwise
+                        he/she gets a confirmation email. After the user confirms, an account is created and inserted into the database, and now the user can enjoy the facilities of our application.
+                    </p>
+                    <p>
+                        An existing user may login into our application by entering his/her credentials. The login process queries the database and if the requested account is found and the password is correct, the user is granted access into the application, otherwise an error
+                        is returned.
+                    </p>
+                    <p>
+                        The password can be reset at the user's request, if he/she has the correct email address corresponding to the account. The email address and the associated account are verified in the database. If the user didn't enter the correct email address, the process
+                        fails, otherwise an email is sent to the address. If the password reset request is confirmed, a new password is generated and given to the user.
+                    </p>
+                    <p>
+                        All the data flows described in the above paragraphs can be visualised in the Authentication diagram.
+                    </p>
+                    <p>
+                        An authenticated user can enjoy the facilities of our application. The tamagotchi management modules intermediate the transfer of data between the user and the database, considering that the database is storing the properties of the tamagotchies created
+                        by the users and also some animations which make the tamagotchi more fun.
+                    </p>
+                    <p>
+                        When a user wants to create a new tamagotchi, he/she needs to set its properties. Some of them are mentioned below:
+                    </p>
+                    <ul>
+                        <li>name</li>
+                        <li>face shape - possible values are based on geometric figures</li>
+                        <li>eyes shape - the setting of this parameter is done just like in the case of the face shape</li>
+                        <li>mouth - for a plus of expressivity, the mouth can be adjusted in order to reflect the character's feelings</li>
+                        <li>costume - the user can choose the character's clothes, from a set of predefined items</li>
+                        <li>accesory - cool accesories like hats or helmets are provided in addition to the costume</li>
+                        <li>face color</li>
+                    </ul>
+                    <p>When the user presses the save button, the data is collected in order to be used at tamagotchi creation. After the new tamagotchi is created and inserted into the database it becomes available to the user.</p>
+                    <p>Editing is similar, except the user modifies an existing tamagotchi. Therefore, the corresponding tamagotchi in the database will be updated with the new data collected from the user. </p>
+                    <p>When a user needs to view a tamagotchi, the application queries the database and after the tamagotchi is found, it will be loaded in the view page.</p>
+                    <p>Tamagotchies can also be removed from the database, at the user's request.</p>
+                    <p>Another facility is the sharing of tamagotchies among users via a link.</p>
+                    <p>The data flow described in the above paragraphs can be seen in the Tama Management diagram.</p>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Database_Representation.jpg">
+                        <img src="img/diagrams/Database_Representation.jpg" alt="Database Representation" width="600" height="400">
+                        </a>
+                        <div class="desc">Database</div>
+                    </div>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Authentication.jpeg">
                         <img src="img/diagrams/Authentication.jpeg" alt="Authentication" width="600" height="400">
-                    </a>
-                    <div class="desc">Authentication</div>
-                </div>
-                <div class="gallery">
-                    <a target="_blank" href="img/diagrams/Tamagotchi Management.jpeg">
-                        <img src="img/diagrams/Tamagotchi Management.jpeg" alt="Authentication" width="600" height="400">
-                    </a>
-                    <div class="desc">Tama Management</div>
-                </div>
+                        </a>
+                        <div class="desc">Authentication</div>
+                    </div>
+                    <div class="gallery">
+                        <a target="_blank" href="img/diagrams/Tamagotchi_Management.jpeg">
+                        <img src="img/diagrams/Tamagotchi_Management.jpeg" alt="Authentication" width="600" height="400">
+                        </a>
+                        <div class="desc">Tama Management</div>
+                    </div>
+                </section>
+                <section typeof="sa:Resources" id="external">
+                    <h3>External resources/tools</h3>
+                    <p>For the creation of the svg drawings and data storage, we used the following resources/tools.</p>
+                    <h4>Adobe Illustrator</h4>
+                    <p>Adobe Illustrator is a vector graphics editor created and distributed by Adobe Systems. It was originally developed for Apple Macintosh computers (now it works on more operating systems) and among the years it had several versions. Some
+                        of its basic tools are selection, paintbrush, pen, pencil tools. More information about the soft and the pricing details for clients in Romania can be found <a href="https://www.adobe.com/ro/products/illustrator.html">here</a>.
+                    </p>
+                    <p>We will use the tool for creating the svg figures that are necessary when the applications displays a tamagotchi (for the animations we will make more frames). The SVG figures will be injected into the code.</p>
+                    <h4>Firebase Realtime Database</h4>
+                    <p>Firebase Realtime Database is a NoSql cloud database developed by Google. It has several features, like data syncronization in realtime, the ability to work even offline (when the connection is reestablished the client gets the changes
+                        from the server) or scaling. More details can be found <a href="https://firebase.google.com/docs/database">here</a>. 
+                    </p>
+                    <p>We will use the database to keep the track of the existing users, their tamagotchies, and also some animations associated with the tamagotchies. </p>
+                </section>
+                <section id="validate">
+                    <!-- review? -->
+                    <h3>Validation</h3>
+                    <p>
+                        For the validation part we used w3c validators online for css and html. For internal purposes we are going to use selenium or any other frontend testing tool available for the next phases.
+                    </p>
+                    <p>
+                        At this moment statistics are:
+                    </p>
+                    <ul>
+                        <li>0 errors</li>
+                        <li>1 warning</li>
+                        <li>1 known bug</li>
+                    </ul>
+                </section>
             </section>
-            <section id="external">
-                <h3>External resources/tools</h3>
-                <p>For the creation of the svg drawings and data storage, we used the following resources/tools.</p>
-                <h4>Adobe Illustrator</h4>
-                <p>Adobe Illustrator is a vector graphics editor created and distributed by Adobe Systems. It was originally developed for Apple Macintosh computers (now it works on more operating systems) and among the years it had several versions. Some
-                    of its basic tools are selection, paintbrush, pen, pencil tools. More information about the soft and the pricing details for clients in Romania can be found <a href="https://www.adobe.com/ro/products/illustrator.html">here</a>.</p>
-                <p>We will use the tool for creating the svg figures that are necessary when the applications displays a tamagotchi (for the animations we will make more frames). The SVG figures will be injected into the code.</p>
-                <h4>Firebase Realtime Database</h4>
-                <p>Firebase Realtime Database is a NoSql cloud database developed by Google. It has several features, like data syncronization in realtime, the ability to work even offline (when the connection is reestablished the client gets the changes
-                    from the server) or scaling. More details can be found <a href="https://firebase.google.com/docs/database">here</a>. </p>
-                <p>We will use the database to keep the track of the existing users, their tamagotchies, and also some animations associated with the tamagotchies. </p>
-            </section>
-            <section id="validate">
+            <section typeof="sa:Acknowledgements" id="acks">
                 <!-- review? -->
-                <h3>Validation</h3>
+                <h2>Acknowledgements</h2>
                 <p>
-                    For the validation part we used w3c validators online for css and html. For internal purposes we are going to use selenium or any other frontend testing tool available for the next phases.
+                    Our team would like to thank to this list of great people or companies that provided free open source software for us to be used, but also to our teacher for letting us use only the software that is marked as plain css html EcmaScript:
                 </p>
                 <p>
-                    At this moment statistics are:
+                    <a href="https://modernizr.com/">modernizr</a>
                 </p>
-                <ul>
-                    <li>0 errors</li>
-                    <li>1 warning</li>
-                    <li>1 known bug</li>
-                </ul>
+                <p>
+                    <a href="https://validator.w3.org/">HTML and CSS validator from W3C</a>
+                </p>
+                <p>
+                    <a href="https://codepen.io/sureshrkm/pen/ZbzBpr">Pure Accordion</a>
+                </p>
+                <p>
+                    <a href="https://github.com/drewbrolik/Responsive-Img">responsiveImg</a>
+                </p>
+                <p>
+                    <a href="https://www.cssscript.com/minimal-notification-popup-pure-javascript/">Notifications</a>
+                </p>
+                <p>
+                    <a href="https://github.com/scottjehl/Respond">RespondJS</a>
+                </p>
+                <p>
+                    <a href="https://www.adobe.com/ro/products/illustrator.html">Adobe Illustrator</a>
+                </p>
+                <p>
+                    <a href="https://firebase.google.com/docs/database">Firebase Realtime Database</a>
+                </p>
             </section>
-        </section>
-        <section id="acks">
-            <!-- review? -->
-            <h2>Acknowledgements</h2>
-            <p>
-                Our team would like to thank to this list of great people or companies that provided free open source software for us to be used, but also to our teacher for letting us use only the software that is marked as plain css html EcmaScript:
-            </p>
-            <p>
-                <a href="https://modernizr.com/">modernizr</a>
-            </p>
-            <p>
-                <a href="https://validator.w3.org/">HTML and CSS validator from W3C</a>
-            </p>
-            <p>
-                <a href="https://codepen.io/sureshrkm/pen/ZbzBpr">Pure Accordion</a>
-            </p>
-            <p>
-                <a href="https://github.com/drewbrolik/Responsive-Img">responsiveImg</a>
-            </p>
-            <p>
-                <a href="https://www.cssscript.com/minimal-notification-popup-pure-javascript/">Notifications</a>
-            </p>
-            </p>
-            <p>
-                <a href="https://github.com/scottjehl/Respond">RespondJS</a>
-            </p>
-            <p>
-                <a href="https://www.adobe.com/ro/products/illustrator.html">Adobe Illustrator</a>
-            </p>
-            <p>
-                <a href="https://firebase.google.com/docs/database">Firebase Realtime Database</a>
-            </p>
-        </section>
-    </div>
-</body>
-
+        </div>
+    </body>
 </html>
+
