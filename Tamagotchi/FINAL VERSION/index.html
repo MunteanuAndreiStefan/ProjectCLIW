@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tamagotchi</title>
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+        
+        <link href="https://fonts.googleapis.com/css?family=Lobster|Oswald:700|Roboto" rel="stylesheet">
+
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-database.js"></script>
+    </head>
+    <body>
+        
+        <div id="menuBar">
+            <div id="logo" onclick="router.changePage('home')">Tamagotchi</div>
+
+            <div id="menuComponenetLoggedIn" class="menuComponent">
+                <div class="button" onclick="router.changePage('management')">MANAGEMENT</div>
+                <div class="button" onclick="dao.signOut()">Sign Out</div>
+            </div>
+
+            <div id="menuComponenetLoggedOut" class="menuComponent">
+                <div class="button">Sign In</div>
+            </div>
+        </div>
+
+        <div id="home" class="page">
+            home
+        </div>
+        <div id="management" class="page">
+            management
+        </div>
+        <div id="view/edit" class="page">
+            view / edit
+        </div>
+
+    </body>
+
+    <script src="scripts/dao.js"></script>
+    <script src="scripts/router.js"></script>
+</html>
