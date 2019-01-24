@@ -5,11 +5,11 @@ class List {
         this.index = 0;
     }
     nextElementIndex() {
-        this.index=(this.index+1)%this.items.length;
+        this.index = (this.index + 1) % this.items.length;
     }
     previousElementIndex() {
-        var size=this.items.length;
-        this.index=(this.index+size-1)%size;
+        var size = this.items.length;
+        this.index = (this.index + size - 1) % size;
     }
     getCurrentItem() {
         return this.items[this.index];
@@ -17,229 +17,196 @@ class List {
 }
 
 /*Instances of class Point will be used at drawing the tamagotchi*/
-class Point{
-    constructor(x,y){
-        this.x=x;
-        this.y=y;
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
     }
-    getX(){
+    getX() {
         return this.x;
     }
-    getY(){
+    getY() {
         return this.y;
     }
 }
 
+var character = {};
+var a;
+var face;
+var rightEye;
+var leftEye;
+var rightHand;
+var rightLeg;
+var leftHand;
+var leftLeg;
+var mouth;
+var torso;
+
 /*Function for changing the eyes of the tamagotchi*/
-function changingEyes(){
-    var svg=document.getElementsByTagName("svg")[0].getBoundingClientRect();
-    var w=svg.width;
-    var h=svg.height;
-    var facePoint=new Point(w/2,h/3);
-    var leftEyePoint=new Point(facePoint.getX()-h/30,facePoint.getY()-h/30);
-    var rightEyePoint=new Point(facePoint.getX()+h/30,facePoint.getY()-h/30);
-    var char=document.getElementById("character");
-    var rightEye=document.getElementById("right-eye");
-    var leftEye=document.getElementById("left-eye");
-    rightEye.parentNode.removeChild(rightEye);
-    leftEye.parentNode.removeChild(leftEye);
-    var value=eyesList.getCurrentItem();
-    if(value=="rectangular"){
-        var rightEye=document.createElementNS("http://www.w3.org/2000/svg","rect");
-        rightEye.setAttribute("x",rightEyePoint.getX()-h/70);
-        rightEye.setAttribute("y",rightEyePoint.getY()-h/70);
-        rightEye.setAttribute("width",h/35);
-        rightEye.setAttribute("height",h/35);
-        var leftEye=document.createElementNS("http://www.w3.org/2000/svg","rect");
-        leftEye.setAttribute("x",leftEyePoint.getX()-h/70);
-        leftEye.setAttribute("y",leftEyePoint.getY()-h/70);
-        leftEye.setAttribute("width",h/35);
-        leftEye.setAttribute("height",h/35);
+function changingEyes() {
+    var w = a.width;
+    var h = a.height;
+    var facePoint = new Point(w / 2, h / 3);
+    var leftEyePoint = new Point(facePoint.getX() - h / 30, facePoint.getY() - h / 30);
+    var rightEyePoint = new Point(facePoint.getX() + h / 30, facePoint.getY() - h / 30);
+    var value = eyesList.getCurrentItem();
+    if (value == "rectangular") {
+        rightEye = a.rect(rightEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "right-eye");
+        leftEye = a.rect(leftEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "left-eye");
+    } else {
+        rightEye = a.circle(rightEyePoint.getX(), rightEyePoint.getY(), h / 70, "right-eye");
+        leftEye = a.circle(leftEyePoint.getX(), leftEyePoint.getY(), h / 70, "left-eye");
     }
-    else {
-        var rightEye=document.createElementNS("http://www.w3.org/2000/svg","circle");  
-        rightEye.setAttribute("cx",rightEyePoint.getX());
-        rightEye.setAttribute("cy",rightEyePoint.getY());
-        rightEye.setAttribute("r",h/70);
-        var leftEye=document.createElementNS("http://www.w3.org/2000/svg","circle");
-        leftEye.setAttribute("cx",leftEyePoint.getX());
-        leftEye.setAttribute("cy",leftEyePoint.getY());
-        leftEye.setAttribute("r",h/70);
-    }
-    rightEye.id="right-eye";
-    leftEye.id="left-eye";
-    char.appendChild(rightEye);
-    char.appendChild(leftEye);
+    character['right-eye'] = rightEye;
+    character['left-eye'] = leftEye;
 }
 
 /*Function for changing the face shape of the tamagotchi*/
-function changingShape(){
-    var svg=document.getElementsByTagName("svg")[0].getBoundingClientRect();
-    var h=svg.height;
-    var w=svg.width;
-    var facePoint=new Point(w/2,h/3);
-    var faceDimension=h/10;
-    var char=document.getElementById("character");
-    var face=document.getElementById("face");
-    face.parentNode.removeChild(face);
-    var value=shapeList.getCurrentItem();
-    if(value=="rectangular"){
-        var face=document.createElementNS("http://www.w3.org/2000/svg","rect");
-        face.setAttribute("x",facePoint.getX()-faceDimension);
-        face.setAttribute("y",facePoint.getY()-faceDimension);
-        face.setAttribute("width",faceDimension*2);
-        face.setAttribute("height",faceDimension*2);
+function changingShape() {
+    var h = a.height;
+    var w = a.width;
+    var facePoint = new Point(w / 2, h / 3);
+    var faceDimension = h / 10;
+    var value = shapeList.getCurrentItem();
+    if (value == "rectangular") {
+        face = a.rect(facePoint.getX() - faceDimension, facePoint.getY() - faceDimension, faceDimension * 2, faceDimension * 2, "face");
+    } else {
+        face = a.circle(facePoint.getX(), facePoint.getY(), faceDimension, "face");
     }
-    else{
-        var face=document.createElementNS("http://www.w3.org/2000/svg","circle");
-        face.setAttribute("cx",facePoint.getX());
-        face.setAttribute("cy",facePoint.getY());
-        face.setAttribute("r",faceDimension);
-    }
-    face.style.fill=faceColor;
-    face.id="face";
-    char.insertBefore(face,char.childNodes[0]);
+    face.css("fill", faceColor);
+    character['face'] = face;
 }
 
 /*Function for changing the mouth of the tamagotchi*/
-function changingMouth(){
-    var svg=document.getElementsByTagName("svg")[0].getBoundingClientRect();
-    var mouth=document.getElementById("mouth");
-    var w=svg.width;
-    var h=svg.height;
-    var facePoint=new Point(w/2,h/3);
-    var leftEyePoint=new Point(facePoint.getX()-h/30,facePoint.getY()-h/30);
-    var rightEyePoint=new Point(facePoint.getX()+h/30,facePoint.getY()-h/30);
-    var value=mouthList.getCurrentItem();
-    switch(value){
+function changingMouth() {
+    var w = a.width;
+    var h = a.height;
+    var facePoint = new Point(w / 2, h / 3);
+    var leftEyePoint = new Point(facePoint.getX() - h / 30, facePoint.getY() - h / 30);
+    var rightEyePoint = new Point(facePoint.getX() + h / 30, facePoint.getY() - h / 30);
+    var value = mouthList.getCurrentItem();
+    switch (value) {
         case "happy":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/8} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
+            mouth = a.path([leftEyePoint.getX(), leftEyePoint.getY() + h / 12, facePoint.getX(), rightEyePoint.getY() + h / 10, rightEyePoint.getX(), rightEyePoint.getY() + h / 12], "mouth");
             break;
         case "regular":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/12} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
+            mouth = a.path([leftEyePoint.getX(), leftEyePoint.getY() + h / 12, facePoint.getX(), rightEyePoint.getY() + h / 12, rightEyePoint.getX(), rightEyePoint.getY() + h / 12], "mouth");
             break;
         case "sad":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/12-(h/8-h/12)} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
+            mouth = a.path([leftEyePoint.getX(), leftEyePoint.getY() + h / 12, facePoint.getX(), rightEyePoint.getY() + h / 12 - (h / 10 - h / 12), rightEyePoint.getX(), rightEyePoint.getY() + h / 12], "mouth");
             break;
     }
+    character['mouth'] = mouth;
 }
 
 /*Function for changing the accesory of the tamagotchi*/
-function changingAccessory(){
-}
+function changingAccessory() {}
 
 /*Function for changing the costume of the tamagotchi*/
-function changingCostumes(){
-}
+function changingCostumes() {}
 
 /*This function is used at drawing the tamagotchi, based on the values selected by the user*/
-function draw(){
-    var svg=document.getElementsByTagName("svg")[0].getBoundingClientRect();
-    var face=document.getElementById("face");
-    var leftEye=document.getElementById("left-eye");
-    var rightEye=document.getElementById("right-eye");
-    var mouth=document.getElementById("mouth");
-    var torso=document.getElementById("torso");
-    var leftHand=document.getElementById("left-hand");
-    var rightHand=document.getElementById("right-hand");
-    var leftLeg=document.getElementById("left-leg");
-    var rightLeg=document.getElementById("right-leg");
-    var h=svg.height;
-    var w=svg.width;
-    var facePoint=new Point(w/2,h/3);
-    var faceDimension=h/10;
-    var faceValue=shapeList.getCurrentItem();
-    if(faceValue=="rectangular"){
-        face.setAttribute("x",facePoint.getX()-faceDimension);
-        face.setAttribute("y",facePoint.getY()-faceDimension);
-        face.setAttribute("width",faceDimension*2);
-        face.setAttribute("height",faceDimension*2);
+function draw() {
+    var h = a.height;
+    var w = a.width;
+    var facePoint = new Point(w / 2, h / 3);
+    var faceDimension = h / 10;
+    var faceValue = shapeList.getCurrentItem();
+    if (faceValue == "rectangular") {
+        face = a.rect(facePoint.getX() - faceDimension, facePoint.getY() - faceDimension, faceDimension * 2, faceDimension * 2, "face");
+    } else {
+        face = a.circle(facePoint.getX(), facePoint.getY(), faceDimension, "face");
     }
-    else{
-        face.setAttribute("cx",facePoint.getX());
-        face.setAttribute("cy",facePoint.getY());
-        face.setAttribute("r",faceDimension);
+    face.css("fill", faceColor);
+    var leftEyePoint = new Point(facePoint.getX() - h / 30, facePoint.getY() - h / 30);
+    var rightEyePoint = new Point(facePoint.getX() + h / 30, facePoint.getY() - h / 30);
+    var eyesValue = eyesList.getCurrentItem();
+    if (eyesValue == "rectangular") {
+        rightEye = a.rect(rightEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "right-eye");
+        leftEye = a.rect(leftEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "left-eye");
+    } else {
+        rightEye = a.circle(rightEyePoint.getX(), rightEyePoint.getY(), h / 70, "right-eye");
+        leftEye = a.circle(leftEyePoint.getX(), leftEyePoint.getY(), h / 70, "left-eye");
     }
-    var leftEyePoint=new Point(facePoint.getX()-h/30,facePoint.getY()-h/30);
-    var rightEyePoint=new Point(facePoint.getX()+h/30,facePoint.getY()-h/30);
-    var eyesValue=eyesList.getCurrentItem();
-    if(eyesValue=="rectangular"){
-        rightEye.setAttribute("x",rightEyePoint.getX()-h/70);
-        rightEye.setAttribute("y",rightEyePoint.getY()-h/70);
-        rightEye.setAttribute("width",h/35);
-        rightEye.setAttribute("height",h/35);
-        leftEye.setAttribute("x",leftEyePoint.getX()-h/70);
-        leftEye.setAttribute("y",leftEyePoint.getY()-h/70);
-        leftEye.setAttribute("width",h/35);
-        leftEye.setAttribute("height",h/35);
-    }
-    else{
-        leftEye.setAttribute("cx",leftEyePoint.getX());
-        leftEye.setAttribute("cy",leftEyePoint.getY());
-        leftEye.setAttribute("r",h/70);
-        rightEye.setAttribute("cx",rightEyePoint.getX());
-        rightEye.setAttribute("cy",rightEyePoint.getY());
-        rightEye.setAttribute("r",h/70);
-    }
-    var mouthValue=mouthList.getCurrentItem();
-    switch(mouthValue){
+    var mouthValue = mouthList.getCurrentItem();
+    switch (mouthValue) {
         case "happy":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/8} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
+            mouth = a.path([leftEyePoint.getX(), leftEyePoint.getY() + h / 12, facePoint.getX(), rightEyePoint.getY() + h / 10, rightEyePoint.getX(), rightEyePoint.getY() + h / 12], "mouth");
             break;
         case "regular":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/12} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
+            mouth = a.path([leftEyePoint.getX(), leftEyePoint.getY() + h / 12, facePoint.getX(), rightEyePoint.getY() + h / 12, rightEyePoint.getX(), rightEyePoint.getY() + h / 12], "mouth");
             break;
         case "sad":
-            mouth.setAttribute("d",`M${leftEyePoint.getX()},${leftEyePoint.getY()+h/12} Q${facePoint.getX()},${rightEyePoint.getY()+h/12-(h/8-h/12)} ${rightEyePoint.getX()},${rightEyePoint.getY()+h/12}`);
+            mouth = a.path([leftEyePoint.getX(), leftEyePoint.getY() + h / 12, facePoint.getX(), rightEyePoint.getY() + h / 12 - (h / 10 - h / 12), rightEyePoint.getX(), rightEyePoint.getY() + h / 12], "mouth");
             break;
     }
-   var torsoPoint=new Point(facePoint.getX()-h/28,facePoint.getY()+faceDimension);
-   torso.setAttribute("x",torsoPoint.getX());
-   torso.setAttribute("y",torsoPoint.getY());
-   torso.setAttribute("width",h/14);
-   torso.setAttribute("height",h/5);
-   leftHand.setAttribute("d",`M${torsoPoint.getX()-h/20},${torsoPoint.getY()+h/20} ${torsoPoint.getX()},${torsoPoint.getY()}`);
-   rightHand.setAttribute("d",`M${torsoPoint.getX()+h/14},${torsoPoint.getY()} ${torsoPoint.getX()+h/14+h/20},${torsoPoint.getY()+h/20}`);
-   leftLeg.setAttribute("d",`M${torsoPoint.getX()-h/20},${torsoPoint.getY()+h/20+h/5} ${torsoPoint.getX()},${torsoPoint.getY()+h/5}`);
-   rightLeg.setAttribute("d",`M${torsoPoint.getX()+h/14},${torsoPoint.getY()+h/5} ${torsoPoint.getX()+h/14+h/20},${torsoPoint.getY()+h/20+h/5}`);
-
+    var torsoPoint = new Point(facePoint.getX() - h / 28, facePoint.getY() + faceDimension);
+    torso = a.rect(torsoPoint.getX(), torsoPoint.getY(), h / 14, h / 5, "torso");
+    leftHand = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20, torsoPoint.getX(), torsoPoint.getY()], "left-hand");
+    rightHand = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY(), torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20], "right-hand");
+    leftLeg = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20 + h / 5, torsoPoint.getX(), torsoPoint.getY() + h / 5], "left-leg");
+    rightLeg = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY() + h / 5, torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20 + h / 5], "right-leg");
+    character['face'] = face;
+    character['right-eye'] = rightEye;
+    character['left-eye'] = leftEye;
+    character['mouth'] = mouth;
+    character['torso'] = torso;
+    character['right-hand'] = rightHand;
+    character['left-hand'] = leftHand;
+    character['right-leg'] = rightLeg;
+    character['left-leg'] = leftLeg;
 }
-var eyesList=new List(["round","rectangular"]);
-var mouthList=new List(["happy","regular","sad"]);
-var shapeList=new List(["round","rectangular"]);
-var accessoryList=new List(["default"]);
-var costumeList=new List(["default"]);
-var divToList={"eyes-options":eyesList,"shape-options":shapeList,"mouth-options":mouthList,"accessory-options":accessoryList,"costume-options":costumeList};
-var divToFunction={"eyes-options":changingEyes,"shape-options":changingShape,"mouth-options":changingMouth,"accessory-options":changingAccessory,"costume-options":changingCostumes};
-var faceColor="blue";
-window.onload=function(){
-    var divs=document.getElementsByClassName("options");
-    var divsSize=divs.length;
-    for(var i=0;i<divsSize;i++){
-        let buttons=divs[i].getElementsByTagName("button");
-        let list=divToList[divs[i].id];
-        let paragraph=divs[i].getElementsByTagName("p")[0];
-        let eventHandler=divToFunction[divs[i].id];
-        paragraph.textContent=list.getCurrentItem();
-        buttons.item(0).onclick=()=>{list.previousElementIndex();paragraph.textContent=list.getCurrentItem();eventHandler();}
-        buttons.item(1).onclick=()=>{list.nextElementIndex();paragraph.textContent=list.getCurrentItem();eventHandler();}
+var eyesList = new List(["round", "rectangular"]);
+var mouthList = new List(["happy", "regular", "sad"]);
+var shapeList = new List(["round", "rectangular"]);
+var accessoryList = new List(["default"]);
+var costumeList = new List(["default"]);
+var divToList = { "eyes-options": eyesList, "shape-options": shapeList, "mouth-options": mouthList, "accessory-options": accessoryList, "costume-options": costumeList };
+var divToFunction = { "eyes-options": changingEyes, "shape-options": changingShape, "mouth-options": changingMouth, "accessory-options": changingAccessory, "costume-options": changingCostumes };
+var faceColor = "blue";
+window.onload = function() {
+    var container = document.getElementById("svg-container");
+    var divs = document.getElementsByClassName("options");
+    var divsSize = divs.length;
+    for (var i = 0; i < divsSize; i++) {
+        let buttons = divs[i].getElementsByTagName("button");
+        let list = divToList[divs[i].id];
+        let paragraph = divs[i].getElementsByTagName("p")[0];
+        let eventHandler = divToFunction[divs[i].id];
+        paragraph.textContent = list.getCurrentItem();
+        buttons.item(0).onclick = () => {
+            list.previousElementIndex();
+            paragraph.textContent = list.getCurrentItem();
+            eventHandler();
+        }
+        buttons.item(1).onclick = () => {
+            list.nextElementIndex();
+            paragraph.textContent = list.getCurrentItem();
+            eventHandler();
+        }
     }
-
     /*Computing the color using the hsla parameters*/
-    var hslItems=document.getElementsByTagName("input");
-    hslItems[0].value=0;
-    hslItems[1].value=0;
-    hslItems[2].value=0;
-    hslItems[3].value=0;
-    var colorRectangle=document.getElementById("color-test");
-    for(var i=0;i<hslItems.length;i++){
-        hslItems[i].onchange=()=>{
-            colorRectangle.style.background=`hsla(${hslItems[0].value},${hslItems[1].value}%,${hslItems[2].value}%,${hslItems[3].value})`;
+    var hslItems = document.getElementsByTagName("input");
+    hslItems[0].value = 0;
+    hslItems[1].value = 0;
+    hslItems[2].value = 0;
+    hslItems[3].value = 0;
+    var colorRectangle = document.getElementById("color-test");
+    for (var i = 0; i < hslItems.length; i++) {
+        hslItems[i].onchange = () => {
+            colorRectangle.style.background = `hsla(${hslItems[0].value},${hslItems[1].value}%,${hslItems[2].value}%,${hslItems[3].value})`;
         };
     }
-
-    colorRectangle.style.background="black";
-    document.getElementById("apply").onclick=()=>{faceColor=colorRectangle.style.background;document.getElementById("face").style.fill=faceColor;};
-    window.onresize=draw;
+    colorRectangle.style.background = "black";
+    document.getElementById("apply").onclick = () => {
+        faceColor = colorRectangle.style.background;
+        face.css("fill", faceColor);
+    };
+    window.onresize = (e) => {
+        a.destroy();
+        a = new engine("svg-container", Math.round(0.92 * container.clientWidth), Math.round(0.92 * container.clientHeight));
+        draw();
+    };
+    a = new engine("svg-container", Math.round(0.92 * container.clientWidth), Math.round(0.92 * container.clientHeight));
     draw();
 }
