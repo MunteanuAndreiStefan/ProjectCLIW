@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Example</title>
+      <script type="text/javascript" src="engine.js"></script>
+   </head>
+   <body>
+        <script type="text/javascript">
+         window.onload = function() {
+         	svg = new engine("container",640,480);
+         	
+             
+         	svg.circle(300,100,20,'circleWithName').css('cursor','pointer');	
+             
+             svg.path([10, 10, 200, 60, 200, 10]).stroke('green').fill('orange').set('stroke-width', 8);
+             
+         	svg.node('circleWithName').click(function(){
+         		svg.clear();
+         		svg.text(150,400,"Click here to draw").css('fontSize', "16px").click(function(){
+         			svg.destroy();
+         			window.onload();
+         		}
+         		);
+         	});
+         	
+         	svg.ellipse(300,150,50,20);
+         	svg.rect(300,200,100,100).hover(
+         		function(){
+         			svg.node(this).fill('red');
+         		},
+         		function(){
+         			svg.node(this).fill('black')
+         		}
+         	);
+         }
+         		
+      </script>
+      <div id="container"></div>
+   </body>
+</html>
