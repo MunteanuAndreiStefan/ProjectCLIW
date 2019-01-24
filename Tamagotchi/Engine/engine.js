@@ -55,6 +55,22 @@
 
 		return path;
 	}
+    
+    engine.prototype.animateNode = function(nameToAttach, attributeName, from, to, dur, repeatCount){
+        console.log("entry");
+        var att = document.getElementById(nameToAttach);
+        
+        var obj = document.createElementNS(this.ns, 'animate');
+        
+        obj.setAttribute('attributeType', "XML");
+        obj.setAttribute('attributeName', attributeName);
+        obj.setAttribute('from', from);
+        obj.setAttribute('to', to);
+        obj.setAttribute('dur', dur);
+        obj.setAttribute('repeatCount', repeatCount);
+        
+        att.appendChild(obj);
+    }
 
 	// Creaza si adauga obiectul la parinte
 	engine.prototype.createSurface = function () {
@@ -143,7 +159,7 @@
 
 		var obj = document.createElementNS(this.ns, 'path');
 		obj.setAttribute('d', path);
-
+        obj.setAttribute('id', name);
 		obj.setAttribute('fill', 'none');
 		obj.setAttribute('stroke', '#000000');
 
@@ -152,6 +168,7 @@
 
 	engine.prototype.text = function (x, y, text, name) {
 		var obj = document.createElementNS(this.ns, 'text');
+        obj.setAttribute('id', name);
 		obj.setAttribute('x', x);
 		obj.setAttribute('y', y);
 
@@ -162,6 +179,7 @@
 
 	engine.prototype.rect = function (x, y, w, h, name) {
 		var obj = document.createElementNS(this.ns, 'rect');
+        obj.setAttribute('id', name);
 		obj.setAttribute('x', x);
 		obj.setAttribute('y', y);
 		obj.setAttribute('width', w);
@@ -172,6 +190,7 @@
 
 	engine.prototype.ellipse = function (x, y, rx, ry, name) {
 		var obj = document.createElementNS(this.ns, 'ellipse');
+        obj.setAttribute('id', name);
 		obj.setAttribute('cx', x);
 		obj.setAttribute('cy', y);
 		obj.setAttribute('rx', rx);
@@ -183,7 +202,7 @@
 	engine.prototype.circle = function (x, y, r, name) {
 		return this.ellipse(x, y, r, r, name);
 	}
-
+    
 	window.engine = engine;
 
 })(window);
