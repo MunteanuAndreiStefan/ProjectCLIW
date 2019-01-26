@@ -1,8 +1,8 @@
 let router = {}
 
-let initAuthetication = function(){
-    let callback = function(user){
-        if(user){
+let initAuthetication = function() {
+    let callback = function(user) {
+        if (user) {
             document.getElementById('menuComponenetLoggedIn').style.display = "block";
             document.getElementById('menuComponenetLoggedOut').style.display = "none";
         } else {
@@ -16,9 +16,9 @@ let initAuthetication = function(){
 }
 initAuthetication();
 
-// dao.signIn('test@test.com', '123123', null);
+//dao.signIn('test@test.com', '123123', null);
 
-router.changePage = function(pageId, callback){
+router.changePage = function(pageId, callback) {
     router.pageId = pageId;
 
     document.getElementById('home').style.display = "none";
@@ -26,13 +26,12 @@ router.changePage = function(pageId, callback){
     document.getElementById('view/edit').style.display = "none";
 
     document.getElementById(pageId).style.display = "block";
-
-    if(typeof(callback) === "function"){  
+    if (typeof(callback) === "function") {
         callback();
     }
 }
 
-let initRouter = function(){
+let initRouter = function() {
     router.pageId = 'home';
     router.changePage('home');
 }
