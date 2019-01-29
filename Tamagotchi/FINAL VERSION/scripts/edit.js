@@ -50,28 +50,46 @@ function changingEyes() {
     var leftEyePoint = new Point(facePoint.getX() - h / 30, facePoint.getY() - h / 30);
     var rightEyePoint = new Point(facePoint.getX() + h / 30, facePoint.getY() - h / 30);
     var value = eyesList.getCurrentItem();
-    if (value == "rectangular") {
-        rightEye = a.rect(rightEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "right-eye");
-        leftEye = a.rect(leftEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "left-eye");
-    } else {
-        rightEye = a.circle(rightEyePoint.getX(), rightEyePoint.getY(), h / 70, "right-eye");
-        leftEye = a.circle(leftEyePoint.getX(), leftEyePoint.getY(), h / 70, "left-eye");
+    switch (value) {
+        case "rectangular":
+            rightEye = a.rect(rightEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "right-eye");
+            leftEye = a.rect(leftEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "left-eye");
+            break;
+        case "round":
+            rightEye = a.circle(rightEyePoint.getX(), rightEyePoint.getY(), h / 70, "right-eye");
+            leftEye = a.circle(leftEyePoint.getX(), leftEyePoint.getY(), h / 70, "left-eye");
+            break;
+        case "ellipse":
+            rightEye = a.ellipse(rightEyePoint.getX(), rightEyePoint.getY(), h / 70, h / 50, "right-eye");
+            leftEye = a.ellipse(leftEyePoint.getX(), leftEyePoint.getY(), h / 70, h / 50, "left-eye");
+            break;
+        case "ellipse2":
+            rightEye = a.ellipse(rightEyePoint.getX(), rightEyePoint.getY(), h / 50, h / 70, "right-eye");
+            leftEye = a.ellipse(leftEyePoint.getX(), leftEyePoint.getY(), h / 50, h / 70, "left-eye");
+            break;
+
     }
     character['right-eye'] = rightEye;
     character['left-eye'] = leftEye;
 }
 
 /*Function for changing the face shape of the tamagotchi*/
-function changingShape() {
+function changingFace() {
     var h = a.height;
     var w = a.width;
     var facePoint = new Point(w / 2, h / 3);
     var faceDimension = h / 10;
-    var value = shapeList.getCurrentItem();
-    if (value == "rectangular") {
-        face = a.rect(facePoint.getX() - faceDimension, facePoint.getY() - faceDimension, faceDimension * 2, faceDimension * 2, "face");
-    } else {
-        face = a.circle(facePoint.getX(), facePoint.getY(), faceDimension, "face");
+    var value = faceList.getCurrentItem();
+    switch (value) {
+        case "rectangular":
+            face = a.rect(facePoint.getX() - faceDimension, facePoint.getY() - faceDimension, faceDimension * 2, faceDimension * 2, "face");
+            break;
+        case "round":
+            face = a.circle(facePoint.getX(), facePoint.getY(), faceDimension, "face");
+            break;
+        case "ellipse":
+            face = a.ellipse(facePoint.getX(), facePoint.getY(), faceDimension * 1.25, faceDimension, "face");
+            break;
     }
     face.css("fill", faceColor);
     character['face'] = face;
@@ -103,7 +121,27 @@ function changingMouth() {
 function changingAccessory() {}
 
 /*Function for changing the costume of the tamagotchi*/
-function changingCostumes() {}
+function changingTorso() {
+    var w = a.width;
+    var h = a.height;
+    var facePoint = new Point(w / 2, h / 3);
+    var faceDimension = h / 10;
+    var torsoValue = torsoList.getCurrentItem();
+    var torsoPoint = new Point(facePoint.getX() - h / 28, facePoint.getY() + faceDimension);
+    switch (torsoValue) {
+        case "rectangular":
+            torso = a.rect(torsoPoint.getX(), torsoPoint.getY(), h / 14, h / 5, "torso");
+            break;
+        case "ellipse":
+            torso = a.ellipse(torsoPoint.getX() + h / 28, torsoPoint.getY() + h / 10, h / 28, h / 10, "torso");
+            break;
+    }
+    leftHand = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20, torsoPoint.getX(), torsoPoint.getY()], "left-hand");
+    rightHand = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY(), torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20], "right-hand");
+    leftLeg = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20 + h / 5, torsoPoint.getX(), torsoPoint.getY() + h / 5], "left-leg");
+    rightLeg = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY() + h / 5, torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20 + h / 5], "right-leg");
+    character['torso'] = torso;
+}
 
 /*This function is used at drawing the tamagotchi, based on the values selected by the user*/
 function draw() {
@@ -111,22 +149,39 @@ function draw() {
     var w = a.width;
     var facePoint = new Point(w / 2, h / 3);
     var faceDimension = h / 10;
-    var faceValue = shapeList.getCurrentItem();
-    if (faceValue == "rectangular") {
-        face = a.rect(facePoint.getX() - faceDimension, facePoint.getY() - faceDimension, faceDimension * 2, faceDimension * 2, "face");
-    } else {
-        face = a.circle(facePoint.getX(), facePoint.getY(), faceDimension, "face");
+    var faceValue = faceList.getCurrentItem();
+    switch (faceValue) {
+        case "rectangular":
+            face = a.rect(facePoint.getX() - faceDimension, facePoint.getY() - faceDimension, faceDimension * 2, faceDimension * 2, "face");
+            break;
+        case "round":
+            face = a.circle(facePoint.getX(), facePoint.getY(), faceDimension, "face");
+            break;
+        case "ellipse":
+            face = a.ellipse(facePoint.getX(), facePoint.getY(), faceDimension * 1.25, faceDimension, "face");
+            break;
     }
     face.css("fill", faceColor);
     var leftEyePoint = new Point(facePoint.getX() - h / 30, facePoint.getY() - h / 30);
     var rightEyePoint = new Point(facePoint.getX() + h / 30, facePoint.getY() - h / 30);
     var eyesValue = eyesList.getCurrentItem();
-    if (eyesValue == "rectangular") {
-        rightEye = a.rect(rightEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "right-eye");
-        leftEye = a.rect(leftEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "left-eye");
-    } else {
-        rightEye = a.circle(rightEyePoint.getX(), rightEyePoint.getY(), h / 70, "right-eye");
-        leftEye = a.circle(leftEyePoint.getX(), leftEyePoint.getY(), h / 70, "left-eye");
+    switch (eyesValue) {
+        case "rectangular":
+            rightEye = a.rect(rightEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "right-eye");
+            leftEye = a.rect(leftEyePoint.getX() - h / 70, rightEyePoint.getY() - h / 70, h / 35, h / 35, "left-eye");
+            break;
+        case "round":
+            rightEye = a.circle(rightEyePoint.getX(), rightEyePoint.getY(), h / 70, "right-eye");
+            leftEye = a.circle(leftEyePoint.getX(), leftEyePoint.getY(), h / 70, "left-eye");
+            break;
+        case "ellipse":
+            rightEye = a.ellipse(rightEyePoint.getX(), rightEyePoint.getY(), h / 70, h / 50, "right-eye");
+            leftEye = a.ellipse(leftEyePoint.getX(), leftEyePoint.getY(), h / 70, h / 50, "left-eye");
+            break;
+        case "ellipse2":
+            rightEye = a.ellipse(rightEyePoint.getX(), rightEyePoint.getY(), h / 50, h / 70, "right-eye");
+            leftEye = a.ellipse(leftEyePoint.getX(), leftEyePoint.getY(), h / 50, h / 70, "left-eye");
+            break;
     }
     var mouthValue = mouthList.getCurrentItem();
     switch (mouthValue) {
@@ -140,8 +195,16 @@ function draw() {
             mouth = a.path([leftEyePoint.getX(), leftEyePoint.getY() + h / 12, facePoint.getX(), rightEyePoint.getY() + h / 12 - (h / 10 - h / 12), rightEyePoint.getX(), rightEyePoint.getY() + h / 12], "mouth");
             break;
     }
+    var torsoValue = torsoList.getCurrentItem();
     var torsoPoint = new Point(facePoint.getX() - h / 28, facePoint.getY() + faceDimension);
-    torso = a.rect(torsoPoint.getX(), torsoPoint.getY(), h / 14, h / 5, "torso");
+    switch (torsoValue) {
+        case "rectangular":
+            torso = a.rect(torsoPoint.getX(), torsoPoint.getY(), h / 14, h / 5, "torso");
+            break;
+        case "ellipse":
+            torso = a.ellipse(torsoPoint.getX() + h / 28, torsoPoint.getY() + h / 10, h / 14, h / 5, "torso");
+            break;
+    }
     leftHand = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20, torsoPoint.getX(), torsoPoint.getY()], "left-hand");
     rightHand = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY(), torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20], "right-hand");
     leftLeg = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20 + h / 5, torsoPoint.getX(), torsoPoint.getY() + h / 5], "left-leg");
@@ -156,15 +219,16 @@ function draw() {
     character['right-leg'] = rightLeg;
     character['left-leg'] = leftLeg;
 }
-var eyesList = new List(["round", "rectangular"]);
+var eyesList = new List(["round", "rectangular", "ellipse", "ellipse2"]);
 var mouthList = new List(["happy", "regular", "sad"]);
-var shapeList = new List(["round", "rectangular"]);
+var faceList = new List(["round", "rectangular", "ellipse"]);
 var accessoryList = new List(["default"]);
-var costumeList = new List(["default"]);
-var divToList = { "eyes-options": eyesList, "shape-options": shapeList, "mouth-options": mouthList, "accessory-options": accessoryList, "costume-options": costumeList };
-var divToFunction = { "eyes-options": changingEyes, "shape-options": changingShape, "mouth-options": changingMouth, "accessory-options": changingAccessory, "costume-options": changingCostumes };
+var torsoList = new List(["rectangular", "ellipse"]);
+var divToList = { "eyes-options": eyesList, "face-options": faceList, "mouth-options": mouthList, "accessory-options": accessoryList, "torso-options": torsoList };
+var divToFunction = { "eyes-options": changingEyes, "face-options": changingFace, "mouth-options": changingMouth, "accessory-options": changingAccessory, "torso-options": changingTorso };
 var faceColor = "blue";
-window.onload = function() {
+
+function initialize() {
     var container = document.getElementById("svg-container");
     var divs = document.getElementsByClassName("options");
     var divsSize = divs.length;
@@ -202,11 +266,17 @@ window.onload = function() {
         faceColor = colorRectangle.style.background;
         face.css("fill", faceColor);
     };
+
     window.onresize = (e) => {
         a.destroy();
-        a = new engine("svg-container", Math.round(0.92 * container.clientWidth), Math.round(0.92 * container.clientHeight));
+        a = new engine("svg-container", Math.round(container.clientWidth), Math.round(container.clientHeight));
         draw();
     };
-    a = new engine("svg-container", Math.round(0.92 * container.clientWidth), Math.round(0.92 * container.clientHeight));
+    if (a) {
+        a.destroy();
+    }
+    a = new engine("svg-container", Math.round(container.clientWidth), Math.round(container.clientHeight));
+
     draw();
+
 }

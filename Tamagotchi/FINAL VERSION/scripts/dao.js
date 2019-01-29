@@ -8,42 +8,42 @@ let config = {
 };
 firebase.initializeApp(config);
 
-dao.userAuthenticationCheck = function(callback){
+dao.userAuthenticationCheck = function(callback) {
     firebase.auth().onAuthStateChanged(function(user) {
         callback(user);
     });
 }
 
-dao.createAccount = function(email, password, callbackError){
+dao.createAccount = function(email, password, callbackError) {
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // EXAMPLES FOR USING THE ERROR
         // var errorCode = error.code;
         // var errorMessage = error.message;
-        if(typeof(callbackError) === "function"){
+        if (typeof(callbackError) === "function") {
             callbackError(error);
         }
     });
 }
 
-dao.signIn = function(email, password, callbackError){
+dao.signIn = function(email, password, callbackError) {
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
         // EXAMPLES FOR USING THE ERROR
         // var errorCode = error.code;
         // var errorMessage = error.message;
-        if(typeof(callbackError) === "function"){
+        if (typeof(callbackError) === "function") {
             callbackError(error);
         }
     });
 }
 
-dao.signOut = function(){
+dao.signOut = function() {
     firebase.auth().signOut();
 }
 
-dao.isAuthenticated = function(){
+dao.isAuthenticated = function() {
     user = firebase.auth().currentUser;
 
-    if(user){
+    if (user) {
         return true;
     }
 

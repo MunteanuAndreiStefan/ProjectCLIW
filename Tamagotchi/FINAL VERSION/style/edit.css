@@ -1,47 +1,18 @@
 #wrapper {
     position: relative;
-    margin: 2px;
-    height: 100%;
     width: 100%;
-}
-
-html,
-body {
-    height: 95%;
-    width: 98%;
-    min-height: 250px;
-    background-color: bisque
-}
-
-#wrapper>* {
-    overflow-y: auto;
-}
-
-#save-and-links {
-    position: absolute;
-    top: 2%;
-    bottom: 85%;
-}
-
-#save-and-links>button {
-    width: 25%;
-    height: 25%;
-    min-width: 50px;
-    min-height: 20px
-}
-
-* {
-    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    display: block;
+    height: 700px;
 }
 
 #svg-container {
     position: absolute;
-    bottom: 0%;
-    left: 0%;
-    right: 50%;
-    top: calc(15% + 2px);
-    border-style: solid;
     background-color: white;
+    border-style: solid;
+    right: 50%;
+    left: 2%;
+    top: calc(15% + 2px);
+    bottom: 20%
 }
 
 #options-container {
@@ -59,7 +30,14 @@ body {
     top: calc(15% + 2px);
     left: 75%;
     bottom: 0%;
-    text-align: center
+    text-align: center;
+}
+
+#color-test {
+    position: absolute;
+    left: calc(50% - 40px);
+    width: 80px;
+    height: 10px
 }
 
 .options>p {
@@ -70,35 +48,6 @@ body {
 .options>* {
     display: inline-block
 }
-
-#face {
-    fill: blue
-}
-
-.eyes,
-#torso {
-    fill: black
-}
-
-#mouth {
-    stroke: red;
-    fill: none
-}
-
-.bodyParts {
-    stroke: black;
-    fill: none
-}
-
-#color-test {
-    position: absolute;
-    left: calc(50% - 40px);
-    width: 80px;
-    height: 10px
-}
-
-
-/*Media queries in order to provide a responsive webpage*/
 
 @media (max-width:700px) {
     .options>p {
