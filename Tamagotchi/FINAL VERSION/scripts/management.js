@@ -1,4 +1,11 @@
+var elements;
+
+function processList(array) {
+    elements = array;
+}
+
 function initializeManagement() {
+    dao.getAllMyTamagotchi(processList);
     var n = 20;
     var d = document.getElementById("managementWrapper");
     var div = document.createElement("div");

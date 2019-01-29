@@ -79,8 +79,8 @@ function changingEyes() {
             break;
 
     }
-    character['right-eye'] = rightEye;
-    character['left-eye'] = leftEye;
+    character['right-eye'] = rightEye[0].outerHTML;
+    character['left-eye'] = leftEye[0].outerHTML;
 }
 
 /*Function for changing the face shape of the tamagotchi*/
@@ -102,7 +102,7 @@ function changingFace() {
             break;
     }
     face.css("fill", faceColor);
-    character['face'] = face;
+    character['face'] = face[0].outerHTML;
 }
 
 /*Function for changing the mouth of the tamagotchi*/
@@ -124,7 +124,7 @@ function changingMouth() {
             mouth = a.path([leftEyePoint.getX(), leftEyePoint.getY() + h / 12, facePoint.getX(), rightEyePoint.getY() + h / 12 - (h / 10 - h / 12), rightEyePoint.getX(), rightEyePoint.getY() + h / 12], "mouth");
             break;
     }
-    character['mouth'] = mouth;
+    character['mouth'] = mouth[0].outerHTML;
 }
 
 /*Function for changing the accesory of the tamagotchi*/
@@ -150,7 +150,7 @@ function changingTorso() {
     rightHand = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY(), torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20], "right-hand");
     leftLeg = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20 + h / 5, torsoPoint.getX(), torsoPoint.getY() + h / 5], "left-leg");
     rightLeg = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY() + h / 5, torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20 + h / 5], "right-leg");
-    character['torso'] = torso;
+    character['torso'] = torso[0].outerHTML;
 }
 
 /*This function is used at drawing the tamagotchi, based on the values selected by the user*/
@@ -219,15 +219,15 @@ function draw() {
     rightHand = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY(), torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20], "right-hand");
     leftLeg = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20 + h / 5, torsoPoint.getX(), torsoPoint.getY() + h / 5], "left-leg");
     rightLeg = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY() + h / 5, torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20 + h / 5], "right-leg");
-    character['face'] = face;
-    character['right-eye'] = rightEye;
-    character['left-eye'] = leftEye;
-    character['mouth'] = mouth;
-    character['torso'] = torso;
-    character['right-hand'] = rightHand;
-    character['left-hand'] = leftHand;
-    character['right-leg'] = rightLeg;
-    character['left-leg'] = leftLeg;
+    character['face'] = face[0].outerHTML;
+    character['right-eye'] = rightEye[0].outerHTML;
+    character['left-eye'] = leftEye[0].outerHTML;
+    character['mouth'] = mouth[0].outerHTML;
+    character['torso'] = torso[0].outerHTML;
+    character['right-hand'] = rightHand[0].outerHTML;
+    character['left-hand'] = leftHand[0].outerHTML;
+    character['right-leg'] = rightLeg[0].outerHTML;
+    character['left-leg'] = leftLeg[0].outerHTML;
 }
 var eyesList = new List(["round", "rectangular", "ellipse", "ellipse2"]);
 var mouthList = new List(["happy", "regular", "sad"]);
@@ -242,6 +242,7 @@ function initializeView(id) {
     var container = document.getElementById("svg-container");
     document.getElementById("options-container").style.display = "none";
     document.getElementById("color-container").style.display = "none";
+    document.getElementById("save").style.display = "none";
     if (a) {
         a.destroy();
     }
@@ -255,6 +256,7 @@ function initializeView(id) {
 
 function initializeEdit(id) {
     initialize();
+    document.getElementById("save").addEventListener('click', () => dao.updateTamagotchi(o, a));
     var shapeDictionary;
     /*
     face = shapeDictionary['face'];
@@ -290,12 +292,14 @@ function initializeEdit(id) {
 function initializeAdd() {
     initialize();
     draw();
+    document.getElementById("save").addEventListener('click', () => dao.saveNewTamagotchi(JSON.parse(JSON.stringify(character)), null));
 }
 
 function initialize() {
     var container = document.getElementById("svg-container");
     document.getElementById("options-container").style.display = "block";
     document.getElementById("color-container").style.display = "block";
+    document.getElementById("save").style.display = "block";
     var divs = document.getElementsByClassName("options");
     var divsSize = divs.length;
     for (var i = 0; i < divsSize; i++) {
@@ -324,6 +328,7 @@ function initialize() {
     torsoList.reset();
     document.getElementById("torso-options").getElementsByTagName("p")[0].textContent = torsoList.getCurrentItem();
     faceColor = "blue";
+    character['faceColor'] = "blue";
     /*Computing the color using the hsla parameters*/
     var hslItems = document.getElementsByTagName("input");
     hslItems[0].value = 0;
@@ -340,6 +345,7 @@ function initialize() {
     document.getElementById("apply").onclick = () => {
         faceColor = colorRectangle.style.background;
         face.css("fill", faceColor);
+        character['faceColor'] = faceColor;
     };
 
     window.onresize = (e) => {
