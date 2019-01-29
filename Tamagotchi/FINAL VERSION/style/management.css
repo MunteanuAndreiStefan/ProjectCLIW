@@ -26,3 +26,15 @@
     height: auto;
     margin: 0 auto;
 }
+
+.tamagotchiItem>.edit {
+    position: absolute;
+    bottom: 0%;
+    left: 2%
+}
+
+.tamagotchiItem>.view {
+    position: absolute;
+    bottom: 0%;
+    right: 2%
+}
