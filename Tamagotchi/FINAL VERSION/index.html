@@ -4,6 +4,8 @@
 <head>
     <title>Tamagotchi</title>
     <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/management.css">
+    <link rel="stylesheet" type="text/css" href="style/edit.css">
 
     <link href="https://fonts.googleapis.com/css?family=Lobster|Oswald:700|Roboto" rel="stylesheet">
 
@@ -11,6 +13,9 @@
     <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-database.js"></script>
     <script src="scripts/modal.js"></script>
+    <script src="scripts/management.js"></script>
+    <script src="scripts/draw.js"></script>
+
 </head>
 
 <body>
@@ -19,8 +24,7 @@
         <div id="logo" onclick="router.changePage('home')">Tamagotchi</div>
 
         <div id="menuComponenetLoggedIn" class="menuComponent">
-            <div class="button" onclick="router.changePage('management')">MANAGEMENT</div>
-            <div class="button" onclick="router.changePage('view/edit',initialize)">EDIT</div>
+            <div class="button" onclick="router.changePage('management',initializeManagement)">MANAGEMENT</div>
             <div class="button" onclick="dao.signOut()">Sign Out</div>
         </div>
 
@@ -34,7 +38,8 @@
         home
     </div>
     <div id="management" class="page">
-        management
+        <div id="managementWrapper">
+        </div>
     </div>
     <div id="view/edit" class="page">
         <div id="wrapper">
@@ -43,8 +48,8 @@
             </div>
             <!--This div includes the options for editing the tamagotchi, except the color face option -->
             <div id="options-container">
-                <label>Shape</label>
-                <div id="shape-options" class="options">
+                <label>Face</label>
+                <div id="face-options" class="options">
                     <button>&#8701;</button>
                     <p></p>
                     <button>&#8702;</button>
@@ -67,8 +72,8 @@
                     <p></p>
                     <button>&#8702;</button>
                 </div>
-                <label>Costume</label>
-                <div id="costume-options" class="options">
+                <label>Torso</label>
+                <div id="torso-options" class="options">
                     <button>&#8701;</button>
                     <p></p>
                     <button>&#8702;</button>
