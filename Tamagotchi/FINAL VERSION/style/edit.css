@@ -5,6 +5,12 @@
     height: 700px;
 }
 
+#save {
+    position: absolute;
+    top: 10%;
+    left: 2%;
+}
+
 #svg-container {
     position: absolute;
     background-color: white;
