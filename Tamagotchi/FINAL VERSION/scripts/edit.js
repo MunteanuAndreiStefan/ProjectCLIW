@@ -14,6 +14,16 @@ class List {
     getCurrentItem() {
         return this.items[this.index];
     }
+    setCurrentItem(name) {
+        var n = this.items.length;
+        for (var i = 0; i < n; i++)
+            if (this.items[i] == name)
+                this.index = i;
+        return this.getCurrentItem();
+    }
+    reset() {
+        this.index = 0;
+    }
 }
 
 /*Instances of class Point will be used at drawing the tamagotchi*/
@@ -228,8 +238,64 @@ var divToList = { "eyes-options": eyesList, "face-options": faceList, "mouth-opt
 var divToFunction = { "eyes-options": changingEyes, "face-options": changingFace, "mouth-options": changingMouth, "accessory-options": changingAccessory, "torso-options": changingTorso };
 var faceColor = "blue";
 
+function initializeView(id) {
+    var container = document.getElementById("svg-container");
+    document.getElementById("options-container").style.display = "none";
+    document.getElementById("color-container").style.display = "none";
+    if (a) {
+        a.destroy();
+    }
+    a = new engine("svg-container", Math.round(container.clientWidth), Math.round(container.clientHeight));
+    window.onresize = (e) => {
+        a.destroy();
+        a = new engine("svg-container", Math.round(container.clientWidth), Math.round(container.clientHeight));
+        draw();
+    };
+}
+
+function initializeEdit(id) {
+    initialize();
+    var shapeDictionary;
+    /*
+    face = shapeDictionary['face'];
+    var element;
+    if (face instanceof SVGRectElement)
+        element = faceList.setCurrentItem("rectangular");
+    else if (face instanceof SVGCircleElement)
+        element = faceList.setCurrentItem("round");
+    else
+        element = faceList.setCurrentItem("ellipse");
+    document.getElementById("face-options").getElementsByTagName("p")[0].textContent = element;
+    rightEye = shapeDictionary['right-eye'];
+    if (rightEye instanceof SVGRectElement)
+        value = eyesList.setCurrentItem("rectangular");
+    else if (rightEye instanceof SVGCircleElement)
+        value = eyesList.setCurrentItem("round");
+    else if (rightEye.radiusX >= rightEye.radiusY)
+        value = eyesList.setCurrentItem("ellipse2");
+    else
+        value = eyesList.setCurrentItem("ellipse");
+    document.getElementById("eyes-options").getElementsByTagName("p")[0].textContent = element;
+    torso = shapeDictionary['torso'];
+    if (torso instanceof SVGRectElement)
+        element = torsoList.setCurrentItem("rectangular");
+    else
+        element = torsoList.setCurrentItem("ellipse");
+    document.getElementById("torso-options").getElementsByTagName("p")[0].textContent = element;
+    torsoList.setCurrentItem("ellipse");
+    mouth = shapeDictionary['mouth'];
+    */
+}
+
+function initializeAdd() {
+    initialize();
+    draw();
+}
+
 function initialize() {
     var container = document.getElementById("svg-container");
+    document.getElementById("options-container").style.display = "block";
+    document.getElementById("color-container").style.display = "block";
     var divs = document.getElementsByClassName("options");
     var divsSize = divs.length;
     for (var i = 0; i < divsSize; i++) {
@@ -249,6 +315,15 @@ function initialize() {
             eventHandler();
         }
     }
+    faceList.reset();
+    document.getElementById("face-options").getElementsByTagName("p")[0].textContent = faceList.getCurrentItem();
+    eyesList.reset();
+    document.getElementById("eyes-options").getElementsByTagName("p")[0].textContent = eyesList.getCurrentItem();
+    mouthList.reset();
+    document.getElementById("mouth-options").getElementsByTagName("p")[0].textContent = mouthList.getCurrentItem();
+    torsoList.reset();
+    document.getElementById("torso-options").getElementsByTagName("p")[0].textContent = torsoList.getCurrentItem();
+    faceColor = "blue";
     /*Computing the color using the hsla parameters*/
     var hslItems = document.getElementsByTagName("input");
     hslItems[0].value = 0;
@@ -276,7 +351,4 @@ function initialize() {
         a.destroy();
     }
     a = new engine("svg-container", Math.round(container.clientWidth), Math.round(container.clientHeight));
-
-    draw();
-
 }
