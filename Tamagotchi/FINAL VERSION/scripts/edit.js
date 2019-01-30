@@ -243,6 +243,7 @@ function initializeView(id) {
     document.getElementById("options-container").style.display = "none";
     document.getElementById("color-container").style.display = "none";
     document.getElementById("save").style.display = "none";
+    document.getElementById("play-container").style.display = "none";
     if (a) {
         a.destroy();
     }
@@ -288,11 +289,13 @@ function initializeEdit(id) {
     mouth = shapeDictionary['mouth'];
     */
 }
+var eventCheck = false;
 
 function initializeAdd() {
     initialize();
     draw();
-    document.getElementById("save").addEventListener('click', () => dao.saveNewTamagotchi(JSON.parse(JSON.stringify(character)), null));
+    if (eventCheck == false) document.getElementById("save").addEventListener('click', () => dao.saveNewTamagotchi(JSON.parse(JSON.stringify(character)), null));
+    eventCheck = true;
 }
 
 function initialize() {
@@ -300,6 +303,7 @@ function initialize() {
     document.getElementById("options-container").style.display = "block";
     document.getElementById("color-container").style.display = "block";
     document.getElementById("save").style.display = "block";
+    document.getElementById("play-container").style.display = "none";
     var divs = document.getElementsByClassName("options");
     var divsSize = divs.length;
     for (var i = 0; i < divsSize; i++) {

@@ -11,8 +11,8 @@
 }
 
 .tamagotchiItem {
-    width: 250px;
-    height: 200px;
+    width: 500px;
+    height: 400px;
     display: inline-block;
     border-style: solid;
     position: relative;
@@ -37,4 +37,8 @@
     position: absolute;
     bottom: 0%;
     right: 2%
+}
+
+.tamagotchiItem>svg {
+    transform: translate(-20%);
 }

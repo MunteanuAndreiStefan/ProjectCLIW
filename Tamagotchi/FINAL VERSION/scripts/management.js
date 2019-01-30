@@ -1,13 +1,14 @@
 var elements;
 
 function processList(array) {
-    elements = array;
-}
-
-function initializeManagement() {
-    dao.getAllMyTamagotchi(processList);
-    var n = 20;
+    elements = array.filter(element => element.face !== undefined);
+    n = elements.length;
     var d = document.getElementById("managementWrapper");
+    var p = d.parentNode;
+    p.removeChild(d);
+    var d = document.createElement("div");
+    d.id = "managementWrapper";
+    p.appendChild(d);
     var div = document.createElement("div");
     div.className = "tamagotchiItem";
     var image = document.createElement("img");
@@ -16,10 +17,13 @@ function initializeManagement() {
     div.appendChild(image);
     div.addEventListener('click', () => router.changePage('view/edit', initializeAdd));
     d.appendChild(div);
-    for (let i = 1; i <= n; i++) {
+    for (let i = 0; i < n; i++) {
         var div = document.createElement("div");
+        div.id = "div" + i;
         div.className = "tamagotchiItem";
         d.appendChild(div);
+        var a = new engine("div" + i, div.clientWidth, div.clientHeight);
+        SVGDraw(elements[i], a);
         var b = document.createElement("button");
         b.textContent = "View";
         b.className = "view";
@@ -31,4 +35,8 @@ function initializeManagement() {
         b.addEventListener('click', () => router.changePage('view/edit', initializeView(i)));
         b1.addEventListener('click', () => router.changePage('view/edit', initializeEdit(i)));
     }
+}
+
+function initializeManagement() {
+    dao.getAllMyTamagotchi(processList);
 }

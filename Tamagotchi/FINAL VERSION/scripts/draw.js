@@ -1,63 +1,71 @@
+function parse(text, text2) {
+    var j = text.indexOf(text2);
+    var newtext = text.substring(j + text2.length + 1);
+    var j2 = newtext.indexOf('"', 1);
+    return newtext.substring(0, j2 + 1).substring(1, newtext.substring(0, j2 + 1).length - 1);
+}
+
 function SVGDraw(shapeDictionary, a) {
     var h = a.height;
     var w = a.width;
-    face = shapeDictionary['face'];
-    if (face instanceof SVGRectElement)
-        face = a.rect(face.x, face.y, face.w, face.h, "face");
-    else if (face instanceof SVGCircleElement)
-        face = a.circle(face.x, face.y, face.r, "face");
-    else face = a.ellipse(face.x, face.y, face.radiusX, face.radiusY, "face");
-    face.css("fill", shapeDictionary['face-color']);
-    var rightEye = shapeDictionary['right-eye'];
-    var leftEye = shapeDictionary['left-eye'];
-    if (rightEye instanceof SVGRectElement) {
-        rightEye = a.rect(rightEye.x, rightEye.y, rightEye.w, rightEye.h, "right-eye");
-        leftEye = a.rect(leftEye.x, leftEye.y, leftEye.w, leftEye.h, "left-eye");
-    } else if (rightEye instanceof SVGCircleElement) {
-        rightEye = a.circle(rightEye.x, rightEye.y, rightEye.r, "right-eye");
-        leftEye = a.circle(leftEye.x, leftEye.y, leftEye.r, "left-eye");
+    var faceText = shapeDictionary['face'];
+    var face;
+    if (faceText.search("rect") != -1) {
+        face = a.rect(parse(faceText, '" x'), parse(faceText, '" y'), parse(faceText, 'width'), parse(faceText, 'height'), "face");
     } else {
-        rightEye = a.ellipse(rightEye.x, rightEye.y, rightEye.radiusX, rightEye.radiusY, "right-eye");
-        leftEye = a.ellipse(leftEye.x, leftEye.y, leftEye.r, leftEye.radiusX, leftEye.radiusY, "left-eye");
+        face = a.ellipse(parse(faceText, 'cx'), parse(faceText, 'cy'), parse(faceText, 'rx'), parse(faceText, 'ry'), "face");
     }
-    var mouth = shapeDictionary['mouth'];
-    var obj = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    obj.setAttribute('d', mouth.d);
+    face.css("fill", shapeDictionary['faceColor']);
+    var rightEyeText = shapeDictionary['right-eye'];
+    var leftEyeText = shapeDictionary['left-eye'];
+    var rightEye;
+    var leftEye;
+    if (rightEyeText.search("rect") != -1) {
+        rightEye = a.rect(parse(rightEyeText, '" x'), parse(rightEyeText, '" y'), parse(rightEyeText, 'width'), parse(rightEyeText, 'height'), "right-eye");
+        leftEye = a.rect(parse(leftEyeText, '" x'), parse(leftEyeText, '" y'), parse(leftEyeText, 'width'), parse(leftEyeText, 'height'), "left-eye");
+    } else {
+        rightEye = a.ellipse(parse(rightEyeText, 'cx'), parse(rightEyeText, 'cy'), parse(rightEyeText, 'rx'), parse(rightEyeText, 'ry'), "right-eye");
+        leftEye = a.ellipse(parse(leftEyeText, 'cx'), parse(leftEyeText, 'cy'), parse(leftEyeText, 'rx'), parse(leftEyeText, 'ry'), "left-eye");
+    }
+    var torsoText = shapeDictionary['torso'];
+    if (torsoText.search("rect") != -1) {
+        torso = a.rect(parse(torsoText, '" x'), parse(torsoText, '" y'), parse(torsoText, 'width'), parse(torsoText, 'height'), "torso");
+    } else {
+        torso = a.ellipse(parse(torsoText, 'cx'), parse(torsoText, 'cy'), parse(torsoText, 'rx'), parse(torsoText, 'ry'), "torso");
+    }
+    var mouthText = shapeDictionary['mouth'];
+    var obj = document.createElementNS(a.ns, 'path');
+    obj.setAttribute('d', parse(mouthText, " d"));
     obj.setAttribute('id', "mouth");
     obj.setAttribute('fill', 'none');
     obj.setAttribute('stroke', '#000000');
     mouth = a.add(obj, "mouth");
-    torso = shapeDictionary['torso'];
-    if (torso instanceof SVGRectElement)
-        torso = a.rect(torso.x, torso.y, torso.w, torso.h, "torso");
-    else
-        torso = a.ellipse(torso.x, torso.y, torso.radiusX, torso.radiusY, "torso");
-    var leftHand = shapeDictionary['left-hand'];
-    var obj = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    obj.setAttribute('d', leftHand.d);
-    obj.setAttribute('id', "left-hand");
-    obj.setAttribute('fill', 'none');
-    obj.setAttribute('stroke', '#000000');
-    leftHand = a.add(obj, "left-hand");
-    var rightHand = shapeDictionary['right-hand'];
-    var obj = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    obj.setAttribute('d', rightHand.d);
+    var rightHandText = shapeDictionary['right-hand'];
+    var obj = document.createElementNS(a.ns, 'path');
+    obj.setAttribute('d', parse(rightHandText, " d"));
     obj.setAttribute('id', "right-hand");
     obj.setAttribute('fill', 'none');
     obj.setAttribute('stroke', '#000000');
     rightHand = a.add(obj, "right-hand");
-    var leftLeg = shapeDictionary['left-leg'];
-    var obj = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    obj.setAttribute('d', leftLeg.d);
-    obj.setAttribute('id', "left-leg");
+    var leftHandText = shapeDictionary['left-hand'];
+    var obj = document.createElementNS(a.ns, 'path');
+    obj.setAttribute('d', parse(leftHandText, " d"));
+    obj.setAttribute('id', "right-hand");
     obj.setAttribute('fill', 'none');
     obj.setAttribute('stroke', '#000000');
-    leftLeg = a.add(obj, "left-leg");
-    var rightLeg = shapeDictionary['right-leg'];
-    var obj = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    obj.setAttribute('d', rightLeg.d);
+    leftHand = a.add(obj, "left-hand");
+    var rightLegText = shapeDictionary['right-leg'];
+    var obj = document.createElementNS(a.ns, 'path');
+    obj.setAttribute('d', parse(rightLegText, " d"));
     obj.setAttribute('id', "right-leg");
     obj.setAttribute('fill', 'none');
     obj.setAttribute('stroke', '#000000');
     rightLeg = a.add(obj, "right-leg");
+    var leftLegText = shapeDictionary['left-leg'];
+    var obj = document.createElementNS(a.ns, 'path');
+    obj.setAttribute('d', parse(leftLegText, " d"));
+    obj.setAttribute('id', "left-leg");
+    obj.setAttribute('fill', 'none');
+    obj.setAttribute('stroke', '#000000');
+    leftLeg = a.add(obj, "left-leg");
 }
