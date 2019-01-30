@@ -14,6 +14,16 @@ class List {
     getCurrentItem() {
         return this.items[this.index];
     }
+    setCurrentItem(name) {
+        var n = this.items.length;
+        for (var i = 0; i < n; i++)
+            if (this.items[i] == name)
+                this.index = i;
+        return this.getCurrentItem();
+    }
+    reset() {
+        this.index = 0;
+    }
 }
 
 /*Instances of class Point will be used at drawing the tamagotchi*/
@@ -41,7 +51,7 @@ var leftHand;
 var leftLeg;
 var mouth;
 var torso;
-
+var eventCheck = false;
 /*Function for changing the eyes of the tamagotchi*/
 function changingEyes() {
     var w = a.width;
@@ -69,8 +79,8 @@ function changingEyes() {
             break;
 
     }
-    character['right-eye'] = rightEye;
-    character['left-eye'] = leftEye;
+    character['right-eye'] = rightEye[0].outerHTML;
+    character['left-eye'] = leftEye[0].outerHTML;
 }
 
 /*Function for changing the face shape of the tamagotchi*/
@@ -92,7 +102,7 @@ function changingFace() {
             break;
     }
     face.css("fill", faceColor);
-    character['face'] = face;
+    character['face'] = face[0].outerHTML;
 }
 
 /*Function for changing the mouth of the tamagotchi*/
@@ -114,7 +124,7 @@ function changingMouth() {
             mouth = a.path([leftEyePoint.getX(), leftEyePoint.getY() + h / 12, facePoint.getX(), rightEyePoint.getY() + h / 12 - (h / 10 - h / 12), rightEyePoint.getX(), rightEyePoint.getY() + h / 12], "mouth");
             break;
     }
-    character['mouth'] = mouth;
+    character['mouth'] = mouth[0].outerHTML;
 }
 
 /*Function for changing the accesory of the tamagotchi*/
@@ -140,7 +150,7 @@ function changingTorso() {
     rightHand = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY(), torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20], "right-hand");
     leftLeg = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20 + h / 5, torsoPoint.getX(), torsoPoint.getY() + h / 5], "left-leg");
     rightLeg = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY() + h / 5, torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20 + h / 5], "right-leg");
-    character['torso'] = torso;
+    character['torso'] = torso[0].outerHTML;
 }
 
 /*This function is used at drawing the tamagotchi, based on the values selected by the user*/
@@ -209,15 +219,15 @@ function draw() {
     rightHand = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY(), torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20], "right-hand");
     leftLeg = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20 + h / 5, torsoPoint.getX(), torsoPoint.getY() + h / 5], "left-leg");
     rightLeg = a.path([torsoPoint.getX() + h / 14, torsoPoint.getY() + h / 5, torsoPoint.getX() + h / 14 + h / 20, torsoPoint.getY() + h / 20 + h / 5], "right-leg");
-    character['face'] = face;
-    character['right-eye'] = rightEye;
-    character['left-eye'] = leftEye;
-    character['mouth'] = mouth;
-    character['torso'] = torso;
-    character['right-hand'] = rightHand;
-    character['left-hand'] = leftHand;
-    character['right-leg'] = rightLeg;
-    character['left-leg'] = leftLeg;
+    character['face'] = face[0].outerHTML;
+    character['right-eye'] = rightEye[0].outerHTML;
+    character['left-eye'] = leftEye[0].outerHTML;
+    character['mouth'] = mouth[0].outerHTML;
+    character['torso'] = torso[0].outerHTML;
+    character['right-hand'] = rightHand[0].outerHTML;
+    character['left-hand'] = leftHand[0].outerHTML;
+    character['right-leg'] = rightLeg[0].outerHTML;
+    character['left-leg'] = leftLeg[0].outerHTML;
 }
 var eyesList = new List(["round", "rectangular", "ellipse", "ellipse2"]);
 var mouthList = new List(["happy", "regular", "sad"]);
@@ -228,8 +238,60 @@ var divToList = { "eyes-options": eyesList, "face-options": faceList, "mouth-opt
 var divToFunction = { "eyes-options": changingEyes, "face-options": changingFace, "mouth-options": changingMouth, "accessory-options": changingAccessory, "torso-options": changingTorso };
 var faceColor = "blue";
 
+function initializeView(tamagotchi) {
+    var container = document.getElementById("svg-container");
+    document.getElementById("options-container").style.display = "none";
+    document.getElementById("color-container").style.display = "none";
+    document.getElementById("save").style.display = "none";
+    document.getElementById("play-container").style.display = "none";
+    if (a) {
+        a.destroy();
+    }
+    a = new engine("svg-container", 724, 447);
+    var elements = document.querySelectorAll("#svg-container > svg");
+    window.onresize = (e) => {
+        if (!window.matchMedia("(max-width: 380px)").matches)
+            elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724) / 2 + "px," + (Math.round(container.clientHeight) - 447) / 2 + "px)";
+        else
+            elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724 - 30) / 2 + "px," + (Math.round(container.clientHeight) - 447 - 10) / 2 + "px)";
+    };
+    if (!window.matchMedia("(max-width: 380px)").matches)
+        elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724) / 2 + "px," + (Math.round(container.clientHeight) - 447) / 2 + "px)";
+    else
+        elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724 - 30) / 2 + "px," + (Math.round(container.clientHeight) - 447 - 10) / 2 + "px)";
+    nodeDictionary = SVGDraw(tamagotchi, a);
+}
+
+function initializeEdit(tamagotchi) {
+    initialize();
+    a = new engine("svg-container");
+    if (eventCheck == true) {
+        document.getElementById("save").removeEventListener('click');
+        document.getElementById("save").addEventListener('click', () => dao.updateTamagotchi(JSON.parse(JSON.stringify(character)), null));
+        eventCheck = true;
+    }
+}
+//var eventCheck = false;
+
+function initializeAdd() {
+    initialize();
+    draw();
+    /*
+    if (eventCheck == false) document.getElementById("save").addEventListener('click', () => dao.saveNewTamagotchi(JSON.parse(JSON.stringify(character)), null));
+    eventCheck = true;
+    */
+    if (eventCheck == true)
+        document.getElementById("save").removeEventListener('click');
+    document.getElementById("save").addEventListener('click', () => dao.saveNewTamagotchi(JSON.parse(JSON.stringify(character)), null));
+    eventCheck = true;
+}
+
 function initialize() {
     var container = document.getElementById("svg-container");
+    document.getElementById("options-container").style.display = "block";
+    document.getElementById("color-container").style.display = "block";
+    document.getElementById("save").style.display = "block";
+    document.getElementById("play-container").style.display = "none";
     var divs = document.getElementsByClassName("options");
     var divsSize = divs.length;
     for (var i = 0; i < divsSize; i++) {
@@ -249,6 +311,16 @@ function initialize() {
             eventHandler();
         }
     }
+    faceList.reset();
+    document.getElementById("face-options").getElementsByTagName("p")[0].textContent = faceList.getCurrentItem();
+    eyesList.reset();
+    document.getElementById("eyes-options").getElementsByTagName("p")[0].textContent = eyesList.getCurrentItem();
+    mouthList.reset();
+    document.getElementById("mouth-options").getElementsByTagName("p")[0].textContent = mouthList.getCurrentItem();
+    torsoList.reset();
+    document.getElementById("torso-options").getElementsByTagName("p")[0].textContent = torsoList.getCurrentItem();
+    faceColor = "blue";
+    character['faceColor'] = "blue";
     /*Computing the color using the hsla parameters*/
     var hslItems = document.getElementsByTagName("input");
     hslItems[0].value = 0;
@@ -265,6 +337,7 @@ function initialize() {
     document.getElementById("apply").onclick = () => {
         faceColor = colorRectangle.style.background;
         face.css("fill", faceColor);
+        character['faceColor'] = faceColor;
     };
 
     window.onresize = (e) => {
@@ -276,7 +349,4 @@ function initialize() {
         a.destroy();
     }
     a = new engine("svg-container", Math.round(container.clientWidth), Math.round(container.clientHeight));
-
-    draw();
-
 }

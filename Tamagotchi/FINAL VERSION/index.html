@@ -24,7 +24,7 @@
         <div id="logo" onclick="router.changePage('home')">Tamagotchi</div>
 
         <div id="menuComponenetLoggedIn" class="menuComponent">
-            <div class="button" onclick="router.changePage('management',initializeManagement)">MANAGEMENT</div>
+            <div class="button" onclick="router.changePage('management',initializeManagement)">Management</div>
             <div class="button" onclick="dao.signOut()">Sign Out</div>
         </div>
 
@@ -35,14 +35,18 @@
     </div>
 
     <div id="home" class="page">
-        home
     </div>
     <div id="management" class="page">
+        <div id="userInfo">
+            <p id="myID"></p>
+        </div>
         <div id="managementWrapper">
         </div>
     </div>
     <div id="view/edit" class="page">
         <div id="wrapper">
+            <div id="save" class="button">Save
+            </div>
             <!-- This div contains the tamagotchi drawn in SVG-->
             <div id="svg-container">
             </div>
@@ -104,6 +108,10 @@
                     <button id="apply">apply changes</button>
                 </div>
             </div>
+            <div id="play-container">
+
+
+            </div>
         </div>
     </div>
 
@@ -127,7 +135,6 @@
         <br/>
         <div class="button" onclick="register()">Register</div>
     </form>
-
 </body>
 
 <script src="scripts/dao.js"></script>
