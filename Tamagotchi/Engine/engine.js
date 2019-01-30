@@ -128,6 +128,24 @@
 			this[0].onmouseout = fncOnMouseOut;
 		return this;
 	}
+	
+	nodeSVG.prototype.animate = function (attributeName, from, to, dur, repeatCount) {
+		var att = this[0];
+        
+        var obj = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+        
+        obj.setAttribute('attributeType', "XML");
+        obj.setAttribute('attributeName', attributeName);
+        obj.setAttribute('from', from);
+        obj.setAttribute('to', to);
+        obj.setAttribute('dur', dur);
+        obj.setAttribute('repeatCount', repeatCount);
+        
+        att.appendChild(obj);
+		
+		return this;
+	}
+	
 	nodeSVG.prototype.click = function (fncOnMouseDown, fncOnMouseUp) {
 		if (fncOnMouseDown)
 			this[0].onmousedown = fncOnMouseDown;

@@ -1,0 +1,38 @@
+#play-container {
+    position: absolute;
+    right: 25%;
+    top: calc(15% + 2px);
+    left: 50%;
+    bottom: 0%;
+    text-align: center;
+}
+
+
+@media (max-width:575px) {
+    #svg-container {
+        right: 75%
+    }
+    #play-container {
+        right: 15%
+    }
+}
+
+@media (max-width:550px) {
+    #svg-container {
+        right: 50%
+    }
+    #play-container {
+        left: 50%;
+        right: 0%;
+        bottom: 50%
+    }
+}
+
+@media (max-width:380px) {
+    #svg-container {
+        right: 70%
+    }
+    #play-container{
+        left: 30%;
+    }
+}

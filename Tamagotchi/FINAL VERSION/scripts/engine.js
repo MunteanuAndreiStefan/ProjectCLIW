@@ -141,6 +141,60 @@
         delete(this.pool[name]);
     }
 
+
+	nodeSVG.prototype.animateX = function (to, dur, repeatCount) {
+		var att = this[0];
+
+		while (att.firstChild) {
+			att.removeChild(att.firstChild);
+		}
+
+		if(att["x"]==undefined)
+			attributeName="cx";
+		else
+			attributeName="x";
+	
+        var obj = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+        
+        obj.setAttributeNS(null, 'attributeType', 'XML');
+        obj.setAttributeNS(null, 'attributeName', attributeName);
+        obj.setAttributeNS(null, 'from', Number(att[attributeName]["baseVal"]['valueAsString']));
+        obj.setAttributeNS(null, 'to', Number(to));
+        obj.setAttributeNS(null, 'dur', Number(dur));
+        obj.setAttributeNS(null, 'repeatCount', repeatCount);
+        
+        att.appendChild(obj);
+		obj.beginElement();
+		
+		return this;
+	}
+	
+		nodeSVG.prototype.animateY = function (to, dur, repeatCount) {
+		var att = this[0];
+
+		while (att.firstChild) {
+			att.removeChild(att.firstChild);
+		}
+
+		if(att["y"]==undefined)
+			attributeName="cy";
+		else
+			attributeName="y";
+		
+        var obj = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+        
+        obj.setAttributeNS(null, 'attributeType', 'XML');
+        obj.setAttributeNS(null, 'attributeName', attributeName);
+        obj.setAttributeNS(null, 'from', Number(att[attributeName]["baseVal"]['valueAsString']));
+        obj.setAttributeNS(null, 'to', Number(to));
+        obj.setAttributeNS(null, 'dur', Number(dur));
+        obj.setAttributeNS(null, 'repeatCount', repeatCount);
+        
+        att.appendChild(obj);
+		
+		return this;
+	}
+
     engine.prototype.add = function(obj, name) {
         if (!getType(name, 'string'))
             name = 'unnamedObject' + (++this.poolIndex);

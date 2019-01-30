@@ -243,7 +243,14 @@ function initializeView(tamagotchi) {
     document.getElementById("options-container").style.display = "none";
     document.getElementById("color-container").style.display = "none";
     document.getElementById("save").style.display = "none";
-    document.getElementById("play-container").style.display = "none";
+    document.getElementById("play-container").style.display = "block";
+	// add events
+	
+	document.getElementById("btnPlay").onclick=function(){a.node("left-eye").animateX("500", 10, "infinite");}
+	document.getElementById("btnAmuse").onclick=function(){a.node("left-eye").animateX("500", 10, "1");}
+	document.getElementById("btnLearn").onclick=function(){a.node("left-eye").animateX("500", 10, "1");}
+	
+	
     if (a) {
         a.destroy();
     }
@@ -259,7 +266,21 @@ function initializeView(tamagotchi) {
         elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724) / 2 + "px," + (Math.round(container.clientHeight) - 447) / 2 + "px)";
     else
         elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724 - 30) / 2 + "px," + (Math.round(container.clientHeight) - 447 - 10) / 2 + "px)";
-    nodeDictionary = SVGDraw(tamagotchi, a);
+    
+	console.log(tamagotchi);
+	
+	
+	console.log(document.getElementById("left-eye"));
+	
+	nodeDictionary = SVGDraw(tamagotchi, a);
+	
+	a.node("left-eye").hover(
+         		function(){
+         			a.node(this).fill('red');
+         		},
+         		function(){
+         			a.node(this).fill('black')
+         		});
 }
 
 function initializeEdit(tamagotchi) {
