@@ -25,20 +25,30 @@ function processList(array) {
             var b = document.createElement("button");
             b.textContent = "View";
             b.className = "view";
+            div.appendChild(b);
             var b1 = document.createElement("button");
             b1.textContent = "Edit";
             b1.className = "edit";
+            div.appendChild(b1);
             var b2 = document.createElement("button");
             b2.textContent = "Share";
-            div.appendChild(b);
-            div.appendChild(b1);
             b2.className = "share";
             div.appendChild(b2);
+            b3 = document.createElement("button");
+            b3.textContent = "Delete";
+            b3.className = "delete";
+            div.appendChild(b3);
             b.addEventListener('click', () => router.changePage('view/edit', function() { initializeView(elements[i]); }));
             b1.addEventListener('click', () => router.changePage('view/edit', function() { initializeEdit(elements[i]) }));
             b2.addEventListener('click', () => share(elements[i]));
+            b3.addEventListener('click', () => erase(elements[i]));
         }
     }
+}
+
+function erase(tamagotchi) {
+    dao.deleteTamagotchi(tamagotchi, null);
+    router.changePage("management", initializeManagement);
 }
 
 function share(tamagotchi) {

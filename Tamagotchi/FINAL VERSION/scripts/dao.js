@@ -65,15 +65,17 @@ dao.getAllMyTamagotchi = function(callback) {
     firebase.database().ref("tamagotchis").orderByChild("userID").equalTo(userID).once('value').then(function(snapshot) {
         if (typeof(callback) === "function") {
             let object = snapshot.val();
-            let keys = Object.keys(object);
-            let array = [];
-
-            keys.forEach(function(key){
-                object[key].tamagotchiID = key;
-                array.push(object[key]);
-            });
-
-            callback(array);
+            if (object != null) {
+                let keys = Object.keys(object);
+                let array = [];
+                keys.forEach(function(key) {
+                    object[key].tamagotchiID = key;
+                    array.push(object[key]);
+                });
+                callback(array);
+            } else {
+                callback();
+            }
         }
     });
 }
@@ -81,7 +83,7 @@ dao.getAllMyTamagotchi = function(callback) {
 dao.saveNewTamagotchi = function(tamagotchiObject, callback) {
     let userID = dao.getMyUserID();
 
-    if(tamagotchiObject.userID === undefined){
+    if (tamagotchiObject.userID === undefined) {
         tamagotchiObject.userID = userID;
     }
 
@@ -111,16 +113,16 @@ dao.updateTamagotchi = function(tamagotchiObject, callback) {
     });
 }
 
-dao.deleteTamagotchi = function(tamagotchiObject, callback){
+dao.deleteTamagotchi = function(tamagotchiObject, callback) {
     let tamagotchiID = tamagotchiObject.tamagotchiID;
-    firebase.database().ref("tamagotchis/" + tamagotchiID).set({}).then(function(){
-        if(typeof(callback) === "function"){
+    firebase.database().ref("tamagotchis/" + tamagotchiID).set({}).then(function() {
+        if (typeof(callback) === "function") {
             callback();
         }
     });
 }
 
-dao.shareTamagotchi = function(tamagotchiObject, userID, callback){
+dao.shareTamagotchi = function(tamagotchiObject, userID, callback) {
     let tamagotchiObjectSecond = JSON.parse(JSON.stringify(tamagotchiObject));
     delete tamagotchiObjectSecond.tamagotchiID;
 
