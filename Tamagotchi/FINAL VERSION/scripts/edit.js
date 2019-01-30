@@ -51,7 +51,7 @@ var leftHand;
 var leftLeg;
 var mouth;
 var torso;
-
+var eventCheck = false;
 /*Function for changing the eyes of the tamagotchi*/
 function changingEyes() {
     var w = a.width;
@@ -264,44 +264,25 @@ function initializeView(tamagotchi) {
 
 function initializeEdit(tamagotchi) {
     initialize();
-    document.getElementById("save").addEventListener('click', () => dao.updateTamagotchi(o, a));
-    var shapeDictionary;
-    /*
-    face = shapeDictionary['face'];
-    var element;
-    if (face instanceof SVGRectElement)
-        element = faceList.setCurrentItem("rectangular");
-    else if (face instanceof SVGCircleElement)
-        element = faceList.setCurrentItem("round");
-    else
-        element = faceList.setCurrentItem("ellipse");
-    document.getElementById("face-options").getElementsByTagName("p")[0].textContent = element;
-    rightEye = shapeDictionary['right-eye'];
-    if (rightEye instanceof SVGRectElement)
-        value = eyesList.setCurrentItem("rectangular");
-    else if (rightEye instanceof SVGCircleElement)
-        value = eyesList.setCurrentItem("round");
-    else if (rightEye.radiusX >= rightEye.radiusY)
-        value = eyesList.setCurrentItem("ellipse2");
-    else
-        value = eyesList.setCurrentItem("ellipse");
-    document.getElementById("eyes-options").getElementsByTagName("p")[0].textContent = element;
-    torso = shapeDictionary['torso'];
-    if (torso instanceof SVGRectElement)
-        element = torsoList.setCurrentItem("rectangular");
-    else
-        element = torsoList.setCurrentItem("ellipse");
-    document.getElementById("torso-options").getElementsByTagName("p")[0].textContent = element;
-    torsoList.setCurrentItem("ellipse");
-    mouth = shapeDictionary['mouth'];
-    */
+    a = new engine("svg-container");
+    if (eventCheck == true) {
+        document.getElementById("save").removeEventListener('click');
+        document.getElementById("save").addEventListener('click', () => dao.updateTamagotchi(JSON.parse(JSON.stringify(character)), null));
+        eventCheck = true;
+    }
 }
-var eventCheck = false;
+//var eventCheck = false;
 
 function initializeAdd() {
     initialize();
     draw();
+    /*
     if (eventCheck == false) document.getElementById("save").addEventListener('click', () => dao.saveNewTamagotchi(JSON.parse(JSON.stringify(character)), null));
+    eventCheck = true;
+    */
+    if (eventCheck == true)
+        document.getElementById("save").removeEventListener('click');
+    document.getElementById("save").addEventListener('click', () => dao.saveNewTamagotchi(JSON.parse(JSON.stringify(character)), null));
     eventCheck = true;
 }
 
@@ -368,5 +349,4 @@ function initialize() {
         a.destroy();
     }
     a = new engine("svg-container", Math.round(container.clientWidth), Math.round(container.clientHeight));
-    alert(Math.round(container.clientWidth) + " " + Math.round(container.clientHeight));
 }

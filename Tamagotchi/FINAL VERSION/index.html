@@ -24,8 +24,8 @@
         <div id="logo" onclick="router.changePage('home')">Tamagotchi</div>
 
         <div id="menuComponenetLoggedIn" class="menuComponent">
-            <div class="button" onclick="router.changePage('management',initializeManagement)">MANAGEMENT</div>
-            <div class="button" onclick="dao.signOut();">Sign Out</div>
+            <div class="button" onclick="router.changePage('management',initializeManagement)">Management</div>
+            <div class="button" onclick="dao.signOut()">Sign Out</div>
         </div>
 
         <div id="menuComponenetLoggedOut" class="menuComponent">
@@ -35,13 +35,12 @@
     </div>
 
     <div id="home" class="page">
-        home
     </div>
     <div id="management" class="page">
-        <div id="managementWrapper">
-        </div>
         <div id="userInfo">
-
+            <p id="myID"></p>
+        </div>
+        <div id="managementWrapper">
         </div>
     </div>
     <div id="view/edit" class="page">

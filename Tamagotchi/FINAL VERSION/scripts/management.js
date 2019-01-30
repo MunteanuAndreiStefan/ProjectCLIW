@@ -1,6 +1,8 @@
 var elements;
 
 function processList(array) {
+    var paragraph = document.getElementById("myID");
+    paragraph.textContent = dao.getMyUserID();
     var d = document.getElementById("managementWrapper");
     var div = document.createElement("div");
     div.className = "tamagotchiItem";
@@ -39,10 +41,10 @@ function processList(array) {
     }
 }
 
-function share(a) {
-    alert(JSON.stringify(a));
+function share(tamagotchi) {
+    var user = prompt("You gift this tamagotchi to..");
+    dao.shareTamagotchi(tamagotchi, user, null);
 }
-
 
 function initializeManagement() {
     var d = document.getElementById("managementWrapper");
@@ -51,5 +53,7 @@ function initializeManagement() {
     var d = document.createElement("div");
     d.id = "managementWrapper";
     p.appendChild(d);
+    var paragraph = document.getElementById("myID");
+    paragraph.textContent = "";
     dao.getAllMyTamagotchi(processList);
 }
