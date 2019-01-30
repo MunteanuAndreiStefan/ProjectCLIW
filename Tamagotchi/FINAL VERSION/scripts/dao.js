@@ -66,6 +66,7 @@ dao.getAllMyTamagotchi = function(callback){
     firebase.database().ref("tamagotchis").orderByChild("userID").equalTo(userID).once('value').then(function(snapshot) {
         if(typeof(callback) === "function"){
             let object = snapshot.val();
+            console.log(object);
             let keys = Object.keys(object);
             let array = [];
 
@@ -82,7 +83,7 @@ dao.getAllMyTamagotchi = function(callback){
 dao.saveNewTamagotchi = function(tamagotchiObject, callback){
     let userID = dao.getMyUserID();
 
-    if(userID === undefined){
+    if(tamagotchiObject.userID === undefined){
         tamagotchiObject.userID = userID;
     }
 
@@ -107,6 +108,15 @@ dao.updateTamagotchi = function(tamagotchiObject, callback){
     delete tamagotchiObjectSecond.tamagotchiID;
 
     firebase.database().ref("tamagotchis/" + tamagotchiID).set(tamagotchiObjectSecond).then(function(){
+        if(typeof(callback) === "function"){
+            callback();
+        }
+    });
+}
+
+dao.deleteTamagotchi = function(tamagotchiObject, callback){
+    let tamagotchiID = tamagotchiObject.tamagotchiID;
+    firebase.database().ref("tamagotchis/" + tamagotchiID).set({}).then(function(){
         if(typeof(callback) === "function"){
             callback();
         }
