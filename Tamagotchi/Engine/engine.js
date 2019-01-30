@@ -72,6 +72,36 @@
         att.appendChild(obj);
     }
 
+    engine.prototype.animateText = function(nameToAttach, actionName, animText, dur, repeatCount) {
+		var nodeText = document.getElementById("textField");
+		
+		if(nodeText == undefined){
+			nodeText = document.createElement('text');
+			nodeText.id = "textField";
+		}
+		
+		var nodeTextPath = document.createElement('textPath');
+		nodeTextPath.setAttribute('xlink:href', "#" + nameToAttach);
+		nodeTextPath.innerHTML = animText;
+
+
+        var obj = document.createElementNS(this.ns, 'animate');
+
+        obj.setAttribute('attributeType', "XML");
+        obj.setAttribute('attributeName', "startOffset");
+        obj.setAttribute('from', "0%");
+        obj.setAttribute('to', "100%");
+		obj.setAttribute('begin', "0s");
+        obj.setAttribute('dur', String(dur) + "s");
+        obj.setAttribute('repeatCount', repeatCount);
+		obj.setAttribute('keyTimes', "0;1");
+        nodeTextPath.appendChild(obj);
+		nodeText.appendChild(nodeTextPath);
+		this.add(nodeText, actionName);
+		
+		return this;
+    }
+
     // Creaza si adauga obiectul la parinte
     engine.prototype.createSurface = function() {
         this.surface = document.createElementNS(this.ns, 'svg');
@@ -142,6 +172,26 @@
     }
 
 
+	nodeSVG.prototype.animateColor = function(values, dur, repeatCount){
+		var att = this[0];
+
+		while (att.firstChild) {
+			att.removeChild(att.firstChild);
+		}
+		var obj = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+		
+		obj.setAttributeNS(null, 'attributeType', "XML");
+        obj.setAttributeNS(null, 'attributeName', "fill");
+        obj.setAttributeNS(null, 'values', values);
+        obj.setAttributeNS(null, 'dur', Number(dur));
+		obj.setAttributeNS(null, 'repeatCount', repeatCount);
+		att.appendChild(obj);
+		obj.beginElement();
+		
+		
+		return this;
+	}
+
 	nodeSVG.prototype.animateX = function (to, dur, repeatCount) {
 		var att = this[0];
 
@@ -158,7 +208,7 @@
         
         obj.setAttributeNS(null, 'attributeType', 'XML');
         obj.setAttributeNS(null, 'attributeName', attributeName);
-        obj.setAttributeNS(null, 'from', Number(att[attributeName]["baseVal"]['valueAsString']));
+        obj.setAttributeNS(null, 'from', Number(att[attributeName]["baseVal"]["valueAsString"]));
         obj.setAttributeNS(null, 'to', Number(to));
         obj.setAttributeNS(null, 'dur', Number(dur));
         obj.setAttributeNS(null, 'repeatCount', repeatCount);

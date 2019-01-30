@@ -238,6 +238,11 @@ var divToList = { "eyes-options": eyesList, "face-options": faceList, "mouth-opt
 var divToFunction = { "eyes-options": changingEyes, "face-options": changingFace, "mouth-options": changingMouth, "accessory-options": changingAccessory, "torso-options": changingTorso };
 var faceColor = "blue";
 
+function removeElement(id) {
+    var elem = document.getElementById(id);
+    return elem.parentNode.removeChild(elem);
+}
+
 function initializeView(tamagotchi) {
     var container = document.getElementById("svg-container");
     document.getElementById("options-container").style.display = "none";
@@ -246,9 +251,27 @@ function initializeView(tamagotchi) {
     document.getElementById("play-container").style.display = "block";
 	// add events
 	
-	document.getElementById("btnPlay").onclick=function(){a.node("left-eye").animateX("500", 10, "infinite");}
-	document.getElementById("btnAmuse").onclick=function(){a.node("left-eye").animateX("500", 10, "1");}
-	document.getElementById("btnLearn").onclick=function(){a.node("left-eye").animateX("500", 10, "1");}
+	document.getElementById("btnPlay").onclick=function(){
+		a.node("face").animateColor("red;blue;red", 10,"2");
+		a.node("torso").animateColor("green;yellow;white", 10,"2");
+		}
+	document.getElementById("btnAmuse").onclick=function(){
+		console.log(a.node("left-eye"));
+		a.node("left-eye").animateX(a.node("left-eye")[0]["cx"]["baseVal"]['value']+10, 1, "1");
+		a.node("right-eye").animateX(a.node("right-eye")[0]["cx"]["baseVal"]['value']+10, 1, "1");
+	}
+	
+	document.getElementById("btnLearn").onclick=function(){
+		while(document.getElementById("brakeDance")){
+			removeElement("brakeDance");
+		}
+		
+		a.animateText("left-leg", "brakeDance", "Learn", 20, "2");
+		a.animateText("right-leg", "brakeDance", "Learn", 20, "2");
+		a.animateText("left-hand", "brakeDance", "Learn", 20, "2");
+		a.animateText("right-hand", "brakeDance", "Learn", 20, "2");
+		}
+
 	
 	
     if (a) {
