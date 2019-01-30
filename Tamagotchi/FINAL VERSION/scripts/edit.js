@@ -250,7 +250,7 @@ function initializeView(tamagotchi) {
     document.getElementById("save").style.display = "none";
     document.getElementById("play-container").style.display = "block";
 	// add events
-	
+
 	document.getElementById("btnPlay").onclick=function(){
 		a.node("face").animateColor("red;blue;red", 10,"2");
 		a.node("torso").animateColor("green;yellow;white", 10,"2");
@@ -272,8 +272,6 @@ function initializeView(tamagotchi) {
 		a.animateText("right-hand", "brakeDance", "Learn", 20, "2");
 		}
 
-	
-	
     if (a) {
         a.destroy();
     }
@@ -289,45 +287,46 @@ function initializeView(tamagotchi) {
         elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724) / 2 + "px," + (Math.round(container.clientHeight) - 447) / 2 + "px)";
     else
         elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724 - 30) / 2 + "px," + (Math.round(container.clientHeight) - 447 - 10) / 2 + "px)";
-    
-	console.log(tamagotchi);
-	
-	
-	console.log(document.getElementById("left-eye"));
-	
-	nodeDictionary = SVGDraw(tamagotchi, a);
-	
-	a.node("left-eye").hover(
-         		function(){
-         			a.node(this).fill('red');
-         		},
-         		function(){
-         			a.node(this).fill('black')
-         		});
+
+    console.log(tamagotchi);
+
+
+    console.log(document.getElementById("left-eye"));
 }
 
 function initializeEdit(tamagotchi) {
     initialize();
     a = new engine("svg-container");
-    if (eventCheck == true) {
-        document.getElementById("save").removeEventListener('click');
-        document.getElementById("save").addEventListener('click', () => dao.updateTamagotchi(JSON.parse(JSON.stringify(character)), null));
-        eventCheck = true;
     }
+    eyesList.setCurrentItem(nodeDictionary['eyesItem']);
+        character2['right-eye'] = character['right-eye'];
+        character2['left-eye'] = character['left-eye'];
+        character2['mouth'] = character['mouth'];
+        character2['torso'] = character['torso'];
+        character2['right-hand'] = character['right-hand'];
+        character2['left-hand'] = character['left-hand'];
+        character2['right-leg'] = character['right-leg'];
+        character2['left-leg'] = character['left-leg'];
+        character2['faceColor'] = faceColor;
+        dao.updateTamagotchi(JSON.parse(JSON.stringify(character2)), null);
+        router.changePage('management', initializeManagement);
+    });
 }
-//var eventCheck = false;
 
 function initializeAdd() {
     initialize();
     draw();
-    /*
-    if (eventCheck == false) document.getElementById("save").addEventListener('click', () => dao.saveNewTamagotchi(JSON.parse(JSON.stringify(character)), null));
-    eventCheck = true;
-    */
-    if (eventCheck == true)
-        document.getElementById("save").removeEventListener('click');
-    document.getElementById("save").addEventListener('click', () => dao.saveNewTamagotchi(JSON.parse(JSON.stringify(character)), null));
-    eventCheck = true;
+    var item = document.getElementById("save");
+    item.parentNode.removeChild(item);
+    var item = document.createElement("div");
+    item.id = "save";
+    item.className = "button";
+    item.textContent = "Save";
+    document.getElementById("wrapper").appendChild(item);
+    item.addEventListener('click', () => {
+        dao.saveNewTamagotchi(JSON.parse(JSON.stringify(character)), null);
+        router.changePage('management', initializeManagement);
+    });
 }
 
 function initialize() {

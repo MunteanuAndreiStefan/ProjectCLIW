@@ -8,8 +8,11 @@ let initAuthetication = function() {
         } else {
             document.getElementById('menuComponenetLoggedIn').style.display = "none";
             document.getElementById('menuComponenetLoggedOut').style.display = "block";
-
-            router.changePage('home')
+            document.getElementById('myID').textContent = "";
+            var management = document.getElementById("managementWrapper");
+            while (management.hasChildNodes())
+                management.removeChild(management.firstChild);
+            router.changePage('home');
         }
     }
     dao.userAuthenticationCheck(callback);

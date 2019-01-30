@@ -45,10 +45,16 @@
 .tamagotchiItem>.edit {
     position: absolute;
     bottom: 0%;
-    right: 45%;
+    left: 35%;
 }
 
 .tamagotchiItem>.share {
+    position: absolute;
+    bottom: 0%;
+    right: 35%;
+}
+
+.tamagotchiItem>.delete {
     position: absolute;
     bottom: 0%;
     right: 20%;
