@@ -249,6 +249,9 @@ function initializeView(tamagotchi) {
 		a.node("face").animateColor("red;blue;red", 10,"2");
 		a.node("torso").animateColor("green;yellow;white", 10,"2");
 		}
+	document.getElementById("btnEat").onclick=function(){
+		a.node("mouth").animateColor("red;green;yellow;pink;blue;red", 10,"2");
+		}
 	document.getElementById("btnAmuse").onclick=function(){
 		console.log(a.node("left-eye"));
 		a.node("left-eye").animateX(a.node("left-eye")[0]["cx"]["baseVal"]['value']+10, 1, "1");
@@ -259,7 +262,8 @@ function initializeView(tamagotchi) {
 		while(document.getElementById("brakeDance")){
 			removeElement("brakeDance");
 		}
-		
+		a.node("left-eye").animateColor("red;blue;red", 3,"2");
+		a.node("right-eye").animateColor("red;blue;red", 3,"2");
 		a.animateText("left-leg", "brakeDance", "Learn", 20, "2");
 		a.animateText("right-leg", "brakeDance", "Learn", 20, "2");
 		a.animateText("left-hand", "brakeDance", "Learn", 20, "2");
