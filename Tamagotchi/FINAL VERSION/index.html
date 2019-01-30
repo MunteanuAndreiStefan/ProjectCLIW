@@ -25,7 +25,7 @@
 
         <div id="menuComponenetLoggedIn" class="menuComponent">
             <div class="button" onclick="router.changePage('management',initializeManagement)">MANAGEMENT</div>
-            <div class="button" onclick="dao.signOut()">Sign Out</div>
+            <div class="button" onclick="dao.signOut();">Sign Out</div>
         </div>
 
         <div id="menuComponenetLoggedOut" class="menuComponent">
@@ -39,6 +39,9 @@
     </div>
     <div id="management" class="page">
         <div id="managementWrapper">
+        </div>
+        <div id="userInfo">
+
         </div>
     </div>
     <div id="view/edit" class="page">
@@ -133,7 +136,6 @@
         <br/>
         <div class="button" onclick="register()">Register</div>
     </form>
-
 </body>
 
 <script src="scripts/dao.js"></script>

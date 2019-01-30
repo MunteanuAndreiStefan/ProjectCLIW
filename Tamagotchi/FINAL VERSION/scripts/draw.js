@@ -68,4 +68,15 @@ function SVGDraw(shapeDictionary, a) {
     obj.setAttribute('fill', 'none');
     obj.setAttribute('stroke', '#000000');
     leftLeg = a.add(obj, "left-leg");
+    var character = {};
+    character['face'] = face;
+    character['right-eye'] = rightEye;
+    character['left-eye'] = leftEye;
+    character['mouth'] = mouth;
+    character['torso'] = torso;
+    character['right-hand'] = rightHand;
+    character['left-hand'] = leftHand;
+    character['right-leg'] = rightLeg;
+    character['left-leg'] = leftLeg;
+    return character;
 }

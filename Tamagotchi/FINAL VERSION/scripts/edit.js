@@ -238,7 +238,7 @@ var divToList = { "eyes-options": eyesList, "face-options": faceList, "mouth-opt
 var divToFunction = { "eyes-options": changingEyes, "face-options": changingFace, "mouth-options": changingMouth, "accessory-options": changingAccessory, "torso-options": changingTorso };
 var faceColor = "blue";
 
-function initializeView(id) {
+function initializeView(tamagotchi) {
     var container = document.getElementById("svg-container");
     document.getElementById("options-container").style.display = "none";
     document.getElementById("color-container").style.display = "none";
@@ -247,15 +247,22 @@ function initializeView(id) {
     if (a) {
         a.destroy();
     }
-    a = new engine("svg-container", Math.round(container.clientWidth), Math.round(container.clientHeight));
+    a = new engine("svg-container", 724, 447);
+    var elements = document.querySelectorAll("#svg-container > svg");
     window.onresize = (e) => {
-        a.destroy();
-        a = new engine("svg-container", Math.round(container.clientWidth), Math.round(container.clientHeight));
-        draw();
+        if (!window.matchMedia("(max-width: 380px)").matches)
+            elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724) / 2 + "px," + (Math.round(container.clientHeight) - 447) / 2 + "px)";
+        else
+            elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724 - 30) / 2 + "px," + (Math.round(container.clientHeight) - 447 - 10) / 2 + "px)";
     };
+    if (!window.matchMedia("(max-width: 380px)").matches)
+        elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724) / 2 + "px," + (Math.round(container.clientHeight) - 447) / 2 + "px)";
+    else
+        elements[0].style.transform = "translate(" + (Math.round(container.clientWidth) - 724 - 30) / 2 + "px," + (Math.round(container.clientHeight) - 447 - 10) / 2 + "px)";
+    nodeDictionary = SVGDraw(tamagotchi, a);
 }
 
-function initializeEdit(id) {
+function initializeEdit(tamagotchi) {
     initialize();
     document.getElementById("save").addEventListener('click', () => dao.updateTamagotchi(o, a));
     var shapeDictionary;
@@ -361,4 +368,5 @@ function initialize() {
         a.destroy();
     }
     a = new engine("svg-container", Math.round(container.clientWidth), Math.round(container.clientHeight));
+    alert(Math.round(container.clientWidth) + " " + Math.round(container.clientHeight));
 }
