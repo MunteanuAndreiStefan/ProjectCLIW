@@ -51,7 +51,6 @@ var leftHand;
 var leftLeg;
 var mouth;
 var torso;
-var eventCheck = false;
 /*Function for changing the eyes of the tamagotchi*/
 function changingEyes() {
     var w = a.width;
@@ -127,10 +126,7 @@ function changingMouth() {
     character['mouth'] = mouth[0].outerHTML;
 }
 
-/*Function for changing the accesory of the tamagotchi*/
-function changingAccessory() {}
-
-/*Function for changing the costume of the tamagotchi*/
+/*Function for changing the torso of the tamagotchi*/
 function changingTorso() {
     var w = a.width;
     var h = a.height;
@@ -212,7 +208,7 @@ function draw() {
             torso = a.rect(torsoPoint.getX(), torsoPoint.getY(), h / 14, h / 5, "torso");
             break;
         case "ellipse":
-            torso = a.ellipse(torsoPoint.getX() + h / 28, torsoPoint.getY() + h / 10, h / 14, h / 5, "torso");
+            torso = a.ellipse(torsoPoint.getX() + h / 28, torsoPoint.getY() + h / 10, h / 28, h / 10, "torso");
             break;
     }
     leftHand = a.path([torsoPoint.getX() - h / 20, torsoPoint.getY() + h / 20, torsoPoint.getX(), torsoPoint.getY()], "left-hand");
@@ -232,10 +228,9 @@ function draw() {
 var eyesList = new List(["round", "rectangular", "ellipse", "ellipse2"]);
 var mouthList = new List(["happy", "regular", "sad"]);
 var faceList = new List(["round", "rectangular", "ellipse"]);
-var accessoryList = new List(["default"]);
 var torsoList = new List(["rectangular", "ellipse"]);
-var divToList = { "eyes-options": eyesList, "face-options": faceList, "mouth-options": mouthList, "accessory-options": accessoryList, "torso-options": torsoList };
-var divToFunction = { "eyes-options": changingEyes, "face-options": changingFace, "mouth-options": changingMouth, "accessory-options": changingAccessory, "torso-options": changingTorso };
+var divToList = { "eyes-options": eyesList, "face-options": faceList, "mouth-options": mouthList, "torso-options": torsoList };
+var divToFunction = { "eyes-options": changingEyes, "face-options": changingFace, "mouth-options": changingMouth, "torso-options": changingTorso };
 var faceColor = "blue";
 
 function removeElement(id) {
@@ -249,7 +244,6 @@ function initializeView(tamagotchi) {
     document.getElementById("color-container").style.display = "none";
     document.getElementById("save").style.display = "none";
     document.getElementById("play-container").style.display = "block";
-	// add events
 
 	document.getElementById("btnPlay").onclick=function(){
 		a.node("face").animateColor("red;blue;red", 10,"2");
@@ -292,13 +286,47 @@ function initializeView(tamagotchi) {
 
 
     console.log(document.getElementById("left-eye"));
+
+    nodeDictionary = SVGDraw(tamagotchi, a);
+
+    a.node("left-eye").hover(
+        function() {
+            a.node(this).fill('red');
+        },
+        function() {
+            a.node(this).fill('black')
+        });
 }
 
 function initializeEdit(tamagotchi) {
     initialize();
-    a = new engine("svg-container");
+    if (a) {
+        a.destroy();
     }
+    a = new engine("svg-container", 724, 447);
+    var nodeDictionary = SVGDraw(tamagotchi, a);
+    faceColor = tamagotchi['faceColor'];
+    faceList.setCurrentItem(nodeDictionary['faceItem']);
     eyesList.setCurrentItem(nodeDictionary['eyesItem']);
+    mouthList.setCurrentItem(nodeDictionary['mouthItem']);
+    torsoList.setCurrentItem(nodeDictionary['torsoItem']);
+    document.getElementById("face-options").getElementsByTagName("p")[0].textContent = faceList.getCurrentItem();
+    document.getElementById("eyes-options").getElementsByTagName("p")[0].textContent = eyesList.getCurrentItem();
+    document.getElementById("mouth-options").getElementsByTagName("p")[0].textContent = mouthList.getCurrentItem();
+    document.getElementById("torso-options").getElementsByTagName("p")[0].textContent = torsoList.getCurrentItem();
+    draw();
+    var item = document.getElementById("save");
+    item.parentNode.removeChild(item);
+    var item = document.createElement("div");
+    item.id = "save";
+    item.className = "button";
+    item.textContent = "Save";
+    document.getElementById("wrapper").appendChild(item);
+    var character2 = {};
+    character2['userID'] = tamagotchi['userID'];
+    character2['tamagotchiID'] = tamagotchi['tamagotchiID'];
+    item.addEventListener('click', () => {
+        character2['face'] = character['face'];
         character2['right-eye'] = character['right-eye'];
         character2['left-eye'] = character['left-eye'];
         character2['mouth'] = character['mouth'];
