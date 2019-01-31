@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Scholarly HTML</title>
+    <link rel="stylesheet" href="css/scholarly.css">
+    <script src="js/scholarly.js"></script>
+</head>
+
+<body prefix="schema: http://schema.org">
+    <header>
+        <div class="banner">
+            <img src="scholarly-html.svg" width="227" height="50" alt="Scholarly HTML logo">
+            <div class="status">Community Draft</div>
+        </div>
+        <h1>Scholarly HTML</h1>
+    </header>
+    <div role="contentinfo" typeof="schema:ScholarlyArticle">
+        <h1>Authors</h1>
+        <div typeof="sa:AuthorsList">
+            <ol>
+                <li typeof="sa:ContributorRole" property="schema:author">
+                    <a href="https://github.com/andreicostandache" typeof="schema:Person">
+                        <span property="schema:givenName">
+                        Mihai-Andrei
+                        </span>
+                        <span property="schema:familyName">
+                        Costandache
+                        </span>
+                    </a>
+                </li>
+                <li typeof="sa:ContributorRole" property="schema:author">
+                    <a href="http://students.info.uaic.ro/~stefan.munteanu/" typeof="schema:Person">
+                        <span property="schema:givenName">
+                        Andrei-Ștefan
+                        </span>
+                        <span property="schema:familyName">
+                        Munteanu
+                        </span>
+                    </a>
+                </li>
+                <li typeof="sa:ContributorRole" property="schema:author">
+                    <a href="https://github.com/VirgiliuChiriac" typeof="schema:Person">
+                        <span property="schema:givenName">
+                        Virgiliu Dorin 
+                        </span>
+                        <span property="schema:familyName">
+                        Chiriac
+                        </span>
+                    </a>
+                </li>
+            </ol>
+            <h1>License</h1>
+            <p>
+                <a href="https://github.com/MunteanuAndreiStefan/ProjectCLIW/blob/master/LICENSE">MIT</a>
+            </p>
+        </div>
+        <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+            <h2>The problem we start from</h2>
+            <p> This problem was proposed to us during cliw lab, you can find more about it <a href="https://profs.info.uaic.ro/~busaco/teach/courses/cliw/projects/">here</a>.
+            </p>
+            <p>
+                Create a MV * mini-framework for the development of vector-driven vector-based web applications at the client level. As an actual case study, it will be used to implement a Tamagotchi game simulator. At the very least, each authenticated user will manage
+                one or more characters he will take care of (nourish, educate, amuse). The Web application will provide an interactive way to create and configure these characters, plus sharing them to users. Bonus: Implementing a level message routing
+                system client to build SPA-Single Page Applications.
+            </p>
+        </section>
+        <section typeof="sa:Introduction" id="introduction" role="doc-introduction">
+            <!-- review? -->
+            <h2>Introduction</h2>
+            <p>This guide contains instructions in order to use our application.</p>
+        </section>
+        <section typeof="schema:ArticleBody" id="structure">
+            <!-- review? -->
+            <h2>How to use it</h2>
+            <p>
+                In order to understand our application, we present some printscreens with text associated when needed.
+            </p>
+            <div class="gallery">
+                <a target="_blank" href="img/printscreens/Home.JPG">
+                    <img src="img/printscreens/Home.JPG" alt="First step" width="600" height="400">
+                </a>
+                <div class="desc">Home</div>
+            </div>
+            <div class="gallery">
+                <a target="_blank" href="img/printscreens/Login.JPG">
+                    <img src="img/printscreens/Login.JPG" alt="First step" width="600" height="400">
+                </a>
+                <div class="desc">Login</div>
+            </div>
+            <div class="gallery">
+                <a target="_blank" href="img/printscreens/Register.JPG">
+                    <img src="img/printscreens/Register.JPG" alt="First step" width="600" height="400">
+                </a>
+                <div class="desc">Register</div>
+            </div>
+            <div class="gallery">
+                <a target="_blank" href="img/printscreens/Management.JPG">
+                    <img src="img/printscreens/Management.JPG" alt="First step" width="600" height="400">
+                </a>
+                <div class="desc">Management</div>
+            </div>
+            <div class="gallery">
+                <a target="_blank" href="img/printscreens/Add.JPG">
+                    <img src="img/printscreens/Add.JPG" alt="First step" width="600" height="400">
+                </a>
+                <div class="desc">Add</div>
+            </div>
+            <div class="gallery">
+                <a target="_blank" href="img/printscreens/Edit.JPG">
+                    <img src="img/printscreens/Edit.JPG" alt="First step" width="600" height="400">
+                </a>
+                <div class="desc">Edit</div>
+            </div>
+            <div class="gallery">
+                <a target="_blank" href="img/printscreens/View.JPG">
+                    <img src="img/printscreens/View.JPG" alt="First step" width="600" height="400">
+                </a>
+                <div class="desc">View</div>
+            </div>
+            <div class="gallery">
+                <a target="_blank" href="img/printscreens/Share.JPG">
+                    <img src="img/printscreens/Share.JPG" alt="First step" width="600" height="400">
+                </a>
+                <div class="desc">Share</div>
+            </div>
+            <p>If you are not registered the following options are displayed at the top of the page:Sign In and Sign Up.</p>
+            <p>If you have an account already you can pick Sign In and enter your credentials - username and password. If you'd like an account, you can pick Sign Up and enter an email address and password in order to make a new one.</p>
+            <p>If you are authenticated, you can see your tamagotchies in the management list. Each of them has the following options:Edit, View, Share and Delete. You can also make a new tamagotchi.</p>
+            <p>Add/Edit are similar, but the edit operates on an existing tamagotchi. The options are face shape, eyes, mouth, torso, and face color. In the rectangle under the color selectors you can previsualise the color. Press Apply changes in order
+                to apply the color. </p>
+            <p>If you press view you can visualise the tamagotchi and play with it by using some buttons.</p>
+            <p>You have the possibility also to delete the tamagotchi.</p>
+            <p>If you press share, you will be asked for an user id. He/she will get your tamagotchi. If you'd like someone to send you a tamagotchi, give them your ID (you can see it in the management page).</p>
+        </section>
+        <section id="validate">
+            <!-- review? -->
+            <h3>Validation</h3>
+            <p>
+                For the validation part we used w3c validators online for css and html. For internal purposes we are going to use selenium or any other frontend testing tool available for the next phases.
+            </p>
+            <p>
+                At this moment statistics are:
+            </p>
+            <ul>
+                <li>0 errors</li>
+                <li>1 warning</li>
+                <li>1 known bug</li>
+            </ul>
+        </section>
+        </section>
+        <section typeof="sa:Acknowledgements" id="acks">
+            <!-- review? -->
+            <h2>Acknowledgements</h2>
+            <p>
+                Our team would like to thank to this list of great people or companies that provided free open source software for us to be used, but also to our teacher for letting us use only the software that is marked as plain css html EcmaScript:
+            </p>
+            <p>
+                <a href="https://modernizr.com/">modernizr</a>
+            </p>
+            <p>
+                <a href="https://validator.w3.org/">HTML and CSS validator from W3C</a>
+            </p>
+            <p>
+                <a href="https://codepen.io/sureshrkm/pen/ZbzBpr">Pure Accordion</a>
+            </p>
+            <p>
+                <a href="https://github.com/drewbrolik/Responsive-Img">responsiveImg</a>
+            </p>
+            <p>
+                <a href="https://www.cssscript.com/minimal-notification-popup-pure-javascript/">Notifications</a>
+            </p>
+            <p>
+                <a href="https://github.com/scottjehl/Respond">RespondJS</a>
+            </p>
+            <p>
+                <a href="https://www.adobe.com/ro/products/illustrator.html">Adobe Illustrator</a>
+            </p>
+            <p>
+                <a href="https://firebase.google.com/docs/database">Firebase Realtime Database</a>
+            </p>
+        </section>
+    </div>
+</body>
+
+</html>
